@@ -72,17 +72,21 @@ h3 {
 .section-hero h1 {
     margin-bottom: 50px;
 }
-.section-summary {
+.section-summary,
+.section-more {
     padding: 10px 50px;
     background-color: #deedf7;
     color: #333;
 }
+.section-summary a,
+.section-more a {
+    color: #555;
+}
+.section-more {
+    padding-bottom: 20px;
+}
 .section-summary > .container {
     max-width: 1024px;
-}
-.section-install {
-    background-color: #3d566f;
-    color: #fff;
 }
 .section-tutorial {
     padding: 5px 50px 50px;
@@ -90,10 +94,12 @@ h3 {
 .section-tutorial a {
     color: #777;
 }
-.section-install {
+.section-footer {
+    background-color: #3d566f;
+    color: #fff;
     padding: 25px 50px 30px;
 }
-.section-install a {
+.section-footer a {
     color: #fff;
 }
 pre.code {
