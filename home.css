@@ -1,0 +1,151 @@
+/* Color Pallete: http://paletton.com/#uid=13w0u0k3uYeaFw0g0qFqFg0w0aF */
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+}
+body {
+    font-family: 'News Cycle', sans-serif;
+    margin-top: 65px;
+    padding: 0;
+}
+h1, h2, h3 {
+    font-size: 30px;
+    font-weight: 300;
+}
+h3 {
+    font-size: 25px;
+}
+.placeholder {
+    background-color: rgba(0,0,0,0.1);
+    margin: auto;
+}
+.cols-3 > div {
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    max-width: 400px;
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 10px 50px;
+    border-bottom: 1px solid #bdc3c7;
+    background-color: #fff;
+    z-index: 9001;
+    font-size: 30px;
+}
+.header-logo {
+    margin: auto;
+    font-weight: 200;
+}
+.header-links {
+    margin: 0;
+    float: right;
+}
+.header-links > li {
+    font-weight: 300;
+    padding: 0 0 0 8px;
+    display: inline-block;
+    margin: 0;
+}
+.header-links a {
+    text-decoration: none;
+    color: inherit;
+}
+.header-links a:hover {
+    text-decoration: underline;
+}
+.section {
+    padding: 50px;
+    text-align: center;
+}
+.section-hero {
+    padding: 30px 50px;
+    background-color: #123752;
+    color: #fff;
+}
+.section-hero h1 {
+    margin-bottom: 50px;
+}
+.section-summary {
+    padding: 10px 50px;
+    background-color: #deedf7;
+    color: #333;
+}
+.section-summary > .container {
+    max-width: 1024px;
+}
+.section-install {
+    background-color: #3d566f;
+    color: #fff;
+}
+.section-tutorial {
+    padding: 5px 50px 50px;
+}
+.section-tutorial a {
+    color: #777;
+}
+.section-install {
+    padding: 25px 50px 30px;
+}
+.section-install a {
+    color: #fff;
+}
+pre.code {
+    text-align: left;
+    max-width: 500px;
+    margin: auto;
+}
+@media all and (max-width: 400px) {
+    .header {
+        padding: 15px;
+    }
+}
+@media all and (max-width: 600px) {
+    body {
+        margin-top: 56px;
+    }
+    .header-logo {
+        margin-top: 3px;
+    }
+    .header-links {
+        margin-top: -8px;
+    }
+    .header-logo, .header-links a {
+        padding: 0;
+        font-size: 21px;
+    }
+    .header-links .fa {
+        display: none;
+    }
+}
+@media only screen and (min-width: 1000px) {
+    .cols-3 {
+        margin: 0 -15px;
+        padding: 0;
+        text-align: center;
+    }
+    .cols-3::after {
+        content: " ";
+        display: table;
+        clear: both;
+    }
+    .cols-3 > div {
+        width: 33.3333333%;
+        max-width: none;
+        display: block;
+        position: relative;
+        min-height: 1px;
+        padding: 5px 20px 15px;
+        float: left;
+        margin: 0;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+}
