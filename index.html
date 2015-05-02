@@ -38,6 +38,9 @@
         .download-buttons {
             margin-bottom: 15px;
         }
+        .column {
+            margin-bottom: 12px;
+        }
         .footer {
             margin-top: 50px;
             font-size: 90%;
@@ -49,6 +52,9 @@
         @media(max-width:767px) {
             .jumbotron .version {
                 display: none;
+            }
+            .column {
+                margin-bottom: 40px;
             }
         }
         </style>
@@ -87,7 +93,7 @@
             <div class="container">
 
                 <div class="row">
-                    <div class="col-lg-4 col-sm-6">
+                    <div class="col-lg-4 col-sm-6 column">
                         <h3><i class="fa fa-file-o"></i>&nbsp;&nbsp;Run the Agent in 3 Steps</h3>
                         <ol>
                             <li>Write script to collect data.
@@ -102,7 +108,7 @@
                         </ol>
                     </div>
 
-                    <div class="col-lg-4 col-sm-6">
+                    <div class="col-lg-4 col-sm-6 column">
                         <h3><i class="fa fa-cogs"></i>&nbsp;&nbsp;Easy to Configure</h3>
                         <p>Everything is configured using environment variables.</p>
 
@@ -115,12 +121,12 @@
                         <p>Configuring master is even simpler. One required variable: <span class="label label-default">RESOURCED_MASTER_DSN</span></p>
                     </div>
 
-                    <div class="col-lg-4 col-sm-6">
+                    <div class="col-lg-4 col-sm-6 column">
                         <h3><i class="fa fa-github"></i>&nbsp;&nbsp;Open Source</h3>
                         <p>ResourceD is released under the MIT License and maintained by the community on <a target="_blank" href="http://github.com/resourced/resourced">GitHub</a>.</p>
                     </div>
 
-                    <div class="col-lg-4 col-sm-6">
+                    <div class="col-lg-4 col-sm-6 column">
                         <h3><i class="fa fa-cubes"></i>&nbsp;&nbsp;Programmable</h3>
                         <p>Both agent and master provide JSON endpoints to all of its data. This allows you to write programs against it.</p>
                         <p>It can also export data to third party SaaS such as New Relic Insights.</p>
