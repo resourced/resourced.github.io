@@ -98,7 +98,7 @@
                     <ul>
                         <li>It gathers server data &amp; provides JSON endpoints for external programs to consume.</li>
 
-                        <li>It can be extended using scripting language.
+                        <li>It can be extended using scripting languages.
                             &nbsp;<a target="_blank" href="//github.com/resourced/resourced/blob/master/tests/data/script-reader/darwin-memory.py">[Example Script]</a>
                             &nbsp;<a target="_blank" href="//github.com/resourced/resourced/tree/master/tests/data/config-reader">[Example Config Files]</a>
                         </li>
@@ -139,8 +139,14 @@ RESOURCED_CONFIG_WRITER_DIR=/path/to/writer-dir \
                     </ul>
 
                     <h3><i class="fa fa-terminal"></i>&nbsp;&nbsp;Running the Master</h3>
-                    <pre class="code"><code class="language-bash">RESOURCED_MASTER_DSN=postgres://$(whoami)@localhost:5432/resourced-master?sslmode=disable \
+                    <pre class="code"><code class="language-bash"># 1. Run the Master
+RESOURCED_MASTER_DSN=postgres://$(whoami)@localhost:5432/resourced-master?sslmode=disable \
 /path/to/resourced-master
+
+# 2. Query it. Example, get all hosts with load average > 10:
+#    /load-avg.LoadAvg1m > 10
+#    Notice that the q= value needs to be encoded.
+curl -X GET -H "Content-type: application/json" -u $ACCESS_TOKEN: http://localhost:55655/api/hosts?q=%2fload-avg.LoadAvg1m%20%3E%2010
 </code></pre>
                 </div>
             </div>
