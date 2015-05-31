@@ -18,6 +18,9 @@
         h1 small, .h1 small, h2 small, .h2 small, h3 small, .h3 small, h1 .small, .h1 .small, h2 .small, .h2 .small, h3 .small, .h3 .small {
             font-size: 30%;
         }
+        h1, .h1, h2, .h2, h3, .h3 {
+            margin-top: 32px;
+        }
         ol, ul {
             padding-left: 15px;
         }
@@ -26,6 +29,7 @@
         }
         .jumbotron {
             padding: 20px 0 30px;
+            margin-bottom: 0;
         }
         .jumbotron p {
             margin-bottom: 20px;
@@ -87,86 +91,66 @@
             </div>
         </div>
 
-        <div class="section-tout">
-            <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3>Agent</h3>
+                    <ul>
+                        <li>It gathers server data &amp; provides JSON endpoints for external programs to consume.</li>
 
-                <div class="row">
-                    <div class="col-lg-4 col-sm-6 column">
-                        <h3><i class="fa fa-file-o"></i>&nbsp;&nbsp;Run the Agent in 3 Steps</h3>
-                        <ol>
-                            <li>Write script to collect data.
-                                &nbsp;<a target="_blank" href="//github.com/resourced/resourced/blob/master/tests/data/script-reader/darwin-memory.py">[Example]</a>
-                            </li>
-                            <li>Write a configuration file pointing to your script.
-                                &nbsp;<a target="_blank" href="//github.com/resourced/resourced/tree/master/tests/data/config-reader">[Examples]</a>
-                            </li>
-                            <li>Daemonize the agent.
-                                &nbsp;<a target="_blank" href="//github.com/resourced/resourced/tree/master/tests/data/script-init">[Examples]</a>
-                            </li>
-                        </ol>
-                    </div>
+                        <li>It can be extended using scripting language.
+                            &nbsp;<a target="_blank" href="//github.com/resourced/resourced/blob/master/tests/data/script-reader/darwin-memory.py">[Example Script]</a>
+                            &nbsp;<a target="_blank" href="//github.com/resourced/resourced/tree/master/tests/data/config-reader">[Example Config Files]</a>
+                        </li>
 
-                    <div class="col-lg-4 col-sm-6 column">
-                        <h3><i class="fa fa-cogs"></i>&nbsp;&nbsp;Easy to Configure</h3>
-                        <p>Everything is configured using environment variables.</p>
+                        <li>It provides a lot of native data gatherer in Go.</li>
 
-                        <p>There are two required variables for the agent:</p>
-                        <ul>
-                            <li><span class="label label-default">RESOURCED_CONFIG_READER_DIR</span></li>
-                            <li><span class="label label-default">RESOURCED_CONFIG_WRITER_DIR</span></li>
-                        </ul>
+                        <li>It can also sends data to SaaS providers such as New Relic Insights.
+                            &nbsp;<a target="_blank" href="//github.com/resourced/resourced/blob/master/tests/data/config-writer/gostruct-newrelic-insights.toml">[Example]</a>
+                        </li>
 
-                        <p>Configuring master is even simpler. One required variable: <span class="label label-default">RESOURCED_MASTER_DSN</span></p>
-                    </div>
+                        <li>Take a look at <a target="_blank" href="//github.com/resourced/resourced/blob/master/README.md">the README file</a> to learn more.</li>
+                    </ul>
 
-                    <div class="col-lg-4 col-sm-6 column">
-                        <h3><i class="fa fa-github"></i>&nbsp;&nbsp;Open Source</h3>
-                        <p>ResourceD is released under the MIT License and maintained on <a target="_blank" href="//github.com/resourced/resourced">GitHub</a>.</p>
-                    </div>
+                    <h3><i class="fa fa-terminal"></i>&nbsp;&nbsp;Running the Agent</h3>
+                    <pre class="code"><code class="language-bash"># 1. Write a script to gather data.
 
-                    <div class="col-lg-4 col-sm-6 column">
-                        <h3><i class="fa fa-cubes"></i>&nbsp;&nbsp;Programmable</h3>
-                        <p>Both agent and master provide JSON endpoints to all data. This allows you to write programs against them.</p>
-                        <p>
-                            It can also sends data to SaaS providers such as New Relic Insights
-                            &nbsp;<a target="_blank" href="//github.com/resourced/resourced/blob/master/tests/data/config-writer/gostruct-newrelic-insights.toml">[Example]</a>.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+# 2. Write a configuration file pointing to your script. Example:
+#    https://github.com/resourced/resourced/tree/master/tests/data/config-reader
 
-        <div class="section-tout">
-            <div class="container">
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h3><i class="fa fa-terminal"></i>&nbsp;&nbsp;Run the Agent</h3>
-                        <p>Agent collects data and provides JSON endpoints for external programs to consume.</p>
-
-                        <pre class="code"><code class="language-bash">RESOURCED_CONFIG_READER_DIR=/path/to/reader-dir \
+# 3. Run the Agent
+RESOURCED_CONFIG_READER_DIR=/path/to/reader-dir \
 RESOURCED_CONFIG_WRITER_DIR=/path/to/writer-dir \
 /path/to/resourced
 </code></pre>
-                    </div>
+                </div>
 
-                    <div class="col-lg-6">
-                        <h3><i class="fa fa-terminal"></i>&nbsp;&nbsp;Run the Master</h3>
-                        <p>Master receives host data from agents and provides JSON endpoints to all hosts in the cluster.
-                        Think of it as Server Facts database.</p>
+                <div class="col-lg-6">
+                    <h3>Master</h3>
+                    <ul>
+                        <li>It receives server data from agents and provides JSON endpoints to all servers in the cluster.
+                    Think of it as Server Facts database.</li>
 
-                        <pre class="code"><code class="language-bash">RESOURCED_MASTER_DSN=postgres://$(whoami)@localhost:5432/resourced-master?sslmode=disable \
+                        <li>It can be queried using SQL-like DSL.
+                            &nbsp;<a target="_blank" href="//github.com/resourced/resourced-master#querying">[Example]</a>
+                        </li>
+
+                        <li>Take a look at <a target="_blank" href="//github.com/resourced/resourced-master/blob/master/README.md">the README file</a> to learn more.</li>
+                    </ul>
+
+                    <h3><i class="fa fa-terminal"></i>&nbsp;&nbsp;Running the Master</h3>
+                    <pre class="code"><code class="language-bash">RESOURCED_MASTER_DSN=postgres://$(whoami)@localhost:5432/resourced-master?sslmode=disable \
 /path/to/resourced-master
 </code></pre>
-                    </div>
                 </div>
             </div>
         </div>
+
         <footer class="footer">
             <div class="container text-center">
-                <p>
-                    Created by <a target="_blank" href="//twitter.com/didip">Didip Kerabat</a>. Written in <a target="_blank" href="//golang.org/">#Golang</a>
-                </p>
+                <p>ResourceD is released under the MIT License and maintained on <a target="_blank" href="//github.com/resourced">GitHub</a>.</p>
+
+                <p>Created by <a target="_blank" href="//twitter.com/didip">Didip Kerabat</a>. Written in <a target="_blank" href="//golang.org/">#Golang</a></p>
             </div>
         </footer>
     </body>
