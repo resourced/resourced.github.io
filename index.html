@@ -25,7 +25,7 @@
             margin-bottom: 12px;
         }
         .jumbotron {
-            padding: 38px 0 42px;
+            padding: 20px 0 30px;
         }
         .jumbotron p {
             margin-bottom: 20px;
@@ -34,7 +34,7 @@
             margin-bottom: 15px;
         }
         .column {
-            margin-bottom: 12px;
+            margin-bottom: 6px;
         }
         .footer {
             margin-top: 50px;
@@ -139,6 +139,8 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <h3><i class="fa fa-terminal"></i>&nbsp;&nbsp;Run the Agent</h3>
+                        <p>Agent collects data and provides JSON endpoints for external programs to consume.</p>
+
                         <pre class="code"><code class="language-bash">RESOURCED_CONFIG_READER_DIR=/path/to/reader-dir \
 RESOURCED_CONFIG_WRITER_DIR=/path/to/writer-dir \
 /path/to/resourced
@@ -147,6 +149,9 @@ RESOURCED_CONFIG_WRITER_DIR=/path/to/writer-dir \
 
                     <div class="col-lg-6">
                         <h3><i class="fa fa-terminal"></i>&nbsp;&nbsp;Run the Master</h3>
+                        <p>Master receives host data from agents and provides JSON endpoints to all hosts in the cluster.
+                        Think of it as Server Facts database.</p>
+
                         <pre class="code"><code class="language-bash">RESOURCED_MASTER_DSN=postgres://$(whoami)@localhost:5432/resourced-master?sslmode=disable \
 /path/to/resourced-master
 </code></pre>
