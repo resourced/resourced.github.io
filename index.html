@@ -70,7 +70,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>ResourceD&nbsp;<small class="version">Agent v2.0.0, Master v2.1.2</small></h1>
+                        <h1>ResourceD&nbsp;<small class="version">Agent v2.0.0, Master v3.0.0</small></h1>
                         <p>A single binary daemon that collects and report your server data with ease.</p>
 
                         <div class="row">
@@ -106,7 +106,14 @@
                             &nbsp;<a target="_blank" href="//github.com/resourced/resourced/tree/master/tests/data/resourced-configs/readers">[Example Config Files]</a>
                         </li>
 
-                        <li>It provides a lot of native data gatherer in Go.</li>
+                        <li>It provides a lot of native data gatherer in Go.
+                            &nbsp;<a target="_blank" href="//github.com/resourced/resourced/tree/master/readers">[Examples]</a>
+
+                        </li>
+
+                        <li>It can execute commands based on conditions written in JS.
+                            &nbsp;<a target="_blank" href="//github.com/resourced/resourced/blob/master/tests/data/resourced-configs/executors/uptime.toml">[Example]</a>
+                        </li>
 
                         <li>It can also sends data to SaaS providers such as New Relic Insights.
                             &nbsp;<a target="_blank" href="//github.com/resourced/resourced/blob/master/tests/data/resourced-configs/writers/newrelic-insights.toml">[Example]</a>
@@ -120,10 +127,24 @@
 
 # 2. Write a configuration file pointing to your script.
 #    Example:
-#    https://github.com/resourced/resourced/tree/master/tests/data/resourced-configs/readers
+#    //github.com/resourced/resourced/tree/master/tests/data/resourced-configs/readers
 
 # 3. Run the Agent
+# RESOURCED_CONFIG_DIR will be created if it didn't exist.
 RESOURCED_CONFIG_DIR=$GOPATH/src/github.com/resourced/resourced/tests/data/resourced-configs /path/to/resourced
+</code></pre>
+
+                    <h3><i class="fa fa-terminal"></i>&nbsp;&nbsp;Using the Agent API</h3>
+                    <pre class="code"><code class="language-bash"># 1. Get everything.
+curl http://localhost:55555/
+
+# 2. Get paths to everything.
+curl http://localhost:55555/paths
+
+# 3. Get paths to all readers/writers/executors.
+curl http://localhost:55555/r/paths
+curl http://localhost:55555/w/paths
+curl http://localhost:55555/x/paths
 </code></pre>
                 </div>
 
@@ -137,18 +158,30 @@ RESOURCED_CONFIG_DIR=$GOPATH/src/github.com/resourced/resourced/tests/data/resou
                             &nbsp;<a target="_blank" href="//github.com/resourced/resourced-master#querying">[Example]</a>
                         </li>
 
+                        <li>It provides key-value metadata CRUD in JSON format.</li>
+
                         <li>Take a look at <a target="_blank" href="//github.com/resourced/resourced-master/blob/master/README.md">the README file</a> to learn more.</li>
                     </ul>
 
                     <h3><i class="fa fa-terminal"></i>&nbsp;&nbsp;Running the Master</h3>
                     <pre class="code"><code class="language-bash"># 1. Run the Master
-RESOURCED_MASTER_DSN=postgres://$(whoami)@localhost:5432/resourced-master?sslmode=disable \
-/path/to/resourced-master
+RESOURCED_MASTER_DSN=postgres://$(whoami)@localhost:5432/resourced-master?sslmode=disable /path/to/resourced-master
+</code></pre>
 
-# 2. Query it. Example, get all hosts with load average > 10:
+                    <h3><i class="fa fa-terminal"></i>&nbsp;&nbsp;Using the Master API</h3>
+                    <pre class="code"><code class="language-bash"># 1. Query it. Example, get all hosts with load average > 10:
 #    /load-avg.LoadAvg1m > 10
 #    Notice that the q= value needs to be encoded.
 curl -X GET -H "Content-type: application/json" -u $ACCESS_TOKEN: http://localhost:55655/api/hosts?q=%2fload-avg.LoadAvg1m%20%3E%2010
+
+# 2.a. Metadata create &amp; update:
+curl -X POST -H "Content-type: application/json" -u $ACCESS_TOKEN: -d '{"message": "awesome"}' http://localhost:55655/api/metadata/foo/bar
+
+# 2.b. Metadata read:
+curl -X GET -H "Content-type: application/json" -u $ACCESS_TOKEN: http://localhost:55655/api/metadata/foo/bar
+
+# 2.c. Metadata delete:
+curl -X DELETE -H "Content-type: application/json" -u $ACCESS_TOKEN: http://localhost:55655/api/metadata/foo/bar
 </code></pre>
                 </div>
             </div>
