@@ -107,9 +107,10 @@
                             &nbsp;<a target="_blank" href="//github.com/resourced/resourced/tree/master/tests/data/resourced-configs/readers">[Example Config Files]</a>
                         </li>
 
-                        <li>It provides a lot of native data gatherer in Go.
+                        <li>It provides 60+ native data collector in Go:
                             &nbsp;<a target="_blank" href="//github.com/resourced/resourced/tree/master/readers">[Examples]</a>
-
+                            <br>
+                            dmidecode, docker, haproxy, mcrouter, memcache, mysql, nagios plugins, procfs, ps output, redis, varnish.
                         </li>
 
                         <li>It can execute commands based on conditions written in JS.
@@ -123,7 +124,7 @@
                         <li>Take a look at <a target="_blank" href="//github.com/resourced/resourced/blob/master/README.md">the README file</a> to learn more.</li>
                     </ul>
 
-                    <h3><i class="fa fa-terminal"></i>&nbsp;&nbsp;Running the Agent</h3>
+                    <h3>Running the Agent</h3>
                     <pre class="code"><code class="language-bash"># 1. Write a script to gather data.
 
 # 2. Write a configuration file pointing to your script.
@@ -135,7 +136,7 @@
 RESOURCED_CONFIG_DIR=$GOPATH/src/github.com/resourced/resourced/tests/data/resourced-configs /path/to/resourced
 </code></pre>
 
-                    <h3><i class="fa fa-terminal"></i>&nbsp;&nbsp;Using the Agent API</h3>
+                    <h3>Using the Agent API</h3>
                     <pre class="code"><code class="language-bash"># 1. Get everything.
 curl http://localhost:55555/
 
@@ -167,11 +168,11 @@ curl http://localhost:55555/x/paths
                         <li>Take a look at <a target="_blank" href="//github.com/resourced/resourced-master/blob/master/README.md">the README file</a> to learn more.</li>
                     </ul>
 
-                    <h3><i class="fa fa-terminal"></i>&nbsp;&nbsp;Running the Master</h3>
+                    <h3>Running the Master</h3>
                     <pre class="code"><code class="language-bash">RESOURCED_MASTER_DSN=postgres://$(whoami)@localhost:5432/resourced-master?sslmode=disable /path/to/resourced-master
 </code></pre>
 
-                    <h3><i class="fa fa-terminal"></i>&nbsp;&nbsp;Using the Master API</h3>
+                    <h3>Using the Master API</h3>
                     <pre class="code"><code class="language-bash"># 1. Query it. Example, get all hosts with load average > 10:
 #    /load-avg.LoadAvg1m > 10
 #    Notice that the q= value needs to be encoded.
