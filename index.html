@@ -70,7 +70,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>ResourceD&nbsp;<small class="version">Agent v2.0.0, Master v3.0.0</small></h1>
+                        <h1>ResourceD&nbsp;<small class="version">Agent v2.0.2, Master v3.0.0</small></h1>
                         <p>Devops is full of busy work, it’s time for software to help.</p>
 
                         <div class="row">
@@ -103,8 +103,8 @@
                         <li>It gathers server data &amp; provides JSON endpoints for external programs to consume.</li>
 
                         <li>It can be extended using scripting languages.
-                            &nbsp;<a target="_blank" href="//github.com/resourced/resourced/blob/master/tests/data/script-reader/darwin-memory.py">[Example Script]</a>
-                            &nbsp;<a target="_blank" href="//github.com/resourced/resourced/tree/master/tests/data/resourced-configs/readers">[Example Config Files]</a>
+                            &nbsp;<a target="_blank" href="//github.com/resourced/resourced/blob/master/tests/script-reader/darwin-memory.py">[Example Script]</a>
+                            &nbsp;<a target="_blank" href="//github.com/resourced/resourced/tree/master/tests/resourced-configs/readers">[Example Config Files]</a>
                         </li>
 
                         <li>It provides 60+ native data collector in Go:
@@ -114,11 +114,11 @@
                         </li>
 
                         <li>It can execute commands based on conditions written in JS.
-                            &nbsp;<a target="_blank" href="//github.com/resourced/resourced/blob/master/tests/data/resourced-configs/executors/uptime.toml">[Example]</a>
+                            &nbsp;<a target="_blank" href="//github.com/resourced/resourced/blob/master/tests/resourced-configs/executors/uptime.toml">[Example]</a>
                         </li>
 
                         <li>It can also sends data to SaaS providers such as New Relic Insights.
-                            &nbsp;<a target="_blank" href="//github.com/resourced/resourced/blob/master/tests/data/resourced-configs/writers/newrelic-insights.toml">[Example]</a>
+                            &nbsp;<a target="_blank" href="//github.com/resourced/resourced/blob/master/tests/resourced-configs/writers/newrelic-insights.toml">[Example]</a>
                         </li>
 
                         <li>Take a look at <a target="_blank" href="//github.com/resourced/resourced/blob/master/README.md">the README file</a> to learn more.</li>
@@ -129,11 +129,11 @@
 
 # 2. Write a configuration file pointing to your script.
 #    Example:
-#    https://github.com/resourced/resourced/tree/master/tests/data/resourced-configs/readers
+#    https://github.com/resourced/resourced/tree/master/tests/resourced-configs/readers
 
 # 3. Run the Agent
 # RESOURCED_CONFIG_DIR will be created if it didn't exist.
-RESOURCED_CONFIG_DIR=$GOPATH/src/github.com/resourced/resourced/tests/data/resourced-configs /path/to/resourced
+RESOURCED_CONFIG_DIR=$GOPATH/src/github.com/resourced/resourced/tests/resourced-configs /path/to/resourced
 </code></pre>
 
                     <h3>Using the Agent API</h3>
