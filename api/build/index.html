@@ -1,0 +1,455 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>ResourceD Master API Documentation</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #151515;
+  background-color: #ac4142;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #505050;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #d0d0d0;
+}
+.highlight .p, .highlight .pi {
+  color: #d0d0d0;
+}
+.highlight .gi {
+  color: #90a959;
+}
+.highlight .gd {
+  color: #ac4142;
+}
+.highlight .gh {
+  color: #6a9fb5;
+  background-color: #151515;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #aa759f;
+}
+.highlight .kc {
+  color: #d28445;
+}
+.highlight .kt {
+  color: #d28445;
+}
+.highlight .kd {
+  color: #d28445;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #90a959;
+}
+.highlight .sr {
+  color: #75b5aa;
+}
+.highlight .si {
+  color: #8f5536;
+}
+.highlight .se {
+  color: #8f5536;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #6a9fb5;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #90a959;
+}
+.highlight .ss {
+  color: #90a959;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="ruby">ruby</a>
+              <a href="#" data-language-name="python">python</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li>Created with <a href="https://github.com/tripit/slate">Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>Welcome to the ResourceD Master API Documentation!</p>
+
+<p>This documentation provides examples in three languages: Shell, Ruby, and Python.</p>
+
+<p>You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+
+<p>To contribute, fork and send pull request to <a href="https://github.com/resourced/resourced.github.io">resourced.github.io</a> under <code class="prettyprint">docs/api/index.html.md</code></p>
+
+<h1 id="authentication">Authentication</h1>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="nb">require</span> <span class="s1">'net/https'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s1">'https://localhost:55655/api/hosts'</span><span class="p">)</span>
+
+<span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">,</span> <span class="ss">:use_ssl</span> <span class="o">=&gt;</span> <span class="n">uri</span><span class="p">.</span><span class="nf">scheme</span> <span class="o">==</span> <span class="s1">'https'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">http</span><span class="o">|</span>
+  <span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span> <span class="n">uri</span><span class="p">.</span><span class="nf">request_uri</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span> <span class="s1">'accesstoken'</span><span class="p">,</span> <span class="s1">''</span>
+
+  <span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span> <span class="n">request</span>
+<span class="k">end</span>
+</code></pre>
+<pre class="highlight python"><code><span class="c"># Requests is a 3rd party library</span>
+<span class="kn">from</span> <span class="nn">requests.auth</span> <span class="kn">import</span> <span class="n">HTTPBasicAuth</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://localhost:55655/api/hosts'</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">HTTPBasicAuth</span><span class="p">(</span><span class="s">'accesstoken'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
+</code></pre>
+<pre class="highlight shell"><code><span class="c"># Notice the double colon at the end of Access Token.</span>
+curl -u accesstoken: https://localhost:55655/api/hosts
+</code></pre>
+
+<p>Every HTTP request requires AccessToken passed as basic auth user.</p>
+
+<p>Every user can create a new AccessToken from inside the web application: <code class="prettyprint">you@example.com &gt; Clusters</code> menu.</p>
+
+<aside class="warning">Make sure to replace <code>accesstoken</code> with your API key.</aside>
+
+<h1 id="hosts">Hosts</h1>
+
+<h2 id="submit-server-data-from-a-remote-host">Submit server data from a remote host</h2>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="nb">require</span> <span class="s1">'net/https'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s1">'https://localhost:55655/api/hosts'</span><span class="p">)</span>
+
+<span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">,</span> <span class="ss">:use_ssl</span> <span class="o">=&gt;</span> <span class="n">uri</span><span class="p">.</span><span class="nf">scheme</span> <span class="o">==</span> <span class="s1">'https'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">http</span><span class="o">|</span>
+  <span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_uri</span><span class="p">,</span> <span class="n">initheader</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'Content-Type'</span> <span class="o">=&gt;</span><span class="s1">'application/json'</span><span class="p">})</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span> <span class="s1">'accesstoken'</span><span class="p">,</span> <span class="s1">''</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">body</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"Host"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span> <span class="s2">"localhost"</span><span class="p">,</span> <span class="s2">"Tags"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"dev"</span><span class="p">}},</span> <span class="s2">"Path"</span><span class="p">:</span> <span class="s2">"/stuff"</span><span class="p">,</span> <span class="s2">"Data"</span><span class="p">:{</span><span class="s2">"Truncated"</span><span class="p">:</span> <span class="s2">"..."</span><span class="p">}}.</span><span class="nf">to_json</span>
+
+  <span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span> <span class="n">request</span>
+<span class="k">end</span>
+</code></pre>
+<pre class="highlight python"><code><span class="c"># Requests is a 3rd party library</span>
+<span class="kn">from</span> <span class="nn">requests.auth</span> <span class="kn">import</span> <span class="n">HTTPBasicAuth</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://localhost:55655/api/hosts'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s">"Host"</span><span class="p">:</span> <span class="p">{</span><span class="s">"Name"</span><span class="p">:</span> <span class="s">"localhost"</span><span class="p">,</span> <span class="s">"Tags"</span><span class="p">:</span> <span class="p">{</span><span class="s">"role"</span><span class="p">:</span> <span class="s">"dev"</span><span class="p">}},</span> <span class="s">"Path"</span><span class="p">:</span> <span class="s">"/stuff"</span><span class="p">,</span> <span class="s">"Data"</span><span class="p">:{</span><span class="s">"Truncated"</span><span class="p">:</span> <span class="s">"..."</span><span class="p">}},</span> <span class="n">auth</span><span class="o">=</span><span class="n">HTTPBasicAuth</span><span class="p">(</span><span class="s">'accesstoken'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
+</code></pre>
+<pre class="highlight shell"><code><span class="c"># Notice the double colon at the end of Access Token.</span>
+curl -u accesstoken: -H <span class="s2">"Content-Type: application/json"</span> -X POST -d <span class="s1">'{"Host": {"Name": "localhost", "Tags": {"role": "dev"}}, "Path": "/stuff", "Data":{"Truncated": "..."}}'</span> https://localhost:55655/api/hosts
+</code></pre>
+
+<blockquote>
+<p>POST Body</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"/stuff"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"Data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"Truncated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Host"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"localhost"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Tags"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dev"</span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Path"</span><span class="p">:</span><span class="s2">"/stuff"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"/another/stuff"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"Data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"Truncated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Host"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"localhost"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"Tags"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dev"</span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Path"</span><span class="p">:</span><span class="s2">"/another/stuff"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Return Payload</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"ClusterID"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Hostname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"localhost"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-15T23:47:01.441652Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"Tags"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dev"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"Data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"/stuff"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"Truncated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"/another/stuff"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"Truncated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Submits server data in JSON format from a remote host. ResourceD agent uses this endpoint to send server data.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://localhost:55655/api/hosts</code></p>
+
+<h2 id="get-all-hosts">Get All Hosts</h2>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="nb">require</span> <span class="s1">'net/https'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s1">'https://localhost:55655/api/hosts'</span><span class="p">)</span>
+
+<span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">,</span> <span class="ss">:use_ssl</span> <span class="o">=&gt;</span> <span class="n">uri</span><span class="p">.</span><span class="nf">scheme</span> <span class="o">==</span> <span class="s1">'https'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">http</span><span class="o">|</span>
+  <span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span> <span class="n">uri</span><span class="p">.</span><span class="nf">request_uri</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span> <span class="s1">'accesstoken'</span><span class="p">,</span> <span class="s1">''</span>
+
+  <span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span> <span class="n">request</span>
+<span class="k">end</span>
+</code></pre>
+<pre class="highlight python"><code><span class="c"># Requests is a 3rd party library</span>
+<span class="kn">from</span> <span class="nn">requests.auth</span> <span class="kn">import</span> <span class="n">HTTPBasicAuth</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://localhost:55655/api/hosts'</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">HTTPBasicAuth</span><span class="p">(</span><span class="s">'accesstoken'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
+</code></pre>
+<pre class="highlight shell"><code><span class="c"># Notice the double colon at the end of Access Token.</span>
+curl -u accesstoken: https://localhost:55655/api/hosts
+</code></pre>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"ClusterID"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Hostname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my-mac-mini.local"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-15T23:47:01.441652Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Tags"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"os"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OS X Yosemite"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"postgres"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.4.2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"redis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.0.1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"home-dev"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"/free"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"Swap"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"Free"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">1770520576</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"Used"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">376963072</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"Total"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">2147483648</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"FreeGB"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"FreeMB"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">1770</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"UsedGB"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"UsedMB"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">376</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"TotalGB"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"TotalMB"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">2147</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"FreePercent"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">82</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"Memory"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"Free"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">685666304</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"Used"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">7904268288</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"Total"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">8589934592</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"FreeGB"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"FreeMB"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">685</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"UsedGB"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">7</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"UsedMB"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">7904</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"TotalGB"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">8</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"TotalMB"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">8589</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"ActualFree"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">3156926464</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"ActualUsed"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">5433008128</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"FreePercent"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">7</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"UsedPercent"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">92</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"ActualFreeGB"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">3</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"ActualFreeMB"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">3156</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"ActualUsedGB"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">5</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"ActualUsedMB"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">5433</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"ActualFreePercent"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">36</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"ActualUsedPercent"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">63</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"/uptime"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"Uptime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24 days, 16:55"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"TimeZone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PDT"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"LoadAvg1m"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mf">1.6044921875</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"LoadAvg5m"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mf">2.099609375</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"LoadAvg15m"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mf">2.072265625</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"CurrentTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16:46:58"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"CurrentTimeUnixNano"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">1463356018787249200</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"ClusterID"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Hostname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my-mac-pro.local"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-15T23:47:01.441652Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Tags"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"os"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OS X Yosemite"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"postgres"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.5.1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"redis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.0.1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"home-dev"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"truncated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Returns list of all hosts data.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://localhost:55655/api/hosts</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>q</td>
+<td>&ldquo;</td>
+<td>Allows user to filter hosts data using SQL-like statement.</td>
+</tr>
+</tbody></table>
+
+<h3 id="query-language">Query Language</h3>
+
+<p>There are 3 fields to query host data from: <code class="prettyprint">hostname</code>, <code class="prettyprint">tags</code>, and <code class="prettyprint">JSON path</code>.</p>
+
+<p>Currently, you can only use <em>AND</em> conjunctive operators.</p>
+
+<p><strong>Query by hostname</strong></p>
+
+<ul>
+<li><p>Exact match: <code class="prettyprint">hostname = &quot;localhost&quot;</code></p></li>
+<li><p>Starts-with match: <code class="prettyprint">hostname ~^ &quot;awesome-app-&quot;</code></p></li>
+<li><p>Regex match, case insensitive: <code class="prettyprint">hostname ~* &quot;awesome-app-&quot;</code></p></li>
+<li><p>Regex match, case sensitive: <code class="prettyprint">hostname ~ &quot;awesome-app-&quot;</code></p></li>
+<li><p>Regex match negation, case sensitive: <code class="prettyprint">hostname !~ &quot;awesome-app-&quot;</code></p></li>
+<li><p>Regex match negation, case insensitive: <code class="prettyprint">hostname !~* &quot;awesome-app-&quot;</code></p></li>
+</ul>
+
+<p><strong>Query by tags</strong></p>
+
+<ul>
+<li><p>Exact match: <code class="prettyprint">tags.mysql = 5.6.24</code></p></li>
+<li><p>Multiple exact match: <code class="prettyprint">tags.mysql = 5.6.24 and tags.redis = 3.0.1</code></p></li>
+</ul>
+
+<p><strong>Query by JSON path</strong></p>
+
+<p>To craft JSON path query, start with ResourceD path and then use &rdquo;.&ldquo; delimited separator as you get deeper into the JSON structure.</p>
+
+<p>For example, let&rsquo;s say your resourced agent shipped <code class="prettyprint">/free</code> data: <code class="prettyprint">{&quot;/free&quot;: {&quot;Data&quot;: {&quot;Swap&quot;: {&quot;Free&quot;: 0, &quot;Used&quot;: 0, &quot;Total&quot;: 0}, &quot;Memory&quot;: {&quot;Free&quot;: 1346609152}}}</code></p>
+
+<p>You can then query <code class="prettyprint">Swap -&gt; Used</code> this way: <code class="prettyprint">/free.Swap.Used &gt; 10000000</code></p>
+
+<aside class="warning">Data is just an envelope, don&rsquo;t include it in your query.</aside>
+
+          <h1 id="errors">Errors</h1>
+
+<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
+
+<p>The Kittn API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request &ndash; Your request sucks</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized &ndash; Your API key is wrong</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found &ndash; The specified kitten could not be found</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone &ndash; The kitten requested has been removed from our servers</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&rsquo;m a teapot</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="ruby">ruby</a>
+                <a href="#" data-language-name="python">python</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
