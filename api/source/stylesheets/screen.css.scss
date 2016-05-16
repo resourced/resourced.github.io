@@ -46,6 +46,10 @@ html, body {
   width: 20px;
 }
 
+#tocify-header0 {
+  display: none;
+}
+
 @mixin embossed-bg {
   background:
     linear-gradient(to bottom, rgba(#000, 0.2), rgba(#000, 0) 8px),
@@ -69,6 +73,12 @@ html, body {
   background-color: $nav-bg;
   font-size: 13px;
   font-weight: bold;
+
+  h1 {
+    font-size: 18px;
+    color: $nav-text;
+    padding: 0 $nav-padding 0 $nav-padding;
+  }
 
   // language selector for mobile devices
   .lang-selector {
@@ -493,18 +503,6 @@ html, body {
     font-size: 14px;
   }
 
-  aside.notice:before {
-    @extend %icon-info-sign;
-  }
-
-  aside.warning:before {
-    @extend %icon-exclamation-sign;
-  }
-
-  aside.success:before {
-    @extend %icon-ok-sign;
-  }
-
   .search-highlight {
     padding: 2px;
     margin: -2px;
@@ -525,7 +523,7 @@ html, body {
     background-color: $code-bg;
     color: #fff;
 
-    padding: 2em $main-padding;
+    padding: 1em $main-padding 0;
     margin: 0;
     width: $examples-width;
 

@@ -23,7 +23,8 @@ under the License.
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #393939;
+// $nav-bg: #393939;
+$nav-bg: #2b3e50;
 $examples-bg: #393939;
 $code-bg: #292929;
 $code-annotation-bg: #1c1c1c;
@@ -43,7 +44,8 @@ $search-notice-bg: #c97a7e;
 // TEXT COLORS
 ////////////////////
 $main-text: #333; // main content text color
-$nav-text: #fff;
+// $nav-text: #fff;
+$nav-text: #ebebeb;
 $nav-active-text: #fff;
 $lang-select-text: #fff; // color of unselected language tab text
 $lang-select-active-text: #fff; // color of selected language tab text
@@ -59,7 +61,7 @@ $main-padding: 28px; // padding to left and right of content & examples
 $nav-padding: 15px; // padding to left and right of navbar
 $nav-v-padding: 10px; // padding used vertically around search boxes and results
 $nav-indent: 10px; // extra padding for ToC subitems
-$code-annotation-padding: 13px; // padding inside code annotations
+$code-annotation-padding: 6px 12px 8px; // padding inside code annotations
 $h1-margin-bottom: 21px; // padding under the largest header tags
 $tablet-width: 930px; // min width before reverting to tablet size
 $phone-width: $tablet-width - $nav-width; // min width before reverting to mobile size

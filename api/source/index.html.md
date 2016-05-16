@@ -57,7 +57,7 @@ Every HTTP request requires AccessToken passed as basic auth user.
 
 Every user can create a new AccessToken from inside the web application: `you@example.com > Clusters` menu.
 
-<aside class="warning">Make sure to replace <code>accesstoken</code> with your API key.</aside>
+<aside class="notice">Make sure to replace <code>accesstoken</code> with your API key.</aside>
 
 
 # Hosts
@@ -171,6 +171,8 @@ response = requests.get('https://localhost:55655/api/hosts', auth=HTTPBasicAuth(
 # Notice the double colon at the end of Access Token.
 curl -u accesstoken: https://localhost:55655/api/hosts
 ```
+
+> Return Payload
 
 ```json
 [
@@ -298,4 +300,4 @@ For example, let's say your resourced agent shipped `/free` data: `{"/free": {"D
 
 You can then query `Swap -> Used` this way: `/free.Swap.Used > 10000000`
 
-<aside class="warning">Data is just an envelope, don't include it in your query.</aside>
+<aside class="notice">Data is just an envelope, don't include it in your query.</aside>

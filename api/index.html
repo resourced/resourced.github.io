@@ -99,7 +99,8 @@
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" />
+      <h1>ResourceD Master API Documentation</h1>
+
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
               <a href="#" data-language-name="ruby">ruby</a>
@@ -153,7 +154,7 @@ curl -u accesstoken: https://localhost:55655/api/hosts
 
 <p>Every user can create a new AccessToken from inside the web application: <code class="prettyprint">you@example.com &gt; Clusters</code> menu.</p>
 
-<aside class="warning">Make sure to replace <code>accesstoken</code> with your API key.</aside>
+<aside class="notice">Make sure to replace <code>accesstoken</code> with your API key.</aside>
 
 <h1 id="hosts">Hosts</h1>
 
@@ -253,6 +254,10 @@ curl -u accesstoken: -H <span class="s2">"Content-Type: application/json"</span>
 <pre class="highlight shell"><code><span class="c"># Notice the double colon at the end of Access Token.</span>
 curl -u accesstoken: https://localhost:55655/api/hosts
 </code></pre>
+
+<blockquote>
+<p>Return Payload</p>
+</blockquote>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="nt">"ClusterID"</span><span class="p">:</span><span class="w"> </span><span class="err">​</span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -382,13 +387,11 @@ curl -u accesstoken: https://localhost:55655/api/hosts
 
 <p>You can then query <code class="prettyprint">Swap -&gt; Used</code> this way: <code class="prettyprint">/free.Swap.Used &gt; 10000000</code></p>
 
-<aside class="warning">Data is just an envelope, don&rsquo;t include it in your query.</aside>
+<aside class="notice">Data is just an envelope, don&rsquo;t include it in your query.</aside>
 
           <h1 id="errors">Errors</h1>
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
-
-<p>The Kittn API uses the following error codes:</p>
+<p>The following error codes are used:</p>
 
 <table><thead>
 <tr>
@@ -398,43 +401,27 @@ curl -u accesstoken: https://localhost:55655/api/hosts
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>Bad Request &ndash; Usually, it means that the payload is incorrect.</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>Unauthorized &ndash; Wrong AccessToken or it does not have enough privileges.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>Not Found &ndash; API path could not be found.</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
+<td>Method Not Allowed &ndash; Invalid HTTP method.</td>
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+<td>Too Many Requests &ndash; Request is being rate-limited.</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+<td>Internal Server Error &ndash; Something went wrong. Try again later.</td>
 </tr>
 <tr>
 <td>503</td>
