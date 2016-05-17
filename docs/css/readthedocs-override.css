@@ -1,6 +1,9 @@
 .wy-nav-top, .wy-side-nav-search {
     background-color: #4e5d6c;
 }
+.wy-nav-top i {
+    font-size: 46px;
+}
 .wy-nav-side {
     background-color: #2b3e50;
     color: #ebebeb;

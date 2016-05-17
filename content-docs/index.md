@@ -16,6 +16,8 @@ ResourceD is a complete monitoring and alerting solution for DevOps everywhere. 
 
 * The agent offers a multiple of useful solutions under one binary. There's no need to install multiple daemons on every host.
 
+* The agent can proactively do things for you (based on boolean expressions on its data). Why alerts when it can solve its own problem?
+
 
 ## Agent Features
 
@@ -38,9 +40,9 @@ ResourceD is a complete monitoring and alerting solution for DevOps everywhere. 
 
 * It receives a lot of useful data from the agents: inventory, metrics, and loglines.
 
-* It can create active checks based on any of these data.
+* It creates active checks based on any of these data.
 
-* It can also create active checks on ping, ssh, and HTTP.
+* It can also create active checks on ping, SSH, and HTTP.
 
 * When you run multiple masters, the check jobs are distributed equally among them. There's no single point of failure.
 
