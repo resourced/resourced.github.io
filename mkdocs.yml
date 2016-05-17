@@ -1,0 +1,9 @@
+site_name: ResourceD Documentation
+site_url: http://resourced.io
+repo_name: GitHub
+repo_url: https://github.com/resourced/resourced-master
+theme: readthedocs
+docs_dir: markdown-docs
+site_dir: docs
+extra_css:
+    - css/readthedocs-override.css
