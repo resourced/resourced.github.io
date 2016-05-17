@@ -1,0 +1,42 @@
+.wy-nav-top, .wy-side-nav-search {
+    background-color: #4e5d6c;
+}
+.wy-nav-side {
+    background-color: #2b3e50;
+    color: #ebebeb;
+}
+.wy-nav-content {
+    max-width: none;
+    width: 100%;
+}
+.rst-versions {
+    border-top: none;
+}
+.rst-versions .rst-current-version {
+    background-color: #2b3e50;
+    color: #ebebeb;
+}
+
+@media (min-width: 1000px) {
+    .wy-nav-side {
+        width: 350px;
+    }
+    .wy-nav-content-wrap {
+        margin-left: 350px;
+    }
+    .rst-versions {
+        width: 350px;
+    }
+}
+
+@media (min-width: 1500px) {
+    .wy-nav-side {
+        width: 420px;
+    }
+    .wy-nav-content-wrap {
+        margin-left: 420px;
+    }
+    .rst-versions {
+        width: 420px;
+    }
+}

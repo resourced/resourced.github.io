@@ -2,23 +2,28 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Welcome to MkDocs\n\n\nFor full documentation visit \nmkdocs.org\n.\n\n\nCommands\n\n\n\n\nmkdocs new [dir-name]\n - Create a new project.\n\n\nmkdocs serve\n - Start the live-reloading docs server.\n\n\nmkdocs build\n - Build the documentation site.\n\n\nmkdocs help\n - Print this help message.\n\n\n\n\nProject layout\n\n\nmkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.", 
+            "text": "Introduction\n\n\nResourceD is a complete monitoring and alerting solution for DevOps everywhere. It is an open source project with MIT license.\n\n\nComparison to (plenty of) other OSS solutions\n\n\n\n\n\n\nEasy to install. Just download the precompiled binaries, change the default config, and run. No need to even \nyum install\n.\n\n\n\n\n\n\nGood looking, easy to use, UI.\n\n\n\n\n\n\nIt comprises of only three components: Agent, Master, and PostgreSQL. That's it. Other solutions are often complex with a lot of config files to manage.\n\n\n\n\n\n\nPostgreSQL is well understood and there are plenty of documentation on how to scale it and make it highly available.\n\n\n\n\n\n\nActive check is a first class citizen. Some other solutions often provide only passive checks.\n\n\n\n\n\n\nThe agent offers a multiple of useful solutions under one binary. There's no need to install multiple daemons on every host.\n\n\n\n\n\n\nAgent Features\n\n\n\n\n\n\nIt gathers a lot of systems metrics.\n\n\n\n\n\n\nIt supports gathering popular application metrics such as HAProxy, Varnish, or Memcached.\n\n\n\n\n\n\nIt tails log files and forward them to master. These loglines can then be used to create alerts.\n\n\n\n\n\n\nIt can forwards existing Graphite metrics to master. These metrics can then be used to create alerts.\n\n\n\n\n\n\nIt is easy to extend with scripting languages.\n\n\n\n\n\n\nIt can send passive checks directly from the host.\n\n\n\n\n\n\nIt can execute scripts based on boolean expressions on its data.\n\n\n\n\n\n\nMaster Features\n\n\n\n\n\n\nIt receives a lot of useful data from the agents: inventory, metrics, and loglines.\n\n\n\n\n\n\nIt can create active checks based on any of these data.\n\n\n\n\n\n\nIt can also create active checks on ping, ssh, and HTTP.\n\n\n\n\n\n\nWhen you run multiple masters, the check jobs are distributed equally among them. There's no single point of failure.\n\n\n\n\n\n\nIt provides you with SQL-like statements to query all of its data.\n\n\n\n\n\n\nIt allows you to view and search logs within time range.", 
             "title": "Home"
         }, 
         {
-            "location": "/#welcome-to-mkdocs", 
-            "text": "For full documentation visit  mkdocs.org .", 
-            "title": "Welcome to MkDocs"
+            "location": "/#introduction", 
+            "text": "ResourceD is a complete monitoring and alerting solution for DevOps everywhere. It is an open source project with MIT license.", 
+            "title": "Introduction"
         }, 
         {
-            "location": "/#commands", 
-            "text": "mkdocs new [dir-name]  - Create a new project.  mkdocs serve  - Start the live-reloading docs server.  mkdocs build  - Build the documentation site.  mkdocs help  - Print this help message.", 
-            "title": "Commands"
+            "location": "/#comparison-to-plenty-of-other-oss-solutions", 
+            "text": "Easy to install. Just download the precompiled binaries, change the default config, and run. No need to even  yum install .    Good looking, easy to use, UI.    It comprises of only three components: Agent, Master, and PostgreSQL. That's it. Other solutions are often complex with a lot of config files to manage.    PostgreSQL is well understood and there are plenty of documentation on how to scale it and make it highly available.    Active check is a first class citizen. Some other solutions often provide only passive checks.    The agent offers a multiple of useful solutions under one binary. There's no need to install multiple daemons on every host.", 
+            "title": "Comparison to (plenty of) other OSS solutions"
         }, 
         {
-            "location": "/#project-layout", 
-            "text": "mkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.", 
-            "title": "Project layout"
+            "location": "/#agent-features", 
+            "text": "It gathers a lot of systems metrics.    It supports gathering popular application metrics such as HAProxy, Varnish, or Memcached.    It tails log files and forward them to master. These loglines can then be used to create alerts.    It can forwards existing Graphite metrics to master. These metrics can then be used to create alerts.    It is easy to extend with scripting languages.    It can send passive checks directly from the host.    It can execute scripts based on boolean expressions on its data.", 
+            "title": "Agent Features"
+        }, 
+        {
+            "location": "/#master-features", 
+            "text": "It receives a lot of useful data from the agents: inventory, metrics, and loglines.    It can create active checks based on any of these data.    It can also create active checks on ping, ssh, and HTTP.    When you run multiple masters, the check jobs are distributed equally among them. There's no single point of failure.    It provides you with SQL-like statements to query all of its data.    It allows you to view and search logs within time range.", 
+            "title": "Master Features"
         }
     ]
 }
