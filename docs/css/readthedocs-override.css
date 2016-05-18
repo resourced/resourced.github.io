@@ -1,5 +1,11 @@
+h1, h2, h3, h4, h5, h6, legend {
+    margin-bottom: 16px;
+}
 p {
     margin: 0 0 12px;
+}
+li > p {
+    line-height: 26px;
 }
 code, .rst-content tt {
     font-size: 70%;
