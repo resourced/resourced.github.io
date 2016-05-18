@@ -32,7 +32,7 @@
         }, 
         {
             "location": "/gallery/", 
-            "text": "Image Gallery\n\n\nSignup Page\n\n\n\n\nAccess Token Management\n\n\n\n\nView Server Data", 
+            "text": "Image Gallery\n\n\nSignup Page\n\n\n\n\nAccess Token Management\n\n\n\n\nView Server Data\n\n\nAny numeric server data can be used to create graphs. Notice that you can query server data using SQL-like statement.\n\n\n\n\nGraphs Dashboard\n\n\n\n\nDashboard is responsive to any size screens. Graphs are draggable for sorting.\n\n\n\n\nLog Search\n\n\nUse SQL-like statement to search through your logs.\n\n\n\n\nChecks\n\n\nMinimize noise and maximize awareness by combining multiple checks with boolean expressions.\n\n\n\n\nCreate your own escalation policy.", 
             "title": "Gallery"
         }, 
         {
@@ -52,8 +52,23 @@
         }, 
         {
             "location": "/gallery/#view-server-data", 
-            "text": "", 
+            "text": "Any numeric server data can be used to create graphs. Notice that you can query server data using SQL-like statement.", 
             "title": "View Server Data"
+        }, 
+        {
+            "location": "/gallery/#graphs-dashboard", 
+            "text": "Dashboard is responsive to any size screens. Graphs are draggable for sorting.", 
+            "title": "Graphs Dashboard"
+        }, 
+        {
+            "location": "/gallery/#log-search", 
+            "text": "Use SQL-like statement to search through your logs.", 
+            "title": "Log Search"
+        }, 
+        {
+            "location": "/gallery/#checks", 
+            "text": "Minimize noise and maximize awareness by combining multiple checks with boolean expressions.   Create your own escalation policy.", 
+            "title": "Checks"
         }
     ]
 }
