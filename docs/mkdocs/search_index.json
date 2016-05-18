@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Introduction\n\n\nResourceD is a complete monitoring and alerting solution for DevOps everywhere. It is an open source project with MIT license.\n\n\nComparison to (plenty of) other OSS solutions\n\n\n\n\n\n\nEasy to install. Just download the precompiled binaries, change the default config, and run. No need to even \nyum install\n.\n\n\n\n\n\n\nGood looking, easy to use, UI.\n\n\n\n\n\n\nIt comprises of only three components: Agent, Master, and PostgreSQL. That's it. Other solutions are often complex with a lot of config files to manage.\n\n\n\n\n\n\nPostgreSQL is well understood and there are plenty of documentation on how to scale it and make it highly available.\n\n\n\n\n\n\nActive check is a first class citizen. Some other solutions often provide only passive checks.\n\n\n\n\n\n\nThe agent offers a multiple of useful solutions under one binary. There's no need to install multiple daemons on every host.\n\n\n\n\n\n\nThe agent can proactively do things for you (based on boolean expressions on its data). Why alerts when it can solve its own problem?\n\n\n\n\n\n\nAgent Features\n\n\n\n\n\n\nIt gathers a lot of systems metrics.\n\n\n\n\n\n\nIt supports gathering popular application metrics such as HAProxy, Varnish, or Memcached.\n\n\n\n\n\n\nIt tails log files and forward them to master. These loglines can then be used to create alerts.\n\n\n\n\n\n\nIt can forwards existing Graphite metrics to master. These metrics can then be used to create alerts.\n\n\n\n\n\n\nIt is easy to extend with scripting languages.\n\n\n\n\n\n\nIt can send passive checks directly from the host.\n\n\n\n\n\n\nIt can execute scripts based on boolean expressions on its data.\n\n\n\n\n\n\nMaster Features\n\n\n\n\n\n\nIt receives a lot of useful data from the agents: inventory, metrics, and loglines.\n\n\n\n\n\n\nIt creates active checks based on any of these data.\n\n\n\n\n\n\nIt can also create active checks on ping, SSH, and HTTP.\n\n\n\n\n\n\nWhen you run multiple masters, the check jobs are distributed equally among them. There's no single point of failure.\n\n\n\n\n\n\nIt provides you with SQL-like statements to query all of its data.\n\n\n\n\n\n\nIt allows you to view and search logs within time range.", 
+            "text": "Introduction\n\n\nResourceD is a complete monitoring and alerting solution for DevOps everywhere. It is an open source project with MIT license.\n\n\nComparison to (plenty of) other OSS solutions\n\n\n\n\n\n\nEasy to install. Just download the precompiled binaries, change the default config, and run. No need to even \nyum install\n.\n\n\n\n\n\n\nGood looking, easy to use, UI.\n\n\n\n\n\n\nIt comprises of only three components: Agent, Master, and PostgreSQL. That's it. Other solutions are often complex with a lot of config files to manage.\n\n\n\n\n\n\nPostgreSQL is well understood and there are plenty of documentation on how to scale it and make it highly available.\n\n\n\n\n\n\nActive check is a first class citizen. Some other solutions often provide only passive checks.\n\n\n\n\n\n\nThe agent offers a multiple of useful solutions under one binary. There's no need to install multiple daemons on every host.\n\n\n\n\n\n\nThe agent can proactively do things for you (based on boolean expressions on its data). Why alerts when it can solve its own problem?\n\n\n\n\n\n\nAgent Features\n\n\n\n\n\n\nIt gathers a lot of systems metrics.\n\n\n\n\n\n\nIt supports gathering popular application metrics such as HAProxy, Varnish, or Memcached.\n\n\n\n\n\n\nIt tails log files and forward them to master. These loglines can then be used to create alerts.\n\n\n\n\n\n\nIt can forwards existing Graphite metrics to master. These metrics can then be used to create alerts.\n\n\n\n\n\n\nIt is easy to extend with scripting languages.\n\n\n\n\n\n\nIt can send passive checks directly from the host.\n\n\n\n\n\n\nIt can execute scripts based on boolean expressions on its data.\n\n\n\n\n\n\nIt is useful without the master, it can report to other services.\n\n\n\n\n\n\nMaster Features\n\n\n\n\n\n\nIt receives a lot of useful data from the agents: inventory, metrics, and loglines.\n\n\n\n\n\n\nIt creates active checks based on any of these data.\n\n\n\n\n\n\nIt can also create active checks on ping, SSH, and HTTP.\n\n\n\n\n\n\nWhen you run multiple masters, the check jobs are distributed equally among them. There's no single point of failure.\n\n\n\n\n\n\nIt provides you with SQL-like statements to query all of its data.\n\n\n\n\n\n\nIt allows you to view and search logs within time range.\n\n\n\n\n\n\nLinks\n\n\n\n\n\n\nAgent Repo\n\n\n\n\n\n\nAgent GoDoc\n\n\n\n\n\n\nMaster Repo\n\n\n\n\n\n\nMaster GoDoc", 
             "title": "Home"
         }, 
         {
@@ -17,13 +17,43 @@
         }, 
         {
             "location": "/#agent-features", 
-            "text": "It gathers a lot of systems metrics.    It supports gathering popular application metrics such as HAProxy, Varnish, or Memcached.    It tails log files and forward them to master. These loglines can then be used to create alerts.    It can forwards existing Graphite metrics to master. These metrics can then be used to create alerts.    It is easy to extend with scripting languages.    It can send passive checks directly from the host.    It can execute scripts based on boolean expressions on its data.", 
+            "text": "It gathers a lot of systems metrics.    It supports gathering popular application metrics such as HAProxy, Varnish, or Memcached.    It tails log files and forward them to master. These loglines can then be used to create alerts.    It can forwards existing Graphite metrics to master. These metrics can then be used to create alerts.    It is easy to extend with scripting languages.    It can send passive checks directly from the host.    It can execute scripts based on boolean expressions on its data.    It is useful without the master, it can report to other services.", 
             "title": "Agent Features"
         }, 
         {
             "location": "/#master-features", 
             "text": "It receives a lot of useful data from the agents: inventory, metrics, and loglines.    It creates active checks based on any of these data.    It can also create active checks on ping, SSH, and HTTP.    When you run multiple masters, the check jobs are distributed equally among them. There's no single point of failure.    It provides you with SQL-like statements to query all of its data.    It allows you to view and search logs within time range.", 
             "title": "Master Features"
+        }, 
+        {
+            "location": "/#links", 
+            "text": "Agent Repo    Agent GoDoc    Master Repo    Master GoDoc", 
+            "title": "Links"
+        }, 
+        {
+            "location": "/gallery/", 
+            "text": "Image Gallery\n\n\nSignup Page\n\n\n\n\nAccess Token Management\n\n\n\n\nView Server Data", 
+            "title": "Gallery"
+        }, 
+        {
+            "location": "/gallery/#image-gallery", 
+            "text": "", 
+            "title": "Image Gallery"
+        }, 
+        {
+            "location": "/gallery/#signup-page", 
+            "text": "", 
+            "title": "Signup Page"
+        }, 
+        {
+            "location": "/gallery/#access-token-management", 
+            "text": "", 
+            "title": "Access Token Management"
+        }, 
+        {
+            "location": "/gallery/#view-server-data", 
+            "text": "", 
+            "title": "View Server Data"
         }
     ]
 }

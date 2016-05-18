@@ -7,3 +7,7 @@ docs_dir: content-docs
 site_dir: docs
 extra_css:
     - css/readthedocs-override.css
+
+pages:
+    - Home: index.md
+    - Gallery: gallery.md

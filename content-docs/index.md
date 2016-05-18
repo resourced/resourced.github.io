@@ -2,6 +2,7 @@
 
 ResourceD is a complete monitoring and alerting solution for DevOps everywhere. It is an open source project with MIT license.
 
+
 ## Comparison to (plenty of) other OSS solutions
 
 * Easy to install. Just download the precompiled binaries, change the default config, and run. No need to even `yum install`.
@@ -35,6 +36,8 @@ ResourceD is a complete monitoring and alerting solution for DevOps everywhere. 
 
 * It can execute scripts based on boolean expressions on its data.
 
+* It is useful without the master, it can report to other services.
+
 
 ## Master Features
 
@@ -49,3 +52,14 @@ ResourceD is a complete monitoring and alerting solution for DevOps everywhere. 
 * It provides you with SQL-like statements to query all of its data.
 
 * It allows you to view and search logs within time range.
+
+
+## Links
+
+* [Agent Repo](https://github.com/resourced/resourced)
+
+* [Agent GoDoc](https://godoc.org/github.com/resourced/resourced)
+
+* [Master Repo](https://github.com/resourced/resourced-master)
+
+* [Master GoDoc](https://godoc.org/github.com/resourced/resourced-master)
