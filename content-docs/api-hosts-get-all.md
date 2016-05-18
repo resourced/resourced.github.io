@@ -50,6 +50,7 @@ For example, let's say your resourced agent shipped `/free` data: `{"/free": {"D
 You can then query `Swap -> Used` this way: `/free.Swap.Used > 10000000`
 
 ```ruby
+# Ruby example
 require 'net/http'
 require 'net/https'
 
@@ -64,12 +65,14 @@ end
 ```
 
 ```python
+# Python example
 # Requests is a 3rd party library
 from requests.auth import HTTPBasicAuth
 response = requests.get('https://localhost:55655/api/hosts', auth=HTTPBasicAuth('accesstoken', ''))
 ```
 
 ```shell
+# cURL example
 # Notice the double colon at the end of Access Token.
 curl -u accesstoken: https://localhost:55655/api/hosts
 ```

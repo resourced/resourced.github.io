@@ -11,6 +11,7 @@ from | '' | UNIX epoch | Allows user to provide a time range.
 to | '' | UNIX epoch | Allows user to provide a time range.
 
 ```ruby
+# Ruby example
 require 'net/http'
 require 'net/https'
 
@@ -25,12 +26,14 @@ end
 ```
 
 ```python
+# Python example
 # Requests is a 3rd party library
 from requests.auth import HTTPBasicAuth
 response = requests.get('https://localhost:55655/api/metrics/1/15m?from=1463551343&to=1463551643', auth=HTTPBasicAuth('accesstoken', ''))
 ```
 
 ```shell
+# cURL example
 # Notice the double colon at the end of Access Token.
 curl -u accesstoken: 'https://localhost:55655/api/metrics/1/15m?from=1463551343&to=1463551643'
 ```
