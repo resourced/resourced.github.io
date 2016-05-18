@@ -11,3 +11,7 @@ extra_css:
 pages:
     - Home: index.md
     - Gallery: gallery.md
+    - "API Doc: Auth": api-authentication.md
+    - "API Doc: GET /api/hosts": api-hosts-get-all.md
+    - "API Doc: GET /api/metrics/{id:[0-9]+}": api-metrics-get-all.md
+    - "API Doc: GET /api/metrics/{id:[0-9]+}/15m": api-metrics-15m-get-all.md

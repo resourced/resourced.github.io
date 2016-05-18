@@ -1,5 +1,3 @@
-# Image Gallery
-
 ## Signup Page
 
 ![Signup](http://i.imgur.com/UcNmeTF.png)
