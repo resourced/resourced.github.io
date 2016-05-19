@@ -18,3 +18,5 @@ pages:
     - "API Doc: GET /api/metrics/{id:[0-9]+}/hosts/{host}": api-metrics-host-get.md
     - "API Doc: GET /api/metrics/{id:[0-9]+}/hosts/{host}/15m": api-metrics-host-15m-get.md
     - "API Doc: POST /api/events": api-events-post.md
+    - "API Doc: DELETE /api/events/{id:[0-9]+}": api-events-delete.md
+    - "API Doc: POST /api/logs": api-logs-post.md

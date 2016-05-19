@@ -152,17 +152,47 @@
         }, 
         {
             "location": "/api-events-post/", 
-            "text": "POST http://localhost:55655/api/events\n\n\nSubmit an event object.\n\n\n# Ruby example\nrequire 'net/http'\nrequire 'net/https'\n\nuri = URI('http://localhost:55655/api/events')\n\nNet::HTTP.start(uri.host, uri.port, :use_ssl =\n uri.scheme == 'https') do |http|\n  request = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =\n'application/json'})\n  request.basic_auth 'accesstoken', ''\n  request.body = '{\nfrom\n: 1463551343, \nto\n: 1463551643, \ndescription\n: \nDeployed app server\n}'\n\n  response = http.request request\nend\n\n\n\n\n# Python example\n# Requests is a 3rd party library\nfrom requests.auth import HTTPBasicAuth\nresponse = requests.post(\n   'http://localhost:55655/api/events',\n   auth=HTTPBasicAuth('accesstoken', ''),\n   body={\nfrom\n: 1463551343, \nto\n: 1463551643, \ndescription\n: \nDeployed app server\n}\n)\n\n\n\n\n# cURL example\n# Notice the double colon at the end of Access Token.\ncurl -u accesstoken: -X POST \\\n   -H \nAccept: application/json\n \\\n   -H \nContent-Type: application/json\n \\\n   -d '{\nfrom\n: 1463551343, \nto\n: 1463551643, \ndescription\n: \nDeployed app server\n}' \\\n   'http://localhost:55655/api/events'\n\n\n\n\nSend Payload\n\n\n{\n   \nfrom\n: 1463551343,\n   \nto\n: 1463551643,\n   \ndescription\n: \nDeployed app server\n\n}\n\n\n\n\nReturn Payload\n\n\n{\n   \nID\n: 1\n   \nClusterID\n: 1\n   \nCreatedFrom\n: 1463551343,\n   \nCreatedTo\n: 1463551643,\n   \nDescription\n: \nDeployed app server\n\n}", 
+            "text": "POST http://localhost:55655/api/events\n\n\nSubmit an event object.\n\n\n# Ruby example\nrequire 'net/http'\nrequire 'net/https'\n\nuri = URI('http://localhost:55655/api/events')\n\nNet::HTTP.start(uri.host, uri.port, :use_ssl =\n uri.scheme == 'https') do |http|\n    request = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =\n'application/json'})\n    request.basic_auth 'accesstoken', ''\n    request.body = '{\nfrom\n: 1463551343, \nto\n: 1463551643, \ndescription\n: \nDeployed app server\n}'\n\n    response = http.request request\nend\n\n\n\n\n# Python example\n# Requests is a 3rd party library\nfrom requests.auth import HTTPBasicAuth\nresponse = requests.post(\n    'http://localhost:55655/api/events',\n    auth=HTTPBasicAuth('accesstoken', ''),\n    body={\nfrom\n: 1463551343, \nto\n: 1463551643, \ndescription\n: \nDeployed app server\n}\n)\n\n\n\n\n# cURL example\n# Notice the double colon at the end of Access Token.\ncurl -u accesstoken: -X POST \\\n    -H \nAccept: application/json\n \\\n    -H \nContent-Type: application/json\n \\\n    -d '{\nfrom\n: 1463551343, \nto\n: 1463551643, \ndescription\n: \nDeployed app server\n}' \\\n    'http://localhost:55655/api/events'\n\n\n\n\nSend Payload\n\n\n{\n    \nfrom\n: 1463551343,\n    \nto\n: 1463551643,\n    \ndescription\n: \nDeployed app server\n\n}\n\n\n\n\nReturn Payload\n\n\n{\n    \nID\n: 1,\n    \nClusterID\n: 1,\n    \nCreatedFrom\n: 1463551343,\n    \nCreatedTo\n: 1463551643,\n    \nDescription\n: \nDeployed app server\n\n}", 
             "title": "API Doc: POST /api/events"
         }, 
         {
             "location": "/api-events-post/#send-payload", 
-            "text": "{\n    from : 1463551343,\n    to : 1463551643,\n    description :  Deployed app server \n}", 
+            "text": "{\n     from : 1463551343,\n     to : 1463551643,\n     description :  Deployed app server \n}", 
             "title": "Send Payload"
         }, 
         {
             "location": "/api-events-post/#return-payload", 
-            "text": "{\n    ID : 1\n    ClusterID : 1\n    CreatedFrom : 1463551343,\n    CreatedTo : 1463551643,\n    Description :  Deployed app server \n}", 
+            "text": "{\n     ID : 1,\n     ClusterID : 1,\n     CreatedFrom : 1463551343,\n     CreatedTo : 1463551643,\n     Description :  Deployed app server \n}", 
+            "title": "Return Payload"
+        }, 
+        {
+            "location": "/api-events-delete/", 
+            "text": "DELETE http://localhost:55655/api/events/{id:[0-9]+}\n\n\nDelete an event object by id.\n\n\n# Ruby example\nrequire 'net/http'\nrequire 'net/https'\n\nuri = URI('http://localhost:55655/api/events/1')\n\nNet::HTTP.start(uri.host, uri.port, :use_ssl =\n uri.scheme == 'https') do |http|\n    request = Net::HTTP::Delete.new(uri.request_uri, initheader = {'Content-Type' =\n'application/json'})\n    request.basic_auth 'accesstoken', ''\n\n    response = http.request request\nend\n\n\n\n\n# Python example\n# Requests is a 3rd party library\nfrom requests.auth import HTTPBasicAuth\nresponse = requests.delete('http://localhost:55655/api/events/1', auth=HTTPBasicAuth('accesstoken', ''))\n\n\n\n\n# cURL example\n# Notice the double colon at the end of Access Token.\ncurl -u accesstoken: -X DELETE 'http://localhost:55655/api/events/1'\n\n\n\n\nSend Payload\n\n\n{\n    \nfrom\n: 1463551343,\n    \nto\n: 1463551643,\n    \ndescription\n: \nDeployed app server\n\n}\n\n\n\n\nReturn Payload\n\n\n{\n    \nID\n: 1,\n    \nMessage\n: \nDeleted event\n\n}", 
+            "title": "API Doc: DELETE /api/events/{id:[0-9]+}"
+        }, 
+        {
+            "location": "/api-events-delete/#send-payload", 
+            "text": "{\n     from : 1463551343,\n     to : 1463551643,\n     description :  Deployed app server \n}", 
+            "title": "Send Payload"
+        }, 
+        {
+            "location": "/api-events-delete/#return-payload", 
+            "text": "{\n     ID : 1,\n     Message :  Deleted event \n}", 
+            "title": "Return Payload"
+        }, 
+        {
+            "location": "/api-logs-post/", 
+            "text": "POST http://localhost:55655/api/logs\n\n\nSubmit loglines.\n\n\n# Ruby example\nrequire 'net/http'\nrequire 'net/https'\n\nuri = URI('http://localhost:55655/api/logs')\n\nNet::HTTP.start(uri.host, uri.port, :use_ssl =\n uri.scheme == 'https') do |http|\n    request = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =\n'application/json'})\n    request.basic_auth 'accesstoken', ''\n    request.body = '{\nHost\n: {\nName\n: \nlocalhost\n,\nTags\n: {\nrole\n: \napp-server\n}}, \nData\n: {\nLoglines\n: [\nmultiple loglines in an array\n], \nFilename\n: \nfull path to filename where the logs came from\n}}'\n\n    response = http.request request\nend\n\n\n\n\n# Python example\n# Requests is a 3rd party library\nfrom requests.auth import HTTPBasicAuth\nresponse = requests.post(\n    'http://localhost:55655/api/logs',\n    auth=HTTPBasicAuth('accesstoken', ''),\n    body={\n        \nHost\n: {\n            \nName\n: \nlocalhost\n,\n            \nTags\n: {\n                \nrole\n: \napp-server\n\n            }\n        },\n        \nData\n: {\n            \nLoglines\n: [\nmultiple loglines in an array\n],\n            \nFilename\n: \nfull path to filename where the logs came from\n\n        }\n    }\n)\n\n\n\n\n# cURL example\n# Notice the double colon at the end of Access Token.\ncurl -u accesstoken: -X POST \\\n    -H \nAccept: application/json\n \\\n    -H \nContent-Type: application/json\n \\\n    -d '{\nHost\n: {\nName\n: \nlocalhost\n,\nTags\n: {\nrole\n: \napp-server\n}}, \nData\n: {\nLoglines\n: [\nmultiple loglines in an array\n], \nFilename\n: \nfull path to filename where the logs came from\n}}' \\\n    'http://localhost:55655/api/logs'\n\n\n\n\nSend Payload\n\n\n{\n    \nHost\n: {\n        \nName\n: \nlocalhost\n,\n        \nTags\n: {\n            \nrole\n: \napp-server\n\n        }\n    },\n    \nData\n: {\n        \nLoglines\n: [\nmultiple loglines in an array\n],\n        \nFilename\n: \nfull path to filename where the logs came from\n\n    }\n}\n\n\n\n\nReturn Payload\n\n\n{\n    \nMessage\n: \nSuccess\n\n}", 
+            "title": "API Doc: POST /api/logs"
+        }, 
+        {
+            "location": "/api-logs-post/#send-payload", 
+            "text": "{\n     Host : {\n         Name :  localhost ,\n         Tags : {\n             role :  app-server \n        }\n    },\n     Data : {\n         Loglines : [ multiple loglines in an array ],\n         Filename :  full path to filename where the logs came from \n    }\n}", 
+            "title": "Send Payload"
+        }, 
+        {
+            "location": "/api-logs-post/#return-payload", 
+            "text": "{\n     Message :  Success \n}", 
             "title": "Return Payload"
         }
     ]

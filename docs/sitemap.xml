@@ -73,4 +73,20 @@
     </url>
     
 
+    
+    <url>
+     <loc>http://resourced.io/api-events-delete/</loc>
+     <lastmod>2016-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>http://resourced.io/api-logs-post/</loc>
+     <lastmod>2016-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
 </urlset>
