@@ -1,4 +1,4 @@
-`GET https://localhost:55655/api/metrics/{id:[0-9]+}`
+`GET http://localhost:55655/api/metrics/{id:[0-9]+}`
 
 Get all metrics data by id.
 
@@ -15,7 +15,7 @@ to | '' | UNIX epoch | Allows user to provide a time range.
 require 'net/http'
 require 'net/https'
 
-uri = URI('https://localhost:55655/api/metrics/1?from=1463551343&to=1463551643')
+uri = URI('http://localhost:55655/api/metrics/1?from=1463551343&to=1463551643')
 
 Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
   request = Net::HTTP::Get.new uri.request_uri
@@ -29,13 +29,13 @@ end
 # Python example
 # Requests is a 3rd party library
 from requests.auth import HTTPBasicAuth
-response = requests.get('https://localhost:55655/api/metrics/1?from=1463551343&to=1463551643', auth=HTTPBasicAuth('accesstoken', ''))
+response = requests.get('http://localhost:55655/api/metrics/1?from=1463551343&to=1463551643', auth=HTTPBasicAuth('accesstoken', ''))
 ```
 
 ```shell
 # cURL example
 # Notice the double colon at the end of Access Token.
-curl -u accesstoken: 'https://localhost:55655/api/metrics/1?from=1463551343&to=1463551643'
+curl -u accesstoken: 'http://localhost:55655/api/metrics/1?from=1463551343&to=1463551643'
 ```
 
 ## Return Payload

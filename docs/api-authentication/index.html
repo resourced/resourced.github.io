@@ -82,21 +82,42 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../api-hosts-get-all/">API Doc: GET /api/hosts</a>
+        <a class="" href="../api-hosts-get/">API Doc: GET /api/hosts</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../api-metrics-get-all/">API Doc: GET /api/metrics/{id:[0-9]+}</a>
+        <a class="" href="../api-metrics-get/">API Doc: GET /api/metrics/{id:[0-9]+}</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../api-metrics-15m-get-all/">API Doc: GET /api/metrics/{id:[0-9]+}/15m</a>
+        <a class="" href="../api-metrics-15m-get/">API Doc: GET /api/metrics/{id:[0-9]+}/15m</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../api-metrics-host-get/">API Doc: GET /api/metrics/{id:[0-9]+}/hosts/{host}</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../api-metrics-host-15m-get/">API Doc: GET /api/metrics/{id:[0-9]+}/hosts/{host}/15m</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../api-events-post/">API Doc: POST /api/events</a>
         
     </li>
 <li>
@@ -142,7 +163,7 @@
 require 'net/http'
 require 'net/https'
 
-uri = URI('https://localhost:55655/api/hosts')
+uri = URI('http://localhost:55655/api/hosts')
 
 Net::HTTP.start(uri.host, uri.port, :use_ssl =&gt; uri.scheme == 'https') do |http|
   request = Net::HTTP::Get.new uri.request_uri
@@ -155,12 +176,12 @@ end
 <pre><code class="python"># Python example
 # Requests is a 3rd party library
 from requests.auth import HTTPBasicAuth
-response = requests.get('https://localhost:55655/api/hosts', auth=HTTPBasicAuth('accesstoken', ''))
+response = requests.get('http://localhost:55655/api/hosts', auth=HTTPBasicAuth('accesstoken', ''))
 </code></pre>
 
 <pre><code class="shell"># cURL example
 # Notice the double colon at the end of Access Token.
-curl -u accesstoken: https://localhost:55655/api/hosts
+curl -u accesstoken: http://localhost:55655/api/hosts
 </code></pre>
               
             </div>
@@ -169,7 +190,7 @@ curl -u accesstoken: https://localhost:55655/api/hosts
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../api-hosts-get-all/" class="btn btn-neutral float-right" title="API Doc: GET /api/hosts">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../api-hosts-get/" class="btn btn-neutral float-right" title="API Doc: GET /api/hosts">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../gallery/" class="btn btn-neutral" title="Gallery"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -203,7 +224,7 @@ curl -u accesstoken: https://localhost:55655/api/hosts
         <span><a href="../gallery/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../api-hosts-get-all/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../api-hosts-get/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

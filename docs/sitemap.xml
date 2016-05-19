@@ -4,7 +4,7 @@
     
     <url>
      <loc>http://resourced.io/</loc>
-     <lastmod>2016-05-17</lastmod>
+     <lastmod>2016-05-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,7 +12,7 @@
     
     <url>
      <loc>http://resourced.io/gallery/</loc>
-     <lastmod>2016-05-17</lastmod>
+     <lastmod>2016-05-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -20,31 +20,55 @@
     
     <url>
      <loc>http://resourced.io/api-authentication/</loc>
-     <lastmod>2016-05-17</lastmod>
+     <lastmod>2016-05-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>http://resourced.io/api-hosts-get-all/</loc>
-     <lastmod>2016-05-17</lastmod>
+     <loc>http://resourced.io/api-hosts-get/</loc>
+     <lastmod>2016-05-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>http://resourced.io/api-metrics-get-all/</loc>
-     <lastmod>2016-05-17</lastmod>
+     <loc>http://resourced.io/api-metrics-get/</loc>
+     <lastmod>2016-05-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>http://resourced.io/api-metrics-15m-get-all/</loc>
-     <lastmod>2016-05-17</lastmod>
+     <loc>http://resourced.io/api-metrics-15m-get/</loc>
+     <lastmod>2016-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>http://resourced.io/api-metrics-host-get/</loc>
+     <lastmod>2016-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>http://resourced.io/api-metrics-host-15m-get/</loc>
+     <lastmod>2016-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>http://resourced.io/api-events-post/</loc>
+     <lastmod>2016-05-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
