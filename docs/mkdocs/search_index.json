@@ -194,6 +194,71 @@
             "location": "/api-logs-post/#return-payload", 
             "text": "{\n     Message :  Success \n}", 
             "title": "Return Payload"
+        }, 
+        {
+            "location": "/api-logs-get/", 
+            "text": "GET http://localhost:55655/api/logs\n\n\nGet all logs data.\n\n\nQuery Parameters\n\n\n\n\n\n\n\n\nParameter\n\n\nDefault\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nfrom\n\n\n''\n\n\nUNIX epoch\n\n\nAllows user to provide a time range.\n\n\n\n\n\n\nto\n\n\n''\n\n\nUNIX epoch\n\n\nAllows user to provide a time range.\n\n\n\n\n\n\nq\n\n\n''\n\n\nString\n\n\nAllows user to filter logs data using SQL-like statement.\n\n\n\n\n\n\n\n\nQuery Language\n\n\nThere are 3 fields to query host data on: hostname, tags, and logline search.\n\n\nLimitation:\n You can only use \nAND\n conjunctive operators, for now.\n\n\nQuery by hostname\n\n\n\n\n\n\nExact match: \nhostname = \"localhost\"\n\n\n\n\n\n\nStarts-with match: \nhostname ~^ \"awesome-app-\"\n\n\n\n\n\n\nRegex match, case insensitive: \nhostname ~* \"awesome-app-\"\n\n\n\n\n\n\nRegex match, case sensitive: \nhostname ~ \"awesome-app-\"\n\n\n\n\n\n\nRegex match negation, case sensitive: \nhostname !~ \"awesome-app-\"\n\n\n\n\n\n\nRegex match negation, case insensitive: \nhostname !~* \"awesome-app-\"\n\n\n\n\n\n\nQuery by tags\n\n\n\n\n\n\nExact match: \ntags.mysql = 5.6.24\n\n\n\n\n\n\nMultiple exact match: \ntags.mysql = 5.6.24 and tags.redis = 3.0.1\n\n\n\n\n\n\nQuery by logline\n\n\nResourceD offers full-text search for loglines. Basic example: \nlogline search \"error \n mysql\"\n.\n\n\nThe search query must consist of single tokens separated by the Boolean operators \n (AND), | (OR) and ! (NOT). These operators can be grouped using parentheses.\n\n\nVisit http://www.postgresql.org/docs/current/static/textsearch-controls.html for more details.\n\n\n# Ruby example\nrequire 'net/http'\nrequire 'net/https'\n\nuri = URI('http://localhost:55655/api/logs')\n\nNet::HTTP.start(uri.host, uri.port, :use_ssl =\n uri.scheme == 'https') do |http|\n  request = Net::HTTP::Get.new uri.request_uri\n  request.basic_auth 'accesstoken', ''\n\n  response = http.request request\nend\n\n\n\n\n# Python example\n# Requests is a 3rd party library\nfrom requests.auth import HTTPBasicAuth\nresponse = requests.get('http://localhost:55655/api/logs', auth=HTTPBasicAuth('accesstoken', ''))\n\n\n\n\n# cURL example\n# Notice the double colon at the end of Access Token.\ncurl -u accesstoken: http://localhost:55655/api/logs\n\n\n\n\nReturn Payload\n\n\n[\n  {\n    \nClusterID\n: \u200b1,\n    \nHostname\n: \nlocalhost\n,\n    \nCreated\n: \n2016-05-15T23:47:01.441652Z\n,\n    \nTags\n: {\n      \nos\n: \nOS X Yosemite\n,\n      \npostgres\n: \n9.4.2\n,\n      \nredis\n: \n3.0.1\n,\n      \nrole\n: \nhome-dev\n\n    },\n    \nFilename\n: \n,\n    \nLogline\n: \nfoo log\n\n  },\n  {\n    \nClusterID\n: \u200b1,\n    \nHostname\n: \nlocalhost\n,\n    \nCreated\n: \n2016-05-15T23:47:01.441652Z\n,\n    \nTags\n: {\n      \nos\n: \nOS X Yosemite\n,\n      \npostgres\n: \n9.4.2\n,\n      \nredis\n: \n3.0.1\n,\n      \nrole\n: \nhome-dev\n\n    },\n    \nFilename\n: \n,\n    \nLogline\n: \nbar log\n\n  }\n]", 
+            "title": "API Doc: GET /api/logs"
+        }, 
+        {
+            "location": "/api-logs-get/#query-parameters", 
+            "text": "Parameter  Default  Type  Description      from  ''  UNIX epoch  Allows user to provide a time range.    to  ''  UNIX epoch  Allows user to provide a time range.    q  ''  String  Allows user to filter logs data using SQL-like statement.", 
+            "title": "Query Parameters"
+        }, 
+        {
+            "location": "/api-logs-get/#query-language", 
+            "text": "There are 3 fields to query host data on: hostname, tags, and logline search.  Limitation:  You can only use  AND  conjunctive operators, for now.  Query by hostname    Exact match:  hostname = \"localhost\"    Starts-with match:  hostname ~^ \"awesome-app-\"    Regex match, case insensitive:  hostname ~* \"awesome-app-\"    Regex match, case sensitive:  hostname ~ \"awesome-app-\"    Regex match negation, case sensitive:  hostname !~ \"awesome-app-\"    Regex match negation, case insensitive:  hostname !~* \"awesome-app-\"    Query by tags    Exact match:  tags.mysql = 5.6.24    Multiple exact match:  tags.mysql = 5.6.24 and tags.redis = 3.0.1    Query by logline  ResourceD offers full-text search for loglines. Basic example:  logline search \"error   mysql\" .  The search query must consist of single tokens separated by the Boolean operators   (AND), | (OR) and ! (NOT). These operators can be grouped using parentheses.  Visit http://www.postgresql.org/docs/current/static/textsearch-controls.html for more details.  # Ruby example\nrequire 'net/http'\nrequire 'net/https'\n\nuri = URI('http://localhost:55655/api/logs')\n\nNet::HTTP.start(uri.host, uri.port, :use_ssl =  uri.scheme == 'https') do |http|\n  request = Net::HTTP::Get.new uri.request_uri\n  request.basic_auth 'accesstoken', ''\n\n  response = http.request request\nend  # Python example\n# Requests is a 3rd party library\nfrom requests.auth import HTTPBasicAuth\nresponse = requests.get('http://localhost:55655/api/logs', auth=HTTPBasicAuth('accesstoken', ''))  # cURL example\n# Notice the double colon at the end of Access Token.\ncurl -u accesstoken: http://localhost:55655/api/logs", 
+            "title": "Query Language"
+        }, 
+        {
+            "location": "/api-logs-get/#return-payload", 
+            "text": "[\n  {\n     ClusterID : \u200b1,\n     Hostname :  localhost ,\n     Created :  2016-05-15T23:47:01.441652Z ,\n     Tags : {\n       os :  OS X Yosemite ,\n       postgres :  9.4.2 ,\n       redis :  3.0.1 ,\n       role :  home-dev \n    },\n     Filename :  ,\n     Logline :  foo log \n  },\n  {\n     ClusterID : \u200b1,\n     Hostname :  localhost ,\n     Created :  2016-05-15T23:47:01.441652Z ,\n     Tags : {\n       os :  OS X Yosemite ,\n       postgres :  9.4.2 ,\n       redis :  3.0.1 ,\n       role :  home-dev \n    },\n     Filename :  ,\n     Logline :  bar log \n  }\n]", 
+            "title": "Return Payload"
+        }, 
+        {
+            "location": "/api-metadata-post/", 
+            "text": "POST http://localhost:55655/api/metadata/{key}\n\n\nSubmit a metadata object.\n\n\n# Ruby example\nrequire 'net/http'\nrequire 'net/https'\n\nuri = URI('http://localhost:55655/api/metadata/foo/bar')\n\nNet::HTTP.start(uri.host, uri.port, :use_ssl =\n uri.scheme == 'https') do |http|\n    request = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =\n'application/json'})\n    request.basic_auth 'accesstoken', ''\n    request.body = '{\nsome\n: \ndata\n, \ndescription\n: \nuseful during server orchestration\n}'\n\n    response = http.request request\nend\n\n\n\n\n# Python example\n# Requests is a 3rd party library\nfrom requests.auth import HTTPBasicAuth\nresponse = requests.post(\n    'http://localhost:55655/api/metadata/foo/bar',\n    auth=HTTPBasicAuth('accesstoken', ''),\n    body={\nsome\n: \ndata\n, \ndescription\n: \nuseful during server orchestration\n}\n)\n\n\n\n\n# cURL example\n# Notice the double colon at the end of Access Token.\ncurl -u accesstoken: -X POST \\\n    -H \nAccept: application/json\n \\\n    -H \nContent-Type: application/json\n \\\n    -d '{\nsome\n: \ndata\n, \ndescription\n: \nuseful during server orchestration\n}' \\\n    'http://localhost:55655/api/metadata/foo/bar'\n\n\n\n\nSend Payload\n\n\n{\n    \nsome\n: \ndata\n,\n    \ndescription\n: \nuseful during server orchestration\n\n}\n\n\n\n\nReturn Payload\n\n\n{\n    \nClusterID\n: 1,\n    \nKey\n: \nfoo/bar\n,\n    \nData\n: {\n        \nsome\n: \ndata\n,\n        \ndescription\n: \nuseful during server orchestration\n\n    }\n}", 
+            "title": "API Doc: POST /api/metadata/{key}"
+        }, 
+        {
+            "location": "/api-metadata-post/#send-payload", 
+            "text": "{\n     some :  data ,\n     description :  useful during server orchestration \n}", 
+            "title": "Send Payload"
+        }, 
+        {
+            "location": "/api-metadata-post/#return-payload", 
+            "text": "{\n     ClusterID : 1,\n     Key :  foo/bar ,\n     Data : {\n         some :  data ,\n         description :  useful during server orchestration \n    }\n}", 
+            "title": "Return Payload"
+        }, 
+        {
+            "location": "/api-metadata-delete/", 
+            "text": "DELETE http://localhost:55655/api/metadata/{key}\n\n\nDelete an metadata object by key.\n\n\n# Ruby example\nrequire 'net/http'\nrequire 'net/https'\n\nuri = URI('http://localhost:55655/api/metadata/foo/bar')\n\nNet::HTTP.start(uri.host, uri.port, :use_ssl =\n uri.scheme == 'https') do |http|\n    request = Net::HTTP::Delete.new(uri.request_uri, initheader = {'Content-Type' =\n'application/json'})\n    request.basic_auth 'accesstoken', ''\n\n    response = http.request request\nend\n\n\n\n\n# Python example\n# Requests is a 3rd party library\nfrom requests.auth import HTTPBasicAuth\nresponse = requests.delete('http://localhost:55655/api/metadata/1', auth=HTTPBasicAuth('accesstoken', ''))\n\n\n\n\n# cURL example\n# Notice the double colon at the end of Access Token.\ncurl -u accesstoken: -X DELETE 'http://localhost:55655/api/metadata/foo/bar'\n\n\n\n\nReturn Payload\n\n\n{\n    \nClusterID\n: 1,\n    \nKey\n: \nfoo/bar\n,\n    \nData\n: {\n        \nsome\n: \ndata\n,\n        \ndescription\n: \nuseful during server orchestration\n\n    }\n}", 
+            "title": "API Doc: DELETE /api/metadata/{key}"
+        }, 
+        {
+            "location": "/api-metadata-delete/#return-payload", 
+            "text": "{\n     ClusterID : 1,\n     Key :  foo/bar ,\n     Data : {\n         some :  data ,\n         description :  useful during server orchestration \n    }\n}", 
+            "title": "Return Payload"
+        }, 
+        {
+            "location": "/api-metadata-get/", 
+            "text": "GET http://localhost:55655/api/metadata/{key}\n\n\nGet metadata by key.\n\n\n# Ruby example\nrequire 'net/http'\nrequire 'net/https'\n\nuri = URI('http://localhost:55655/api/metadata/foo/bar')\n\nNet::HTTP.start(uri.host, uri.port, :use_ssl =\n uri.scheme == 'https') do |http|\n  request = Net::HTTP::Get.new uri.request_uri\n  request.basic_auth 'accesstoken', ''\n\n  response = http.request request\nend\n\n\n\n\n# Python example\n# Requests is a 3rd party library\nfrom requests.auth import HTTPBasicAuth\nresponse = requests.get('http://localhost:55655/api/metadata/foo/bar', auth=HTTPBasicAuth('accesstoken', ''))\n\n\n\n\n# cURL example\n# Notice the double colon at the end of Access Token.\ncurl -u accesstoken: http://localhost:55655/api/metadata/foo/bar\n\n\n\n\nReturn Payload\n\n\n{\n    \nClusterID\n: 1,\n    \nKey\n: \nfoo/bar\n,\n    \nData\n: {\n        \nsome\n: \ndata\n,\n        \ndescription\n: \nuseful during server orchestration\n\n    }\n}", 
+            "title": "API Doc: GET /api/metadata/{key}"
+        }, 
+        {
+            "location": "/api-metadata-get/#return-payload", 
+            "text": "{\n     ClusterID : 1,\n     Key :  foo/bar ,\n     Data : {\n         some :  data ,\n         description :  useful during server orchestration \n    }\n}", 
+            "title": "Return Payload"
+        }, 
+        {
+            "location": "/api-metadata-all/", 
+            "text": "GET http://localhost:55655/api/metadata\n\n\nGet all metadata.\n\n\n# Ruby example\nrequire 'net/http'\nrequire 'net/https'\n\nuri = URI('http://localhost:55655/api/metadata')\n\nNet::HTTP.start(uri.host, uri.port, :use_ssl =\n uri.scheme == 'https') do |http|\n  request = Net::HTTP::Get.new uri.request_uri\n  request.basic_auth 'accesstoken', ''\n\n  response = http.request request\nend\n\n\n\n\n# Python example\n# Requests is a 3rd party library\nfrom requests.auth import HTTPBasicAuth\nresponse = requests.get('http://localhost:55655/api/metadata', auth=HTTPBasicAuth('accesstoken', ''))\n\n\n\n\n# cURL example\n# Notice the double colon at the end of Access Token.\ncurl -u accesstoken: http://localhost:55655/api/metadata\n\n\n\n\nReturn Payload\n\n\n[\n    {\n        \nClusterID\n: 1,\n        \nKey\n: \nfoo/bar\n,\n        \nData\n: {\n            \nsome\n: \ndata\n,\n            \ndescription\n: \nuseful during server orchestration\n\n        }\n    },\n    {\n        \nClusterID\n: 1,\n        \nKey\n: \nfoo/bar/baz\n,\n        \nData\n: {\n            \nsome\n: \ndata\n,\n            \ndescription\n: \nuseful during server orchestration\n\n        }\n    }\n]", 
+            "title": "API Doc: GET /api/metadata"
+        }, 
+        {
+            "location": "/api-metadata-all/#return-payload", 
+            "text": "[\n    {\n         ClusterID : 1,\n         Key :  foo/bar ,\n         Data : {\n             some :  data ,\n             description :  useful during server orchestration \n        }\n    },\n    {\n         ClusterID : 1,\n         Key :  foo/bar/baz ,\n         Data : {\n             some :  data ,\n             description :  useful during server orchestration \n        }\n    }\n]", 
+            "title": "Return Payload"
         }
     ]
 }

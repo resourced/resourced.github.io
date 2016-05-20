@@ -8,7 +8,7 @@
   
   
   
-  <title>API Doc: DELETE /api/events/{id:[0-9]+} - ResourceD Documentation</title>
+  <title>API Doc: GET /api/metadata - ResourceD Documentation</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -24,9 +24,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "API Doc: DELETE /api/events/{id:[0-9]+}";
-    var mkdocs_page_input_path = "api-events-delete.md";
-    var mkdocs_page_url = "/api-events-delete/";
+    var mkdocs_page_name = "API Doc: GET /api/metadata";
+    var mkdocs_page_input_path = "api-metadata-all.md";
+    var mkdocs_page_url = "/api-metadata-all/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -119,18 +119,8 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">API Doc: DELETE /api/events/{id:[0-9]+}</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#send-payload">Send Payload</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#return-payload">Return Payload</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../api-events-delete/">API Doc: DELETE /api/events/{id:[0-9]+}</a>
         
     </li>
 <li>
@@ -171,8 +161,15 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../api-metadata-all/">API Doc: GET /api/metadata</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">API Doc: GET /api/metadata</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#return-payload">Return Payload</a></li>
+                
+            
+            </ul>
         
     </li>
 <li>
@@ -199,7 +196,7 @@
     
       
     
-    <li>API Doc: DELETE /api/events/{id:[0-9]+}</li>
+    <li>API Doc: GET /api/metadata</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -213,46 +210,52 @@
           <div role="main">
             <div class="section">
               
-                <p><code>DELETE http://localhost:55655/api/events/{id:[0-9]+}</code></p>
-<p>Delete an event object by id.</p>
+                <p><code>GET http://localhost:55655/api/metadata</code></p>
+<p>Get all metadata.</p>
 <pre><code class="ruby"># Ruby example
 require 'net/http'
 require 'net/https'
 
-uri = URI('http://localhost:55655/api/events/1')
+uri = URI('http://localhost:55655/api/metadata')
 
 Net::HTTP.start(uri.host, uri.port, :use_ssl =&gt; uri.scheme == 'https') do |http|
-    request = Net::HTTP::Delete.new(uri.request_uri, initheader = {'Content-Type' =&gt;'application/json'})
-    request.basic_auth 'accesstoken', ''
+  request = Net::HTTP::Get.new uri.request_uri
+  request.basic_auth 'accesstoken', ''
 
-    response = http.request request
+  response = http.request request
 end
 </code></pre>
 
 <pre><code class="python"># Python example
 # Requests is a 3rd party library
 from requests.auth import HTTPBasicAuth
-response = requests.delete('http://localhost:55655/api/events/1', auth=HTTPBasicAuth('accesstoken', ''))
+response = requests.get('http://localhost:55655/api/metadata', auth=HTTPBasicAuth('accesstoken', ''))
 </code></pre>
 
 <pre><code class="shell"># cURL example
 # Notice the double colon at the end of Access Token.
-curl -u accesstoken: -X DELETE 'http://localhost:55655/api/events/1'
-</code></pre>
-
-<h2 id="send-payload">Send Payload</h2>
-<pre><code class="json">{
-    &quot;from&quot;: 1463551343,
-    &quot;to&quot;: 1463551643,
-    &quot;description&quot;: &quot;Deployed app server&quot;
-}
+curl -u accesstoken: http://localhost:55655/api/metadata
 </code></pre>
 
 <h2 id="return-payload">Return Payload</h2>
-<pre><code class="json">{
-    &quot;ID&quot;: 1,
-    &quot;Message&quot;: &quot;Deleted event&quot;
-}
+<pre><code class="json">[
+    {
+        &quot;ClusterID&quot;: 1,
+        &quot;Key&quot;: &quot;foo/bar&quot;,
+        &quot;Data&quot;: {
+            &quot;some&quot;: &quot;data&quot;,
+            &quot;description&quot;: &quot;useful during server orchestration&quot;
+        }
+    },
+    {
+        &quot;ClusterID&quot;: 1,
+        &quot;Key&quot;: &quot;foo/bar/baz&quot;,
+        &quot;Data&quot;: {
+            &quot;some&quot;: &quot;data&quot;,
+            &quot;description&quot;: &quot;useful during server orchestration&quot;
+        }
+    }
+]
 </code></pre>
               
             </div>
@@ -261,10 +264,8 @@ curl -u accesstoken: -X DELETE 'http://localhost:55655/api/events/1'
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../api-logs-post/" class="btn btn-neutral float-right" title="API Doc: POST /api/logs">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-      
-        <a href="../api-events-post/" class="btn btn-neutral" title="API Doc: POST /api/events"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../api-metadata-get/" class="btn btn-neutral" title="API Doc: GET /api/metadata/{key}"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -292,10 +293,8 @@ curl -u accesstoken: -X DELETE 'http://localhost:55655/api/events/1'
           <a href="https://github.com/resourced/resourced-master" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../api-events-post/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../api-metadata-get/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
-      
-        <span style="margin-left: 15px"><a href="../api-logs-post/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

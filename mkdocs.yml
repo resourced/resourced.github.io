@@ -20,3 +20,8 @@ pages:
     - "API Doc: POST /api/events": api-events-post.md
     - "API Doc: DELETE /api/events/{id:[0-9]+}": api-events-delete.md
     - "API Doc: POST /api/logs": api-logs-post.md
+    - "API Doc: GET /api/logs": api-logs-get.md
+    - "API Doc: POST /api/metadata/{key}": api-metadata-post.md
+    - "API Doc: DELETE /api/metadata/{key}": api-metadata-delete.md
+    - "API Doc: GET /api/metadata/{key}": api-metadata-get.md
+    - "API Doc: GET /api/metadata": api-metadata-all.md
