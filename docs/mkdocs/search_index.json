@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Introduction\n\n\nResourceD is a complete monitoring and alerting solution for DevOps everywhere. It is an open source project with MIT license.\n\n\nComparison to (plenty of) other OSS solutions\n\n\n\n\n\n\nEasy to install. Just download the precompiled binaries, change the default config, and run. No need to even \nyum install\n.\n\n\n\n\n\n\nGood looking, easy to use, UI.\n\n\n\n\n\n\nIt comprises of only three components: Agent, Master, and PostgreSQL. That's it. Other solutions are often complex with a lot of config files to manage.\n\n\n\n\n\n\nPostgreSQL is well understood and there are plenty of documentation on how to scale it and make it highly available.\n\n\n\n\n\n\nActive check is a first class citizen. Some other solutions often provide only passive checks.\n\n\n\n\n\n\nThe agent offers a multiple of useful solutions under one binary. There's no need to install multiple daemons on every host.\n\n\n\n\n\n\nThe agent can proactively do things for you (based on boolean expressions on its data). Why alerts when it can solve its own problem?\n\n\n\n\n\n\nAgent Features\n\n\n\n\n\n\nIt gathers a lot of systems metrics.\n\n\n\n\n\n\nIt supports gathering popular application metrics such as HAProxy, Varnish, or Memcached.\n\n\n\n\n\n\nIt tails log files and forward them to master. These loglines can then be used to create alerts.\n\n\n\n\n\n\nIt can forwards existing Graphite metrics to master. These metrics can then be used to create alerts.\n\n\n\n\n\n\nIt is easy to extend with scripting languages.\n\n\n\n\n\n\nIt can send passive checks directly from the host.\n\n\n\n\n\n\nIt can execute scripts based on boolean expressions on its data.\n\n\n\n\n\n\nIt is useful without the master, it can report to other services.\n\n\n\n\n\n\nMaster Features\n\n\n\n\n\n\nIt receives a lot of useful data from the agents: inventory, metrics, and loglines.\n\n\n\n\n\n\nIt creates active checks based on any of these data.\n\n\n\n\n\n\nIt can also create active checks on ping, SSH, and HTTP.\n\n\n\n\n\n\nWhen you run multiple masters, the check jobs are distributed equally among them. There's no single point of failure.\n\n\n\n\n\n\nIt provides you with SQL-like statements to query all of its data.\n\n\n\n\n\n\nIt allows you to view and search logs within time range.\n\n\n\n\n\n\nLinks\n\n\n\n\n\n\nAgent Repo\n\n\n\n\n\n\nAgent GoDoc\n\n\n\n\n\n\nMaster Repo\n\n\n\n\n\n\nMaster GoDoc", 
+            "text": "Introduction\n\n\nResourceD is a complete monitoring and alerting solution for DevOps everywhere. It is an open source project with MIT license.\n\n\nComparison to (plenty of) other OSS solutions\n\n\n\n\n\n\nEasy to install. Just download the precompiled binaries, change the default config, and run. No need to even \nyum install\n.\n\n\n\n\n\n\nGood looking, easy to use, UI.\n\n\n\n\n\n\nIt comprises of only three components: Agent, Master, and PostgreSQL. That's it. Other solutions are often complex with a lot of config files to manage.\n\n\n\n\n\n\nPostgreSQL is well understood and there are plenty of documentation on how to scale it and make it highly available.\n\n\n\n\n\n\nActive check is a first class citizen. Some other solutions often provide only passive checks.\n\n\n\n\n\n\nThe agent offers a multiple of useful solutions under one binary. There's no need to install multiple daemons on every host.\n\n\n\n\n\n\nThe agent can proactively do things for you (based on boolean expressions on its data). Why alerts when it can solve its own problem?\n\n\n\n\n\n\nAgent Features\n\n\n\n\n\n\nIt gathers a lot of systems metrics.\n\n\n\n\n\n\nIt supports gathering popular application metrics such as HAProxy, Varnish, or Memcached.\n\n\n\n\n\n\nIt tails log files and forward them to master. These loglines can then be used to create alerts.\n\n\n\n\n\n\nIt can forwards existing Graphite metrics to master. These metrics can then be used to create alerts.\n\n\n\n\n\n\nIt is easy to extend with scripting languages.\n\n\n\n\n\n\nIt can send passive checks directly from the host.\n\n\n\n\n\n\nIt can execute scripts based on boolean expressions on its data.\n\n\n\n\n\n\nIt is useful without the master, it can report to other services.\n\n\n\n\n\n\nMaster Features\n\n\n\n\n\n\nIt receives a lot of useful data from the agents: inventory, metrics, and loglines.\n\n\n\n\n\n\nIt creates active checks based on any of these data.\n\n\n\n\n\n\nIt can also create active checks on ping, SSH, and HTTP.\n\n\n\n\n\n\nWhen you run multiple masters, the check jobs are distributed equally among them. There's no single point of failure.\n\n\n\n\n\n\nIt provides you with SQL-like statements to query all of its data.\n\n\n\n\n\n\nIt allows you to view and search logs within time range.\n\n\n\n\n\n\nPrerequisite\n\n\n\n\nPostgresSQL 9.5.x or newer for Master.\n\n\n\n\nLinks\n\n\n\n\n\n\nAgent Repo\n\n\n\n\n\n\nAgent GoDoc\n\n\n\n\n\n\nMaster Repo\n\n\n\n\n\n\nMaster GoDoc", 
             "title": "Home"
         }, 
         {
@@ -24,6 +24,11 @@
             "location": "/#master-features", 
             "text": "It receives a lot of useful data from the agents: inventory, metrics, and loglines.    It creates active checks based on any of these data.    It can also create active checks on ping, SSH, and HTTP.    When you run multiple masters, the check jobs are distributed equally among them. There's no single point of failure.    It provides you with SQL-like statements to query all of its data.    It allows you to view and search logs within time range.", 
             "title": "Master Features"
+        }, 
+        {
+            "location": "/#prerequisite", 
+            "text": "PostgresSQL 9.5.x or newer for Master.", 
+            "title": "Prerequisite"
         }, 
         {
             "location": "/#links", 
@@ -64,6 +69,66 @@
             "location": "/gallery/#checks", 
             "text": "Minimize noise and maximize awareness by combining multiple checks with boolean expressions.   Create your own escalation policy.", 
             "title": "Checks"
+        }, 
+        {
+            "location": "/installation-user/", 
+            "text": "Master Prerequisites\n\n\n1.\n Install PostgreSQL 9.5.x or newer\n\n\nMaster Installation \n Running\n\n\n1.\n \nDownload the tar.gz\n, unpack it, and run the binary using init/systemd/supervisord. You can follow the examples of init scripts \nhere\n\n\n2.\n Create PostgreSQL databases\n\n\n# This example shows you how to create databases under resourced user. Feel free to use a different user.\n# Make sure user, password, and pg_hba.conf are configured correctly.\nsudo su - postgres\ncreateuser -P -e resourced\ncreatedb --owner=resourced resourced-master\ncreatedb --owner=resourced resourced-master-ts-checks\ncreatedb --owner=resourced resourced-master-ts-events\ncreatedb --owner=resourced resourced-master-ts-executor-logs\ncreatedb --owner=resourced resourced-master-ts-logs\ncreatedb --owner=resourced resourced-master-ts-metrics\n\n\n\n\n3.\n Run the database migration\n\n\ncd path/to/resourced-master\nresourced-master -c config-files migrate up\n\n\n\n\n4.\n Run the server\n\n\ncd path/to/resourced-master\nresourced-master -c config-files\n\n\n\n\nMaster Configuration\n\n\nResourceD Master needs to know path to its configuration directory.\n\n\nYou can set it via \n-c\n flag or \nRESOURCED_MASTER_CONFIG_DIR\n environment variable.\n\n\nThe \n.tar.gz\n file provides you with a default config directory. In there, you will see the following files:\n\n\n\n\n\n\ngeneral.toml\n All default settings are defined in \ngeneral.toml\n.\n\n\n\n\n\n\nmetrics.toml\n All settings related to storing metrics data.\n\n\n\n\n\n\nevents.toml\n All settings related to storing events data.\n\n\n\n\n\n\nlogs.toml\n All settings related to storing logs data.\n\n\n\n\n\n\nchecks.toml\n All settings related to storing checks data.\n\n\n\n\n\n\nAgent Installation \n Running\n\n\n1.\n Download the binary release \nhere\n.\n\n\n2.\n Use supervisor/upstart/systemd to daemonize. \nClick here for examples\n.\n\n\n3.\n Run the server.\n\n\ncd path/to/resourced\nRESOURCED_CONFIG_DIR=./resourced-configs ./resourced\n\n\n\n\nAgent Reporting to Master\n\n\n1.\n Create a new AccessToken using the GUI: Click \nyour@email.com\n drop down and select \nClusters\n menu option.\n\n\n2.\n Notice that there's an AccessToken created for you already. Copy it.\n\n\n3.\n Paste the value in the \nAccessToken\n section inside \nresourced-configs/general.toml\n.", 
+            "title": "Installation for Users"
+        }, 
+        {
+            "location": "/installation-user/#master-prerequisites", 
+            "text": "1.  Install PostgreSQL 9.5.x or newer", 
+            "title": "Master Prerequisites"
+        }, 
+        {
+            "location": "/installation-user/#master-installation-running", 
+            "text": "1.   Download the tar.gz , unpack it, and run the binary using init/systemd/supervisord. You can follow the examples of init scripts  here  2.  Create PostgreSQL databases  # This example shows you how to create databases under resourced user. Feel free to use a different user.\n# Make sure user, password, and pg_hba.conf are configured correctly.\nsudo su - postgres\ncreateuser -P -e resourced\ncreatedb --owner=resourced resourced-master\ncreatedb --owner=resourced resourced-master-ts-checks\ncreatedb --owner=resourced resourced-master-ts-events\ncreatedb --owner=resourced resourced-master-ts-executor-logs\ncreatedb --owner=resourced resourced-master-ts-logs\ncreatedb --owner=resourced resourced-master-ts-metrics  3.  Run the database migration  cd path/to/resourced-master\nresourced-master -c config-files migrate up  4.  Run the server  cd path/to/resourced-master\nresourced-master -c config-files", 
+            "title": "Master Installation &amp; Running"
+        }, 
+        {
+            "location": "/installation-user/#master-configuration", 
+            "text": "ResourceD Master needs to know path to its configuration directory.  You can set it via  -c  flag or  RESOURCED_MASTER_CONFIG_DIR  environment variable.  The  .tar.gz  file provides you with a default config directory. In there, you will see the following files:    general.toml  All default settings are defined in  general.toml .    metrics.toml  All settings related to storing metrics data.    events.toml  All settings related to storing events data.    logs.toml  All settings related to storing logs data.    checks.toml  All settings related to storing checks data.", 
+            "title": "Master Configuration"
+        }, 
+        {
+            "location": "/installation-user/#agent-installation-running", 
+            "text": "1.  Download the binary release  here .  2.  Use supervisor/upstart/systemd to daemonize.  Click here for examples .  3.  Run the server.  cd path/to/resourced\nRESOURCED_CONFIG_DIR=./resourced-configs ./resourced", 
+            "title": "Agent Installation &amp; Running"
+        }, 
+        {
+            "location": "/installation-user/#agent-reporting-to-master", 
+            "text": "1.  Create a new AccessToken using the GUI: Click  your@email.com  drop down and select  Clusters  menu option.  2.  Notice that there's an AccessToken created for you already. Copy it.  3.  Paste the value in the  AccessToken  section inside  resourced-configs/general.toml .", 
+            "title": "Agent Reporting to Master"
+        }, 
+        {
+            "location": "/installation-dev/", 
+            "text": "Master Prerequisites\n\n\n1.\n Install PostgreSQL 9.5.x or newer\n\n\n2.\n Install Git\n\n\n3.\n Install Go 1.6.x or newer\n\n\nMaster Installation \n Running\n\n\n1.\n Create PostgreSQL databases\n\n\ncreatedb resourced-master\ncreatedb resourced-master-ts-checks\ncreatedb resourced-master-ts-events\ncreatedb resourced-master-ts-executor-logs\ncreatedb resourced-master-ts-logs\ncreatedb resourced-master-ts-metrics\n\n\n\n\n2.\n Get the source code.\n\n\ngo get github.com/resourced/resourced-master\n\n\n\n\n3.\n Run the PostgreSQL migration.\n\n\ncd $GOPATH/src/github.com/resourced/resourced-master\ngo run main.go -c tests/config-files migrate up\n\n# This is only for debugging and running tests during development\n# ./scripts/migrations/all.sh up\n\n\n\n\n4.\n Run the server\n\n\ncd $GOPATH/src/github.com/resourced/resourced-master\ngo run -c tests/config-files main.go\n\n\n\n\nMaster Configuration\n\n\nResourceD Master needs to know path to its configuration directory.\n\n\nYou can set it via \n-c\n flag or \nRESOURCED_MASTER_CONFIG_DIR\n environment variable.\n\n\nThe \n.tar.gz\n file provides you with a default config directory. In there, you will see the following files:\n\n\n\n\n\n\ngeneral.toml\n All default settings are defined in \ngeneral.toml\n.\n\n\n\n\n\n\nmetrics.toml\n All settings related to storing metrics data.\n\n\n\n\n\n\nevents.toml\n All settings related to storing events data.\n\n\n\n\n\n\nlogs.toml\n All settings related to storing logs data.\n\n\n\n\n\n\nchecks.toml\n All settings related to storing checks data.\n\n\n\n\n\n\nAgent Installation \n Running\n\n\n1.\n Get the source code.\n\n\ngo get github.com/resourced/resourced\n\n\n\n\n2.\n Run the server.\n\n\nRESOURCED_CONFIG_DIR=$GOPATH/src/github.com/resourced/resourced/tests/resourced-configs \\\ngo run $GOPATH/src/github.com/resourced/resourced/resourced.go\n\n\n\n\nAgent Reporting to Master\n\n\n1.\n Create a new AccessToken using the GUI: Click \nyour@email.com\n drop down and select \nClusters\n menu option.\n\n\n2.\n Notice that there's an AccessToken created for you already. Copy it.\n\n\n3.\n Paste the value in the \nAccessToken\n section inside \nresourced-configs/general.toml\n.", 
+            "title": "Installation for Contributors"
+        }, 
+        {
+            "location": "/installation-dev/#master-prerequisites", 
+            "text": "1.  Install PostgreSQL 9.5.x or newer  2.  Install Git  3.  Install Go 1.6.x or newer", 
+            "title": "Master Prerequisites"
+        }, 
+        {
+            "location": "/installation-dev/#master-installation-running", 
+            "text": "1.  Create PostgreSQL databases  createdb resourced-master\ncreatedb resourced-master-ts-checks\ncreatedb resourced-master-ts-events\ncreatedb resourced-master-ts-executor-logs\ncreatedb resourced-master-ts-logs\ncreatedb resourced-master-ts-metrics  2.  Get the source code.  go get github.com/resourced/resourced-master  3.  Run the PostgreSQL migration.  cd $GOPATH/src/github.com/resourced/resourced-master\ngo run main.go -c tests/config-files migrate up\n\n# This is only for debugging and running tests during development\n# ./scripts/migrations/all.sh up  4.  Run the server  cd $GOPATH/src/github.com/resourced/resourced-master\ngo run -c tests/config-files main.go", 
+            "title": "Master Installation &amp; Running"
+        }, 
+        {
+            "location": "/installation-dev/#master-configuration", 
+            "text": "ResourceD Master needs to know path to its configuration directory.  You can set it via  -c  flag or  RESOURCED_MASTER_CONFIG_DIR  environment variable.  The  .tar.gz  file provides you with a default config directory. In there, you will see the following files:    general.toml  All default settings are defined in  general.toml .    metrics.toml  All settings related to storing metrics data.    events.toml  All settings related to storing events data.    logs.toml  All settings related to storing logs data.    checks.toml  All settings related to storing checks data.", 
+            "title": "Master Configuration"
+        }, 
+        {
+            "location": "/installation-dev/#agent-installation-running", 
+            "text": "1.  Get the source code.  go get github.com/resourced/resourced  2.  Run the server.  RESOURCED_CONFIG_DIR=$GOPATH/src/github.com/resourced/resourced/tests/resourced-configs \\\ngo run $GOPATH/src/github.com/resourced/resourced/resourced.go", 
+            "title": "Agent Installation &amp; Running"
+        }, 
+        {
+            "location": "/installation-dev/#agent-reporting-to-master", 
+            "text": "1.  Create a new AccessToken using the GUI: Click  your@email.com  drop down and select  Clusters  menu option.  2.  Notice that there's an AccessToken created for you already. Copy it.  3.  Paste the value in the  AccessToken  section inside  resourced-configs/general.toml .", 
+            "title": "Agent Reporting to Master"
         }, 
         {
             "location": "/api-authentication/", 

@@ -8,7 +8,7 @@
   
   
   
-  <title>API Doc: DELETE /api/events/{id:[0-9]+} - ResourceD Documentation</title>
+  <title>Installation for Contributors - ResourceD Documentation</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -24,9 +24,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "API Doc: DELETE /api/events/{id:[0-9]+}";
-    var mkdocs_page_input_path = "api-events-delete.md";
-    var mkdocs_page_url = "/api-events-delete/";
+    var mkdocs_page_name = "Installation for Contributors";
+    var mkdocs_page_input_path = "installation-dev.md";
+    var mkdocs_page_url = "/installation-dev/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -77,8 +77,27 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../installation-dev/">Installation for Contributors</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Installation for Contributors</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#master-prerequisites">Master Prerequisites</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#master-installation-running">Master Installation &amp; Running</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#master-configuration">Master Configuration</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#agent-installation-running">Agent Installation &amp; Running</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#agent-reporting-to-master">Agent Reporting to Master</a></li>
+                
+            
+            </ul>
         
     </li>
 <li>
@@ -133,18 +152,8 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">API Doc: DELETE /api/events/{id:[0-9]+}</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#send-payload">Send Payload</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#return-payload">Return Payload</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../api-events-delete/">API Doc: DELETE /api/events/{id:[0-9]+}</a>
         
     </li>
 <li>
@@ -213,7 +222,7 @@
     
       
     
-    <li>API Doc: DELETE /api/events/{id:[0-9]+}</li>
+    <li>Installation for Contributors</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -227,47 +236,72 @@
           <div role="main">
             <div class="section">
               
-                <p><code>DELETE http://localhost:55655/api/events/{id:[0-9]+}</code></p>
-<p>Delete an event object by id.</p>
-<pre><code class="ruby"># Ruby example
-require 'net/http'
-require 'net/https'
-
-uri = URI('http://localhost:55655/api/events/1')
-
-Net::HTTP.start(uri.host, uri.port, :use_ssl =&gt; uri.scheme == 'https') do |http|
-    request = Net::HTTP::Delete.new(uri.request_uri, initheader = {'Content-Type' =&gt;'application/json'})
-    request.basic_auth 'accesstoken', ''
-
-    response = http.request request
-end
+                <h2 id="master-prerequisites">Master Prerequisites</h2>
+<p><strong>1.</strong> Install PostgreSQL 9.5.x or newer</p>
+<p><strong>2.</strong> Install Git</p>
+<p><strong>3.</strong> Install Go 1.6.x or newer</p>
+<h2 id="master-installation-running">Master Installation &amp; Running</h2>
+<p><strong>1.</strong> Create PostgreSQL databases</p>
+<pre><code>createdb resourced-master
+createdb resourced-master-ts-checks
+createdb resourced-master-ts-events
+createdb resourced-master-ts-executor-logs
+createdb resourced-master-ts-logs
+createdb resourced-master-ts-metrics
 </code></pre>
 
-<pre><code class="python"># Python example
-# Requests is a 3rd party library
-from requests.auth import HTTPBasicAuth
-response = requests.delete('http://localhost:55655/api/events/1', auth=HTTPBasicAuth('accesstoken', ''))
+<p><strong>2.</strong> Get the source code.</p>
+<pre><code>go get github.com/resourced/resourced-master
 </code></pre>
 
-<pre><code class="shell"># cURL example
-# Notice the double colon at the end of Access Token.
-curl -u accesstoken: -X DELETE 'http://localhost:55655/api/events/1'
+<p><strong>3.</strong> Run the PostgreSQL migration.</p>
+<pre><code>cd $GOPATH/src/github.com/resourced/resourced-master
+go run main.go -c tests/config-files migrate up
+
+# This is only for debugging and running tests during development
+# ./scripts/migrations/all.sh up
 </code></pre>
 
-<h2 id="send-payload">Send Payload</h2>
-<pre><code class="json">{
-    &quot;from&quot;: 1463551343,
-    &quot;to&quot;: 1463551643,
-    &quot;description&quot;: &quot;Deployed app server&quot;
-}
+<p><strong>4.</strong> Run the server</p>
+<pre><code>cd $GOPATH/src/github.com/resourced/resourced-master
+go run -c tests/config-files main.go
 </code></pre>
 
-<h2 id="return-payload">Return Payload</h2>
-<pre><code class="json">{
-    &quot;ID&quot;: 1,
-    &quot;Message&quot;: &quot;Deleted event&quot;
-}
+<h2 id="master-configuration">Master Configuration</h2>
+<p>ResourceD Master needs to know path to its configuration directory.</p>
+<p>You can set it via <code>-c</code> flag or <code>RESOURCED_MASTER_CONFIG_DIR</code> environment variable.</p>
+<p>The <code>.tar.gz</code> file provides you with a default config directory. In there, you will see the following files:</p>
+<ul>
+<li>
+<p><code>general.toml</code> All default settings are defined in <code>general.toml</code>.</p>
+</li>
+<li>
+<p><code>metrics.toml</code> All settings related to storing metrics data.</p>
+</li>
+<li>
+<p><code>events.toml</code> All settings related to storing events data.</p>
+</li>
+<li>
+<p><code>logs.toml</code> All settings related to storing logs data.</p>
+</li>
+<li>
+<p><code>checks.toml</code> All settings related to storing checks data.</p>
+</li>
+</ul>
+<h2 id="agent-installation-running">Agent Installation &amp; Running</h2>
+<p><strong>1.</strong> Get the source code.</p>
+<pre><code>go get github.com/resourced/resourced
 </code></pre>
+
+<p><strong>2.</strong> Run the server.</p>
+<pre><code class="bash">RESOURCED_CONFIG_DIR=$GOPATH/src/github.com/resourced/resourced/tests/resourced-configs \
+go run $GOPATH/src/github.com/resourced/resourced/resourced.go
+</code></pre>
+
+<h2 id="agent-reporting-to-master">Agent Reporting to Master</h2>
+<p><strong>1.</strong> Create a new AccessToken using the GUI: Click <code>your@email.com</code> drop down and select <code>Clusters</code> menu option.</p>
+<p><strong>2.</strong> Notice that there's an AccessToken created for you already. Copy it.</p>
+<p><strong>3.</strong> Paste the value in the <code>AccessToken</code> section inside <code>resourced-configs/general.toml</code>.</p>
               
             </div>
           </div>
@@ -275,10 +309,10 @@ curl -u accesstoken: -X DELETE 'http://localhost:55655/api/events/1'
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../api-logs-post/" class="btn btn-neutral float-right" title="API Doc: POST /api/logs">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../api-authentication/" class="btn btn-neutral float-right" title="API Doc: Auth">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../api-events-post/" class="btn btn-neutral" title="API Doc: POST /api/events"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../installation-user/" class="btn btn-neutral" title="Installation for Users"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -306,10 +340,10 @@ curl -u accesstoken: -X DELETE 'http://localhost:55655/api/events/1'
           <a href="https://github.com/resourced/resourced-master" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../api-events-post/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../installation-user/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../api-logs-post/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../api-authentication/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

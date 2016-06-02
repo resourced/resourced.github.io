@@ -54,6 +54,11 @@ ResourceD is a complete monitoring and alerting solution for DevOps everywhere. 
 * It allows you to view and search logs within time range.
 
 
+## Prerequisite
+
+* PostgresSQL 9.5.x or newer for Master.
+
+
 ## Links
 
 * [Agent Repo](https://github.com/resourced/resourced)
