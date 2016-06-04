@@ -286,8 +286,7 @@
 </ul>
 <p><strong>Query by JSON path</strong></p>
 <p>To craft JSON path query, start with ResourceD path and then use "." delimited separator as you get deeper into the JSON structure.</p>
-<p>For example, let's say your resourced agent shipped <code>/free</code> data: <code>{"/free": {"Data": {"Swap": {"Free": 0, "Used": 0, "Total": 0}, "Memory": {"Free": 1346609152}}}</code></p>
-<p><strong>Note:</strong> Data is just an envelope, don't include it in your query.</p>
+<p>For example, let's say your resourced agent shipped <code>/free</code> data: <code>{"/free": {"Swap": {"Free": 0, "Used": 0, "Total": 0}, "Memory": {"Free": 1346609152}}}</code></p>
 <p>You can then query <code>Swap -&gt; Used</code> this way: <code>/free.Swap.Used &gt; 10000000</code></p>
 <pre><code class="ruby"># Ruby example
 require 'net/http'

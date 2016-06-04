@@ -43,9 +43,7 @@ There are 3 fields to query host data on: hostname, tags, and JSON path.
 
 To craft JSON path query, start with ResourceD path and then use "." delimited separator as you get deeper into the JSON structure.
 
-For example, let's say your resourced agent shipped `/free` data: `{"/free": {"Data": {"Swap": {"Free": 0, "Used": 0, "Total": 0}, "Memory": {"Free": 1346609152}}}`
-
-**Note:** Data is just an envelope, don't include it in your query.
+For example, let's say your resourced agent shipped `/free` data: `{"/free": {"Swap": {"Free": 0, "Used": 0, "Total": 0}, "Memory": {"Free": 1346609152}}}`
 
 You can then query `Swap -> Used` this way: `/free.Swap.Used > 10000000`
 
