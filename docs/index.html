@@ -239,22 +239,22 @@
 <h2 id="comparison-to-plenty-of-other-oss-solutions">Comparison to (plenty of) other OSS solutions</h2>
 <ul>
 <li>
-<p>Easy to install. Just download the precompiled binaries, change the default config, and run. No need to even <code>yum install</code>.</p>
+<p>Easy to install. Just download the binaries, change the default config, and run. No <code>yum install</code> necessary.</p>
 </li>
 <li>
 <p>Good looking, easy to use, UI.</p>
 </li>
 <li>
-<p>It comprises of only three components: Agent, Master, and PostgreSQL. That's it. Other solutions are often complex with a lot of config files to manage.</p>
+<p>It comprises of only three components: Agent, Master, and PostgreSQL. That's it. Other solutions are often complex with a lot of components to manage.</p>
 </li>
 <li>
 <p>PostgreSQL is well understood and there are plenty of documentation on how to scale it and make it highly available.</p>
 </li>
 <li>
-<p>Active check is a first class citizen. Some other solutions often provide only passive checks.</p>
+<p>Active check is a first class citizen. Some other solutions provide only passive checks.</p>
 </li>
 <li>
-<p>The agent offers a multiple of useful solutions under one binary. There's no need to install multiple daemons on every host.</p>
+<p>The agent offers a multiple of useful solutions under one binary, reducing the need of installing multiple daemons on every host.</p>
 </li>
 <li>
 <p>The agent can proactively do things for you (based on boolean expressions on its data). Why alerts when it can solve its own problem?</p>
@@ -263,25 +263,25 @@
 <h2 id="agent-features">Agent Features</h2>
 <ul>
 <li>
-<p>It gathers a lot of systems metrics.</p>
+<p>It gathers server data &amp; provides JSON endpoints for external programs to consume.</p>
 </li>
 <li>
-<p>It supports gathering popular application metrics such as HAProxy, Varnish, or Memcached.</p>
+<p>It provides 60+ native data collector in Go: dmidecode, docker, haproxy, mcrouter, memcache, mysql, nagios plugins, procfs, ps output, redis, varnish.</p>
 </li>
 <li>
 <p>It tails log files and forward them to master. These loglines can then be used to create alerts.</p>
 </li>
 <li>
-<p>It can forwards existing Graphite metrics to master. These metrics can then be used to create alerts.</p>
+<p>It receives legacy Graphite metrics and forward them to master. These metrics are useful for alerts.</p>
 </li>
 <li>
-<p>It is easy to extend with scripting languages.</p>
+<p>It can be extended using scripting languages. <a href="//github.com/resourced/resourced/blob/master/tests/script-reader/darwin-memory.py">Example Script</a> <a href="//github.com/resourced/resourced/tree/master/tests/resourced-configs/readers">Example Config Files</a></p>
 </li>
 <li>
 <p>It can send passive checks directly from the host.</p>
 </li>
 <li>
-<p>It can execute scripts based on boolean expressions on its data.</p>
+<p>It can execute scripts based on boolean expressions on its data. <a href="//github.com/resourced/resourced/blob/master/tests/resourced-configs/executors/shell.toml">Example</a></p>
 </li>
 <li>
 <p>It is useful without the master, it can report to other services.</p>
@@ -290,7 +290,7 @@
 <h2 id="master-features">Master Features</h2>
 <ul>
 <li>
-<p>It receives a lot of useful data from the agents: inventory, metrics, and loglines.</p>
+<p>It receives a lot of useful data from the agents: facts, metrics, and loglines.</p>
 </li>
 <li>
 <p>It creates active checks based on any of these data.</p>
@@ -299,10 +299,10 @@
 <p>It can also create active checks on ping, SSH, and HTTP.</p>
 </li>
 <li>
-<p>When you run multiple masters, the check jobs are distributed equally among them. There's no single point of failure.</p>
+<p>When running multiple masters, the check jobs are distributed equally among them. There's no single point of failure.</p>
 </li>
 <li>
-<p>It provides you with SQL-like statements to query all of its data.</p>
+<p>It provides you with SQL-like statements to query all of its data. <a href="//github.com/resourced/resourced-master#querying">Example</a></p>
 </li>
 <li>
 <p>It allows you to view and search logs within time range.</p>
@@ -374,5 +374,5 @@
 
 <!--
 MkDocs version : 0.15.3
-Build Date UTC : 2016-06-04 00:42:30.957133
+Build Date UTC : 2016-06-05 15:47:25.027472
 -->
