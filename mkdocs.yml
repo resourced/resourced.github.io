@@ -11,8 +11,9 @@ extra_css:
 pages:
     - Home: index.md
     - Gallery: gallery.md
-    - "Installation for Users": installation-user.md
-    - "Installation for Contributors": installation-dev.md
+    - "User Install: Day 1": installation-user-day-1.md
+    - "User Install: TL;DR": installation-user.md
+    - "Contributors": installation-dev.md
     - "API Doc: Auth": api-authentication.md
     - "API Doc: GET /api/hosts": api-hosts-get.md
     - "API Doc: GET /api/metrics/{id:[0-9]+}": api-metrics-get.md

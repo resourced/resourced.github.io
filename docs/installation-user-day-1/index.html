@@ -8,7 +8,7 @@
   
   
   
-  <title>API Doc: DELETE /api/events/{id:[0-9]+} - ResourceD Documentation</title>
+  <title>User Install: Day 1 - ResourceD Documentation</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -24,9 +24,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "API Doc: DELETE /api/events/{id:[0-9]+}";
-    var mkdocs_page_input_path = "api-events-delete.md";
-    var mkdocs_page_url = "/api-events-delete/";
+    var mkdocs_page_name = "User Install: Day 1";
+    var mkdocs_page_input_path = "installation-user-day-1.md";
+    var mkdocs_page_url = "/installation-user-day-1/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -70,8 +70,31 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../installation-user-day-1/">User Install: Day 1</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">User Install: Day 1</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#install-postgresql-95x-or-newer">Install PostgreSQL 9.5.x or newer</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#database-creation">Database Creation</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#database-tuning-for-production">Database Tuning for Production</a></li>
+                
+                    <li><a class="toctree-l4" href="#core">Core</a></li>
+                
+                    <li><a class="toctree-l4" href="#metrics">Metrics</a></li>
+                
+                    <li><a class="toctree-l4" href="#logs">Logs</a></li>
+                
+                    <li><a class="toctree-l4" href="#checks">Checks</a></li>
+                
+                    <li><a class="toctree-l4" href="#events">Events</a></li>
+                
+            
+            </ul>
         
     </li>
 <li>
@@ -140,18 +163,8 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">API Doc: DELETE /api/events/{id:[0-9]+}</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#send-payload">Send Payload</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#return-payload">Return Payload</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../api-events-delete/">API Doc: DELETE /api/events/{id:[0-9]+}</a>
         
     </li>
 <li>
@@ -220,7 +233,7 @@
     
       
     
-    <li>API Doc: DELETE /api/events/{id:[0-9]+}</li>
+    <li>User Install: Day 1</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -234,47 +247,52 @@
           <div role="main">
             <div class="section">
               
-                <p><code>DELETE http://localhost:55655/api/events/{id:[0-9]+}</code></p>
-<p>Delete an event object by id.</p>
-<pre><code class="ruby"># Ruby example
-require 'net/http'
-require 'net/https'
-
-uri = URI('http://localhost:55655/api/events/1')
-
-Net::HTTP.start(uri.host, uri.port, :use_ssl =&gt; uri.scheme == 'https') do |http|
-    request = Net::HTTP::Delete.new(uri.request_uri, initheader = {'Content-Type' =&gt;'application/json'})
-    request.basic_auth 'accesstoken', ''
-
-    response = http.request request
-end
-</code></pre>
-
-<pre><code class="python"># Python example
-# Requests is a 3rd party library
-from requests.auth import HTTPBasicAuth
-response = requests.delete('http://localhost:55655/api/events/1', auth=HTTPBasicAuth('accesstoken', ''))
-</code></pre>
-
-<pre><code class="shell"># cURL example
-# Notice the double colon at the end of Access Token.
-curl -u accesstoken: -X DELETE 'http://localhost:55655/api/events/1'
-</code></pre>
-
-<h2 id="send-payload">Send Payload</h2>
-<pre><code class="json">{
-    &quot;from&quot;: 1463551343,
-    &quot;to&quot;: 1463551643,
-    &quot;description&quot;: &quot;Deployed app server&quot;
-}
-</code></pre>
-
-<h2 id="return-payload">Return Payload</h2>
-<pre><code class="json">{
-    &quot;ID&quot;: 1,
-    &quot;Message&quot;: &quot;Deleted event&quot;
-}
-</code></pre>
+                <h2 id="install-postgresql-95x-or-newer">Install PostgreSQL 9.5.x or newer</h2>
+<p>ResourceD Master stores all its metadata and timeseries data on PostgreSQL 9.5.x or newer.</p>
+<p>The minimum required version is 9.5 since we are using BRIN index for timeseries data. Other PostgreSQL features we use:</p>
+<ul>
+<li>
+<p>JSONB column for various metadata.</p>
+</li>
+<li>
+<p>Table inheritance for timeseries data.</p>
+</li>
+<li>
+<p>Full text search for log search.</p>
+</li>
+<li>
+<p>GIN index for JSONB column.</p>
+</li>
+<li>
+<p>LISTEN/NOTIFY for pubsub between daemons.</p>
+</li>
+</ul>
+<h2 id="database-creation">Database Creation</h2>
+<p>We encourage users to use multiple databases to separate concerns.</p>
+<p>The core database should not share the same PostgreSQL as the timeseries databases.</p>
+<p>You will see this reflected on the configuration files, each config file <code>DSN</code> can be configured to use a different database.</p>
+<h2 id="database-tuning-for-production">Database Tuning for Production</h2>
+<h3 id="core">Core</h3>
+<p>The core database is defined in <code>general.toml &gt; DSN</code>.</p>
+<p>It's usage pattern is read-heavy with the exception of <code>hosts</code> table.</p>
+<p>For best performance, expand your <code>shared_buffers</code> so all your dataset is in RAM.</p>
+<p>The master daemons communicate with each other via <code>LISTEN/NOTIFY</code> through core's database.</p>
+<p>Thus, this is the recommended formula for <code>max_connections</code>: <code>max_connections = &lt;num-of-daemons&gt; + &lt;dedicated-pool-for-db-work&gt;</code></p>
+<h3 id="metrics">Metrics</h3>
+<p>The metrics database stores all metrics timeseries data. It's configured in <code>metrics.toml &gt; DSN</code>.</p>
+<p>Metrics timeseries data is partitioned daily. Each day has its own table. That means the heaviest write traffic will happen on today's date.</p>
+<h3 id="logs">Logs</h3>
+<p>Logs database is another example of timeseries data. The forwarded log lines (from agents) are stored here.</p>
+<p>It's configured in <code>logs.toml &gt; DSN</code>.</p>
+<p>This database is partitioned daily as well.</p>
+<h3 id="checks">Checks</h3>
+<p>Checks database is also another form of timeseries database. It contains checks data for the purpose of alerting.</p>
+<p>It's configured in <code>checks.toml &gt; DSN</code>.</p>
+<p>This database is partitioned daily as well.</p>
+<h3 id="events">Events</h3>
+<p>Events database is a user driven timeseries database. User can send arbitrary events to master daemons which then stores them here.</p>
+<p>It's configured in <code>events.toml &gt; DSN</code>.</p>
+<p>This database is partitioned monthly.</p>
               
             </div>
           </div>
@@ -282,10 +300,10 @@ curl -u accesstoken: -X DELETE 'http://localhost:55655/api/events/1'
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../api-logs-post/" class="btn btn-neutral float-right" title="API Doc: POST /api/logs">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../installation-user/" class="btn btn-neutral float-right" title="User Install: TL;DR">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../api-events-post/" class="btn btn-neutral" title="API Doc: POST /api/events"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../gallery/" class="btn btn-neutral" title="Gallery"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -313,10 +331,10 @@ curl -u accesstoken: -X DELETE 'http://localhost:55655/api/events/1'
           <a href="https://github.com/resourced/resourced-master" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../api-events-post/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../gallery/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../api-logs-post/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../installation-user/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
