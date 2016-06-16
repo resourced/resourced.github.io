@@ -15,7 +15,7 @@ The minimum required version is 9.5 since we are using BRIN index for timeseries
 * LISTEN/NOTIFY for pubsub between daemons.
 
 
-## Database Creation
+## Many Databases
 
 We encourage users to use multiple databases to separate concerns.
 
@@ -23,8 +23,6 @@ The core database should not share the same PostgreSQL as the timeseries databas
 
 You will see this reflected on the configuration files, each config file `DSN` can be configured to use a different database.
 
-
-## Database Tuning for Production
 
 ### Core
 
@@ -36,7 +34,7 @@ For best performance, expand your `shared_buffers` so all your dataset is in RAM
 
 The master daemons communicate with each other via `LISTEN/NOTIFY` through core's database.
 
-Thus, this is the recommended formula for `max_connections`: `max_connections = <num-of-daemons> + <dedicated-pool-for-db-work>`
+Thus, this is the recommended formula for `max_connections = <num-of-daemons> + <connections-for-db-work>`
 
 
 ### Metrics
@@ -71,3 +69,13 @@ Events database is a user driven timeseries database. User can send arbitrary ev
 It's configured in `events.toml > DSN`.
 
 This database is partitioned monthly.
+
+
+## By the end of day 1, try to:
+
+1. Create all the databases.
+
+2. Create all the credentials for master daemon to use to connect.
+
+3. Configure `pg_hba.conf` correctly so master daemon hosts can access the databases.
+

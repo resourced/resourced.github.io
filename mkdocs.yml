@@ -12,6 +12,7 @@ pages:
     - Home: index.md
     - Gallery: gallery.md
     - "User Install: Day 1": installation-user-day-1.md
+    - "User Install: Day 2": installation-user-day-2.md
     - "User Install: TL;DR": installation-user.md
     - "Contributors": installation-dev.md
     - "API Doc: Auth": api-authentication.md

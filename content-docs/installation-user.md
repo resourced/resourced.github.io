@@ -1,13 +1,11 @@
 ## Master Prerequisites
 
-**1.** Install PostgreSQL 9.5.x or newer
+Install PostgreSQL 9.5.x or newer
 
 
 ## Master Installation & Running
 
-**1.** [Download the tar.gz](https://github.com/resourced/resourced-master/releases), unpack it, and run the binary using init/systemd/supervisord. You can follow the examples of init scripts [here](https://github.com/resourced/resourced-master/tree/master/scripts/init)
-
-**2.** Create PostgreSQL databases
+**1.** Create PostgreSQL databases.
 
 ```
 # This example shows you how to create databases under resourced user. Feel free to use a different user.
@@ -22,18 +20,18 @@ createdb --owner=resourced resourced-master-ts-logs
 createdb --owner=resourced resourced-master-ts-metrics
 ```
 
-**3.** Run the database migration
+**2.** [Download the tar.gz](https://github.com/resourced/resourced-master/releases) and unpack it.
+
+**3.** Run the database migration.
 
 ```
-cd path/to/resourced-master
-resourced-master -c config-files migrate up
+cd path/to/resourced-master; resourced-master -c config-files migrate up
 ```
 
-**4.** Run the server
+**4.** Run the server and daemonize it using init/systemd/supervisord. You can follow the examples of init scripts [here](https://github.com/resourced/resourced-master/tree/master/scripts/init)
 
 ```
-cd path/to/resourced-master
-resourced-master -c config-files
+cd path/to/resourced-master; resourced-master -c config-files
 ```
 
 

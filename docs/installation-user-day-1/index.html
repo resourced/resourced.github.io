@@ -78,10 +78,7 @@
                 <li class="toctree-l3"><a href="#install-postgresql-95x-or-newer">Install PostgreSQL 9.5.x or newer</a></li>
                 
             
-                <li class="toctree-l3"><a href="#database-creation">Database Creation</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#database-tuning-for-production">Database Tuning for Production</a></li>
+                <li class="toctree-l3"><a href="#many-databases">Many Databases</a></li>
                 
                     <li><a class="toctree-l4" href="#core">Core</a></li>
                 
@@ -94,7 +91,17 @@
                     <li><a class="toctree-l4" href="#events">Events</a></li>
                 
             
+                <li class="toctree-l3"><a href="#by-the-end-of-day-1-try-to">By the end of day 1, try to:</a></li>
+                
+            
             </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../installation-user-day-2/">User Install: Day 2</a>
         
     </li>
 <li>
@@ -267,17 +274,16 @@
 <p>LISTEN/NOTIFY for pubsub between daemons.</p>
 </li>
 </ul>
-<h2 id="database-creation">Database Creation</h2>
+<h2 id="many-databases">Many Databases</h2>
 <p>We encourage users to use multiple databases to separate concerns.</p>
 <p>The core database should not share the same PostgreSQL as the timeseries databases.</p>
 <p>You will see this reflected on the configuration files, each config file <code>DSN</code> can be configured to use a different database.</p>
-<h2 id="database-tuning-for-production">Database Tuning for Production</h2>
 <h3 id="core">Core</h3>
 <p>The core database is defined in <code>general.toml &gt; DSN</code>.</p>
 <p>It's usage pattern is read-heavy with the exception of <code>hosts</code> table.</p>
 <p>For best performance, expand your <code>shared_buffers</code> so all your dataset is in RAM.</p>
 <p>The master daemons communicate with each other via <code>LISTEN/NOTIFY</code> through core's database.</p>
-<p>Thus, this is the recommended formula for <code>max_connections</code>: <code>max_connections = &lt;num-of-daemons&gt; + &lt;dedicated-pool-for-db-work&gt;</code></p>
+<p>Thus, this is the recommended formula for <code>max_connections = &lt;num-of-daemons&gt; + &lt;connections-for-db-work&gt;</code></p>
 <h3 id="metrics">Metrics</h3>
 <p>The metrics database stores all metrics timeseries data. It's configured in <code>metrics.toml &gt; DSN</code>.</p>
 <p>Metrics timeseries data is partitioned daily. Each day has its own table. That means the heaviest write traffic will happen on today's date.</p>
@@ -293,6 +299,18 @@
 <p>Events database is a user driven timeseries database. User can send arbitrary events to master daemons which then stores them here.</p>
 <p>It's configured in <code>events.toml &gt; DSN</code>.</p>
 <p>This database is partitioned monthly.</p>
+<h2 id="by-the-end-of-day-1-try-to">By the end of day 1, try to:</h2>
+<ol>
+<li>
+<p>Create all the databases.</p>
+</li>
+<li>
+<p>Create all the credentials for master daemon to use to connect.</p>
+</li>
+<li>
+<p>Configure <code>pg_hba.conf</code> correctly so master daemon hosts can access the databases.</p>
+</li>
+</ol>
               
             </div>
           </div>
@@ -300,7 +318,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../installation-user/" class="btn btn-neutral float-right" title="User Install: TL;DR">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../installation-user-day-2/" class="btn btn-neutral float-right" title="User Install: Day 2">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../gallery/" class="btn btn-neutral" title="Gallery"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -334,7 +352,7 @@
         <span><a href="../gallery/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../installation-user/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../installation-user-day-2/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

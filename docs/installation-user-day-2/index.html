@@ -8,7 +8,7 @@
   
   
   
-  <title>API Doc: GET /api/metadata/{key} - ResourceD Documentation</title>
+  <title>User Install: Day 2 - ResourceD Documentation</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -24,9 +24,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "API Doc: GET /api/metadata/{key}";
-    var mkdocs_page_input_path = "api-metadata-get.md";
-    var mkdocs_page_url = "/api-metadata-get/";
+    var mkdocs_page_name = "User Install: Day 2";
+    var mkdocs_page_input_path = "installation-user-day-2.md";
+    var mkdocs_page_url = "/installation-user-day-2/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -77,8 +77,18 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../installation-user-day-2/">User Install: Day 2</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">User Install: Day 2</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#master-installation-running">Master Installation &amp; Running</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#by-the-end-of-day-2">By the end of day 2:</a></li>
+                
+            
+            </ul>
         
     </li>
 <li>
@@ -182,15 +192,8 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">API Doc: GET /api/metadata/{key}</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#return-payload">Return Payload</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../api-metadata-get/">API Doc: GET /api/metadata/{key}</a>
         
     </li>
 <li>
@@ -224,7 +227,7 @@
     
       
     
-    <li>API Doc: GET /api/metadata/{key}</li>
+    <li>User Install: Day 2</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -238,43 +241,32 @@
           <div role="main">
             <div class="section">
               
-                <p><code>GET http://localhost:55655/api/metadata/{key}</code></p>
-<p>Get metadata by key.</p>
-<pre><code class="ruby"># Ruby example
-require 'net/http'
-require 'net/https'
-
-uri = URI('http://localhost:55655/api/metadata/foo/bar')
-
-Net::HTTP.start(uri.host, uri.port, :use_ssl =&gt; uri.scheme == 'https') do |http|
-  request = Net::HTTP::Get.new uri.request_uri
-  request.basic_auth 'accesstoken', ''
-
-  response = http.request request
-end
+                <h2 id="master-installation-running">Master Installation &amp; Running</h2>
+<p><strong>1.</strong> Create PostgreSQL databases.</p>
+<pre><code># This example shows you how to create databases under resourced user. Feel free to use a different user.
+# Make sure user, password, and pg_hba.conf are configured correctly.
+sudo su - postgres
+createuser -P -e resourced
+createdb --owner=resourced resourced-master
+createdb --owner=resourced resourced-master-ts-checks
+createdb --owner=resourced resourced-master-ts-events
+createdb --owner=resourced resourced-master-ts-executor-logs
+createdb --owner=resourced resourced-master-ts-logs
+createdb --owner=resourced resourced-master-ts-metrics
 </code></pre>
 
-<pre><code class="python"># Python example
-# Requests is a 3rd party library
-from requests.auth import HTTPBasicAuth
-response = requests.get('http://localhost:55655/api/metadata/foo/bar', auth=HTTPBasicAuth('accesstoken', ''))
+<p><strong>2.</strong> <a href="https://github.com/resourced/resourced-master/releases">Download the tar.gz</a> and unpack it.</p>
+<p><strong>3.</strong> Run the database migration.</p>
+<pre><code>cd path/to/resourced-master; resourced-master -c config-files migrate up
 </code></pre>
 
-<pre><code class="shell"># cURL example
-# Notice the double colon at the end of Access Token.
-curl -u accesstoken: http://localhost:55655/api/metadata/foo/bar
+<p><strong>4.</strong> Run the server and daemonize it using init/systemd/supervisord. You can follow the examples of init scripts <a href="https://github.com/resourced/resourced-master/tree/master/scripts/init">here</a></p>
+<p>There is one option to set for running the master daemon. You can set it via <code>-c</code> flag or <code>RESOURCED_MASTER_CONFIG_DIR</code> environment variable.</p>
+<pre><code>cd path/to/resourced-master; resourced-master -c config-files
 </code></pre>
 
-<h2 id="return-payload">Return Payload</h2>
-<pre><code class="json">{
-    &quot;ClusterID&quot;: 1,
-    &quot;Key&quot;: &quot;foo/bar&quot;,
-    &quot;Data&quot;: {
-        &quot;some&quot;: &quot;data&quot;,
-        &quot;description&quot;: &quot;useful during server orchestration&quot;
-    }
-}
-</code></pre>
+<h2 id="by-the-end-of-day-2">By the end of day 2:</h2>
+<p>Master daemon should be up and running and able to connect to all PostgreSQL databases.</p>
               
             </div>
           </div>
@@ -282,10 +274,10 @@ curl -u accesstoken: http://localhost:55655/api/metadata/foo/bar
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../api-metadata-all/" class="btn btn-neutral float-right" title="API Doc: GET /api/metadata">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../installation-user/" class="btn btn-neutral float-right" title="User Install: TL;DR">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../api-metadata-delete/" class="btn btn-neutral" title="API Doc: DELETE /api/metadata/{key}"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../installation-user-day-1/" class="btn btn-neutral" title="User Install: Day 1"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -313,10 +305,10 @@ curl -u accesstoken: http://localhost:55655/api/metadata/foo/bar
           <a href="https://github.com/resourced/resourced-master" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../api-metadata-delete/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../installation-user-day-1/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../api-metadata-all/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../installation-user/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
