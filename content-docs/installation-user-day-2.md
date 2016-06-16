@@ -31,6 +31,18 @@ There is one option to set for running the master daemon. You can set it via `-c
 cd path/to/resourced-master; resourced-master -c config-files
 ```
 
+
+## Agent Reporting to Master
+
+**1.** Create a new AccessToken using the GUI: Click `your@email.com` drop down and select `Clusters` menu option.
+
+**2.** Notice that there's an AccessToken created for you already. Copy it.
+
+**3.** Paste the value in the `AccessToken` section inside `resourced/agent/configs/general.toml`.
+
+
 ## By the end of day 2:
 
-Master daemon should be up and running and able to connect to all PostgreSQL databases.
+* Master daemon should be up and running and able to connect to all PostgreSQL databases.
+
+* Agent is reporting data to master and you can see them in the UI.

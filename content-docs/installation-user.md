@@ -74,4 +74,4 @@ RESOURCED_CONFIG_DIR=./resourced-configs ./resourced
 
 **2.** Notice that there's an AccessToken created for you already. Copy it.
 
-**3.** Paste the value in the `AccessToken` section inside `resourced-configs/general.toml`.
+**3.** Paste the value in the `AccessToken` section inside `resourced/agent/configs/general.toml`.

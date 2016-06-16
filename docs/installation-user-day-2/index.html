@@ -85,6 +85,9 @@
                 <li class="toctree-l3"><a href="#master-installation-running">Master Installation &amp; Running</a></li>
                 
             
+                <li class="toctree-l3"><a href="#agent-reporting-to-master">Agent Reporting to Master</a></li>
+                
+            
                 <li class="toctree-l3"><a href="#by-the-end-of-day-2">By the end of day 2:</a></li>
                 
             
@@ -103,6 +106,13 @@
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../installation-dev/">Contributors</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../usage-application-go/">Usage: Application: Go</a>
         
     </li>
 <li>
@@ -265,8 +275,19 @@ createdb --owner=resourced resourced-master-ts-metrics
 <pre><code>cd path/to/resourced-master; resourced-master -c config-files
 </code></pre>
 
+<h2 id="agent-reporting-to-master">Agent Reporting to Master</h2>
+<p><strong>1.</strong> Create a new AccessToken using the GUI: Click <code>your@email.com</code> drop down and select <code>Clusters</code> menu option.</p>
+<p><strong>2.</strong> Notice that there's an AccessToken created for you already. Copy it.</p>
+<p><strong>3.</strong> Paste the value in the <code>AccessToken</code> section inside <code>resourced/agent/configs/general.toml</code>.</p>
 <h2 id="by-the-end-of-day-2">By the end of day 2:</h2>
+<ul>
+<li>
 <p>Master daemon should be up and running and able to connect to all PostgreSQL databases.</p>
+</li>
+<li>
+<p>Agent is reporting data to master and you can see them in the UI.</p>
+</li>
+</ul>
               
             </div>
           </div>

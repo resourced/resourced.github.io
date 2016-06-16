@@ -8,7 +8,7 @@
   
   
   
-  <title>API Doc: POST /api/logs - ResourceD Documentation</title>
+  <title>Usage: Application: Go - ResourceD Documentation</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -24,9 +24,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "API Doc: POST /api/logs";
-    var mkdocs_page_input_path = "api-logs-post.md";
-    var mkdocs_page_url = "/api-logs-post/";
+    var mkdocs_page_name = "Usage: Application: Go";
+    var mkdocs_page_input_path = "usage-application-go.md";
+    var mkdocs_page_url = "/usage-application-go/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -98,8 +98,19 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../usage-application-go/">Usage: Application: Go</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Usage: Application: Go</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#reporting-go-app-metrics">Reporting Go App Metrics</a></li>
+                
+                    <li><a class="toctree-l4" href="#prerequisite">Prerequisite</a></li>
+                
+                    <li><a class="toctree-l4" href="#collecting-gc-and-runtime-memory-metrics">Collecting GC and Runtime Memory metrics</a></li>
+                
+            
+            </ul>
         
     </li>
 <li>
@@ -161,18 +172,8 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">API Doc: POST /api/logs</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#send-payload">Send Payload</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#return-payload">Return Payload</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../api-logs-post/">API Doc: POST /api/logs</a>
         
     </li>
 <li>
@@ -234,7 +235,7 @@
     
       
     
-    <li>API Doc: POST /api/logs</li>
+    <li>Usage: Application: Go</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -248,73 +249,56 @@
           <div role="main">
             <div class="section">
               
-                <p><code>POST http://localhost:55655/api/logs</code></p>
-<p>Submit loglines.</p>
-<pre><code class="ruby"># Ruby example
-require 'net/http'
-require 'net/https'
+                <h1 id="reporting-go-app-metrics">Reporting Go App Metrics</h1>
+<p>With the help of <code>github.com/rcrowley/go-metrics</code>, it is trivial to report application metrics to ResourceD.</p>
+<h2 id="prerequisite">Prerequisite</h2>
+<ul>
+<li><code>go get github.com/rcrowley/go-metrics</code></li>
+</ul>
+<h2 id="collecting-gc-and-runtime-memory-metrics">Collecting GC and Runtime Memory metrics</h2>
+<p><code>go-metrics</code> provides user convenience functions to collect GC and Runtime Memory metrics.</p>
+<p>The key is to report using Graphite format, take a look at the example below:</p>
+<pre><code>package main
 
-uri = URI('http://localhost:55655/api/logs')
+import (
+    &quot;time&quot;
 
-Net::HTTP.start(uri.host, uri.port, :use_ssl =&gt; uri.scheme == 'https') do |http|
-    request = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =&gt;'application/json'})
-    request.basic_auth 'accesstoken', ''
-    request.body = '{&quot;Host&quot;: {&quot;Name&quot;: &quot;localhost&quot;,&quot;Tags&quot;: {&quot;role&quot;: &quot;app-server&quot;}}, &quot;Data&quot;: {&quot;Loglines&quot;: [&quot;multiple loglines in an array&quot;], &quot;Filename&quot;: &quot;full path to filename where the logs came from&quot;}}'
-
-    response = http.request request
-end
-</code></pre>
-
-<pre><code class="python"># Python example
-# Requests is a 3rd party library
-from requests.auth import HTTPBasicAuth
-response = requests.post(
-    'http://localhost:55655/api/logs',
-    auth=HTTPBasicAuth('accesstoken', ''),
-    body={
-        &quot;Host&quot;: {
-            &quot;Name&quot;: &quot;localhost&quot;,
-            &quot;Tags&quot;: {
-                &quot;role&quot;: &quot;app-server&quot;
-            }
-        },
-        &quot;Data&quot;: {
-            &quot;Loglines&quot;: [&quot;multiple loglines in an array&quot;],
-            &quot;Filename&quot;: &quot;full path to filename where the logs came from&quot;
-        }
-    }
+    &quot;github.com/Sirupsen/logrus&quot;
+    &quot;github.com/rcrowley/go-metrics&quot;
+    metrics_graphite &quot;github.com/cyberdelia/go-metrics-graphite&quot;
 )
-</code></pre>
 
-<pre><code class="shell"># cURL example
-# Notice the double colon at the end of Access Token.
-curl -u accesstoken: -X POST \
-    -H &quot;Accept: application/json&quot; \
-    -H &quot;Content-Type: application/json&quot; \
-    -d '{&quot;Host&quot;: {&quot;Name&quot;: &quot;localhost&quot;,&quot;Tags&quot;: {&quot;role&quot;: &quot;app-server&quot;}}, &quot;Data&quot;: {&quot;Loglines&quot;: [&quot;multiple loglines in an array&quot;], &quot;Filename&quot;: &quot;full path to filename where the logs came from&quot;}}' \
-    'http://localhost:55655/api/logs'
-</code></pre>
+func main() {
+    // 1. Create a registry
+    // If you have other metrics to report, use the same registry.
+    r := metrics.NewRegistry()
 
-<h2 id="send-payload">Send Payload</h2>
-<pre><code class="json">{
-    &quot;Host&quot;: {
-        &quot;Name&quot;: &quot;localhost&quot;,
-        &quot;Tags&quot;: {
-            &quot;role&quot;: &quot;app-server&quot;
-        }
-    },
-    &quot;Data&quot;: {
-        &quot;Loglines&quot;: [&quot;multiple loglines in an array&quot;],
-        &quot;Filename&quot;: &quot;full path to filename where the logs came from&quot;
+    metrics.RegisterDebugGCStats(r)
+    metrics.RegisterRuntimeMemStats(r)
+
+    // Collect every minute
+    go metrics.CaptureDebugGCStats(r, time.Second*60)
+    go metrics.CaptureRuntimeMemStats(r, time.Second*60)
+
+    // Publish metrics to graphite endpoint.
+    // Note that ResourceD agent is capable of receiving graphite metrics through TCP.
+    addr, err := net.ResolveTCPAddr(&quot;tcp&quot;, &quot;127.0.0.1:2003&quot;)
+    if err != nil {
+        logrus.Fatal(err)
     }
+    go metrics_graphite.Graphite(r, time.Second*60, &quot;YourAppPrefix&quot;, addr)
 }
 </code></pre>
 
-<h2 id="return-payload">Return Payload</h2>
-<pre><code class="json">{
-    &quot;Message&quot;: &quot;Success&quot;
-}
-</code></pre>
+<p>You can take a look at how Master daemon report its metrics for more examples:</p>
+<ul>
+<li>
+<p><a href="https://github.com/resourced/resourced-master/blob/master/application/application_metrics.go">Creating a new registry with basic reporting.</a></p>
+</li>
+<li>
+<p><a href="https://github.com/resourced/resourced-master/blob/master/main.go#L144">Publishing metrics to Graphite endpoint.</a></p>
+</li>
+</ul>
               
             </div>
           </div>
@@ -322,10 +306,10 @@ curl -u accesstoken: -X POST \
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../api-logs-get/" class="btn btn-neutral float-right" title="API Doc: GET /api/logs">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../api-authentication/" class="btn btn-neutral float-right" title="API Doc: Auth">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../api-events-delete/" class="btn btn-neutral" title="API Doc: DELETE /api/events/{id:[0-9]+}"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../installation-dev/" class="btn btn-neutral" title="Contributors"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -353,10 +337,10 @@ curl -u accesstoken: -X POST \
           <a href="https://github.com/resourced/resourced-master" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../api-events-delete/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../installation-dev/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../api-logs-get/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../api-authentication/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

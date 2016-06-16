@@ -15,6 +15,7 @@ pages:
     - "User Install: Day 2": installation-user-day-2.md
     - "User Install: TL;DR": installation-user.md
     - "Contributors": installation-dev.md
+    - "Usage: Application: Go": usage-application-go.md
     - "API Doc: Auth": api-authentication.md
     - "API Doc: GET /api/hosts": api-hosts-get.md
     - "API Doc: GET /api/metrics/{id:[0-9]+}": api-metrics-get.md

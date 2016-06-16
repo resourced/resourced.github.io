@@ -71,7 +71,7 @@ It's configured in `events.toml > DSN`.
 This database is partitioned monthly.
 
 
-## By the end of day 1, try to:
+## By the end of day 1:
 
 1. Create all the databases.
 
