@@ -1,35 +1,23 @@
 ## Master Installation & Running
 
-**1.** Create PostgreSQL databases.
+* [Download the tar.gz](https://github.com/resourced/resourced-master/releases) and unpack it.
 
-```
-# This example shows you how to create databases under resourced user. Feel free to use a different user.
-# Make sure user, password, and pg_hba.conf are configured correctly.
-sudo su - postgres
-createuser -P -e resourced
-createdb --owner=resourced resourced-master
-createdb --owner=resourced resourced-master-ts-checks
-createdb --owner=resourced resourced-master-ts-events
-createdb --owner=resourced resourced-master-ts-executor-logs
-createdb --owner=resourced resourced-master-ts-logs
-createdb --owner=resourced resourced-master-ts-metrics
-```
+* Run the database migration: `cd path/to/resourced-master; resourced-master -c config-files migrate up`
 
-**2.** [Download the tar.gz](https://github.com/resourced/resourced-master/releases) and unpack it.
+* Run the server and daemonize it using init/systemd/supervisord. You can follow the examples of init scripts [here](https://github.com/resourced/resourced-master/tree/master/scripts/init)
 
-**3.** Run the database migration.
+There is one option to set for running the master daemon. You can set it via `-c` flag or `RESOURCED_MASTER_CONFIG_DIR` environment variable. `cd path/to/resourced-master; resourced-master -c config-files`
 
-```
-cd path/to/resourced-master; resourced-master -c config-files migrate up
-```
 
-**4.** Run the server and daemonize it using init/systemd/supervisord. You can follow the examples of init scripts [here](https://github.com/resourced/resourced-master/tree/master/scripts/init)
+## Creating New Migration Files
 
-There is one option to set for running the master daemon. You can set it via `-c` flag or `RESOURCED_MASTER_CONFIG_DIR` environment variable.
+You have learned that ResourceD timeseries databases are partitioned either monthly or daily.
 
-```
-cd path/to/resourced-master; resourced-master -c config-files
-```
+The migration files are located here: `migrations/{core|ts-checks|ts-events|ts-executor-logs|ts-logs|ts-metrics}`.
+
+When you looked inside those directories, you'll notice that only 2016 are provided.
+
+To create new migration files, run `scripts/migrations/{create|drop}-ts-{daily|events}.py`. Each script contains comments on how to use it.
 
 
 ## Agent Reporting to Master

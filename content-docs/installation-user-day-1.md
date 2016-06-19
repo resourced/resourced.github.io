@@ -23,6 +23,19 @@ The core database should not share the same PostgreSQL as the timeseries databas
 
 You will see this reflected on the configuration files, each config file `DSN` can be configured to use a different database.
 
+```
+# This example shows you how to create databases under resourced user. Feel free to use a different user.
+# Make sure user, password, and pg_hba.conf are configured correctly.
+sudo su - postgres
+createuser -P -e resourced
+createdb --owner=resourced resourced-master
+createdb --owner=resourced resourced-master-ts-checks
+createdb --owner=resourced resourced-master-ts-events
+createdb --owner=resourced resourced-master-ts-executor-logs
+createdb --owner=resourced resourced-master-ts-logs
+createdb --owner=resourced resourced-master-ts-metrics
+```
+
 
 ### Core
 
