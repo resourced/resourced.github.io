@@ -13,8 +13,8 @@ pages:
     - Gallery: gallery.md
     - "User Install: Day 1": installation-user-day-1.md
     - "User Install: Day 2": installation-user-day-2.md
-    - "User Install: TL;DR": installation-user.md
-    - "Contributors": installation-dev.md
+    - "Contributor Install": installation-dev.md
+    - "Usage: Application: General": usage-application-general.md
     - "Usage: Application: Go": usage-application-go.md
     - "API Doc: Auth": api-authentication.md
     - "API Doc: GET /api/hosts": api-hosts-get.md

@@ -85,14 +85,14 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../installation-user/">User Install: TL;DR</a>
+        <a class="" href="../installation-dev/">Contributor Install</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../installation-dev/">Contributors</a>
+        <a class="" href="../usage-application-general/">Usage: Application: General</a>
         
     </li>
 <li>
@@ -251,6 +251,7 @@
               
                 <h1 id="reporting-go-app-metrics">Reporting Go App Metrics</h1>
 <p>With the help of <code>github.com/rcrowley/go-metrics</code>, it is trivial to report application metrics to ResourceD.</p>
+<p>Make sure you install ResourceD agent on the application host, so it can send metrics data to the agent using TCP plain text graphite protocol.</p>
 <h2 id="prerequisite">Prerequisite</h2>
 <ul>
 <li><code>go get github.com/rcrowley/go-metrics</code></li>
@@ -282,7 +283,7 @@ func main() {
 
     // Publish metrics to graphite endpoint.
     // Note that ResourceD agent is capable of receiving graphite metrics through TCP.
-    addr, err := net.ResolveTCPAddr(&quot;tcp&quot;, &quot;127.0.0.1:2003&quot;)
+    addr, err := net.ResolveTCPAddr(&quot;tcp&quot;, &quot;127.0.0.1:55556&quot;)
     if err != nil {
         logrus.Fatal(err)
     }
@@ -309,7 +310,7 @@ func main() {
         <a href="../api-authentication/" class="btn btn-neutral float-right" title="API Doc: Auth">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../installation-dev/" class="btn btn-neutral" title="Contributors"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../usage-application-general/" class="btn btn-neutral" title="Usage: Application: General"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -337,7 +338,7 @@ func main() {
           <a href="https://github.com/resourced/resourced-master" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../installation-dev/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../usage-application-general/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../api-authentication/" style="color: #fcfcfc">Next &raquo;</a></span>

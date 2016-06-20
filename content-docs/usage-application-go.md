@@ -2,6 +2,9 @@
 
 With the help of `github.com/rcrowley/go-metrics`, it is trivial to report application metrics to ResourceD.
 
+Make sure you install ResourceD agent on the application host, so it can send metrics data to the agent using TCP plain text graphite protocol.
+
+
 ## Prerequisite
 
 * `go get github.com/rcrowley/go-metrics`
@@ -38,7 +41,7 @@ func main() {
 
 	// Publish metrics to graphite endpoint.
 	// Note that ResourceD agent is capable of receiving graphite metrics through TCP.
-	addr, err := net.ResolveTCPAddr("tcp", "127.0.0.1:2003")
+	addr, err := net.ResolveTCPAddr("tcp", "127.0.0.1:55556")
 	if err != nil {
 		logrus.Fatal(err)
 	}
