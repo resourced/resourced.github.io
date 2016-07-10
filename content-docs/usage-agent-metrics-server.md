@@ -17,6 +17,10 @@ The collected host data is incredibly useful for various purposes, for examples:
 
 * Your database automatic failover scripts can be even more intelligent by consuming these host data.
 
+To use these data curl the agent's HTTP endpoint. Example: `curl http://localhost:55555/paths`.
+
+From there, you will see all the possible endpoints to read the data from.
+
 
 # Reporting Server Metrics to Master
 

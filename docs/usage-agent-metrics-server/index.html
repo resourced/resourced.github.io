@@ -299,6 +299,8 @@
 <p>Your database automatic failover scripts can be even more intelligent by consuming these host data.</p>
 </li>
 </ul>
+<p>To use these data curl the agent's HTTP endpoint. Example: <code>curl http://localhost:55555/paths</code>.</p>
+<p>From there, you will see all the possible endpoints to read the data from.</p>
 <h1 id="reporting-server-metrics-to-master">Reporting Server Metrics to Master</h1>
 <p>For even greater power, configure the agents to report host data to master.</p>
 <p>This is done by configuring <code>writers/resourced-master-host.toml</code> config file. <a href="//github.com/resourced/resourced/blob/master/tests/resourced-configs/writers/resourced-master-host.toml">Click on this link for an example</a>.</p>
