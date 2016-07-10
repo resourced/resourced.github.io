@@ -5,12 +5,12 @@ With the help of `github.com/rcrowley/go-metrics`, it is trivial to report appli
 Make sure you install ResourceD agent on the application host, so it can send metrics data to the agent using TCP plain text graphite protocol.
 
 
-## Prerequisite
+# Prerequisite
 
 * `go get github.com/rcrowley/go-metrics`
 
 
-## Collecting GC and Runtime Memory metrics
+# Collecting GC and Runtime Memory metrics
 
 `go-metrics` provides user convenience functions to collect GC and Runtime Memory metrics.
 

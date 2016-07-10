@@ -171,39 +171,119 @@
             "title": "Agent Reporting to Master"
         }, 
         {
-            "location": "/usage-application-general/", 
-            "text": "Reporting Application Metrics\n\n\nFor application to report metrics, you need to install ResourceD agent on the application host.\n\n\nThen, the application can report metrics using Graphite plain text protocol to the agent. The wire protocol uses TCP.\n\n\nTips:\n\n\n\n\n\n\nIt's best to wrap the metrics sending code with error-swallowing try-catch because the application should not break when metrics reporting is disrupted.\n\n\n\n\n\n\nFeel free to log the error so it can still be shipped and analyzed by ResourceD.\n\n\n\n\n\n\nThere's no need to prefix metric key with hostname because ResourceD automatically tags every metric key with hostname as metadata.", 
-            "title": "Usage: Application: General"
+            "location": "/usage-agent-metrics-server/", 
+            "text": "Collecting Server Metrics\n\n\nResourceD agent ships with more than 60 readers to help collect host data.\n\n\nMake sure you install ResourceD agent on every host and enable readers of your choice via \nreaders/*.toml\n config files.\n\n\nFeel free to take a look at \nthis link for help\n.\n\n\nUtilizing the Collected Server Data\n\n\nThe collected host data is incredibly useful for various purposes, for examples:\n\n\n\n\n\n\nCapistrano/Fabric can query which hosts have the lowest load average and only perform deployments there.\n\n\n\n\n\n\nYou can write plenty of custom Nagios scripts, querying the agent's endpoints, for alerting.\n\n\n\n\n\n\nYour database automatic failover scripts can be even more intelligent by consuming these host data.\n\n\n\n\n\n\nReporting Server Metrics to Master\n\n\nFor even greater power, configure the agents to report host data to master.\n\n\nThis is done by configuring \nwriters/resourced-master-host.toml\n config file. \nClick on this link for an example\n.\n\n\nOnce the master receive all hosts data, you can use the master's API endpoint for your scripting need.\n\n\nYou can also use the master's checks feature for all of your alerting needs.\n\n\nScaling beyond One Daemon\n\n\n(Skip this section if you don't have a huge traffic)\n\n\nIf you are sending so much HTTP traffic to the agent such that one instance is no longer enough,\n\n\nfeel free to run multiple agent instances running on different ports,\n\n\nand load balance them behind Nginx/HAProxy.", 
+            "title": "Usage - Agent: Metrics: Server"
         }, 
         {
-            "location": "/usage-application-general/#reporting-application-metrics", 
-            "text": "For application to report metrics, you need to install ResourceD agent on the application host.  Then, the application can report metrics using Graphite plain text protocol to the agent. The wire protocol uses TCP.", 
+            "location": "/usage-agent-metrics-server/#collecting-server-metrics", 
+            "text": "ResourceD agent ships with more than 60 readers to help collect host data.  Make sure you install ResourceD agent on every host and enable readers of your choice via  readers/*.toml  config files.  Feel free to take a look at  this link for help .", 
+            "title": "Collecting Server Metrics"
+        }, 
+        {
+            "location": "/usage-agent-metrics-server/#utilizing-the-collected-server-data", 
+            "text": "The collected host data is incredibly useful for various purposes, for examples:    Capistrano/Fabric can query which hosts have the lowest load average and only perform deployments there.    You can write plenty of custom Nagios scripts, querying the agent's endpoints, for alerting.    Your database automatic failover scripts can be even more intelligent by consuming these host data.", 
+            "title": "Utilizing the Collected Server Data"
+        }, 
+        {
+            "location": "/usage-agent-metrics-server/#reporting-server-metrics-to-master", 
+            "text": "For even greater power, configure the agents to report host data to master.  This is done by configuring  writers/resourced-master-host.toml  config file.  Click on this link for an example .  Once the master receive all hosts data, you can use the master's API endpoint for your scripting need.  You can also use the master's checks feature for all of your alerting needs.", 
+            "title": "Reporting Server Metrics to Master"
+        }, 
+        {
+            "location": "/usage-agent-metrics-server/#scaling-beyond-one-daemon", 
+            "text": "(Skip this section if you don't have a huge traffic)  If you are sending so much HTTP traffic to the agent such that one instance is no longer enough,  feel free to run multiple agent instances running on different ports,  and load balance them behind Nginx/HAProxy.", 
+            "title": "Scaling beyond One Daemon"
+        }, 
+        {
+            "location": "/usage-agent-metrics-live/", 
+            "text": "Reporting Live Graphite or StatsD Metrics\n\n\nResourceD agent can be configured to listen on TCP and UDP port for receiving metrics.\n\n\nThe acceptable metrics format are:\n\n\n\n\n\n\nGraphite: \nprefix.key value unix-timestamp\n\n\n\n\n\n\nStatsD: \nprefix.key:value|g\n\n\n\n\n\n\nTo enable, make sure the following config block is configured correctly inside \ngeneral.toml\n:\n\n\n[MetricReceiver]\n# Metrics endpoints can receive both Graphite or StatsD payloads.\n# Send your custom metrics here.\n# The wire protocol are both TCP and UDP.\n# TLS files are only used for TCP connection.\nAddr = \n:55556\n\nCertFile = \n\nKeyFile = \n\n\n# 1. Every X interval, report agent's own stats to graphite endpoint.\n# 2. Every X interval, store StatsD data to in-memory storage.\nStatsInterval = \n60s\n\n\nHistogramReservoirSize = 1028\n\n\n\n\nTips\n\n\n\n\n\n\nIt's best to wrap the metrics sending code with error-swallowing try-catch because the application should not break when metrics reporting is disrupted.\n\n\n\n\n\n\nThere's no need to prefix metric key with hostname because ResourceD automatically tags every metric key with hostname as metadata.\n\n\n\n\n\n\nScaling beyond One Daemon\n\n\n(Skip this section if you don't have a huge traffic)\n\n\nIf you are sending so much metrics data to the agent such that one instance is no longer enough,\n\n\nfeel free to run multiple agent instances running on different ports,\n\n\nand load balance them behind Nginx/HAProxy.\n\n\n(Note: At this point you can only use the TCP endpoint.)", 
+            "title": "Usage - Agent: Metrics: Live"
+        }, 
+        {
+            "location": "/usage-agent-metrics-live/#reporting-live-graphite-or-statsd-metrics", 
+            "text": "ResourceD agent can be configured to listen on TCP and UDP port for receiving metrics.  The acceptable metrics format are:    Graphite:  prefix.key value unix-timestamp    StatsD:  prefix.key:value|g    To enable, make sure the following config block is configured correctly inside  general.toml :  [MetricReceiver]\n# Metrics endpoints can receive both Graphite or StatsD payloads.\n# Send your custom metrics here.\n# The wire protocol are both TCP and UDP.\n# TLS files are only used for TCP connection.\nAddr =  :55556 \nCertFile =  \nKeyFile =  \n\n# 1. Every X interval, report agent's own stats to graphite endpoint.\n# 2. Every X interval, store StatsD data to in-memory storage.\nStatsInterval =  60s \n\nHistogramReservoirSize = 1028", 
+            "title": "Reporting Live Graphite or StatsD Metrics"
+        }, 
+        {
+            "location": "/usage-agent-metrics-live/#tips", 
+            "text": "It's best to wrap the metrics sending code with error-swallowing try-catch because the application should not break when metrics reporting is disrupted.    There's no need to prefix metric key with hostname because ResourceD automatically tags every metric key with hostname as metadata.", 
+            "title": "Tips"
+        }, 
+        {
+            "location": "/usage-agent-metrics-live/#scaling-beyond-one-daemon", 
+            "text": "(Skip this section if you don't have a huge traffic)  If you are sending so much metrics data to the agent such that one instance is no longer enough,  feel free to run multiple agent instances running on different ports,  and load balance them behind Nginx/HAProxy.  (Note: At this point you can only use the TCP endpoint.)", 
+            "title": "Scaling beyond One Daemon"
+        }, 
+        {
+            "location": "/usage-agent-application-general/", 
+            "text": "Reporting Application Metrics\n\n\nFor application to report metrics, you need to install ResourceD agent on every application host.\n\n\nThen, the application can report metrics using Graphite/StatsD plain text protocol to the agent. The wire protocol uses TCP or UDP.\n\n\nTips\n\n\n\n\n\n\nIt's best to wrap the metrics sending code with error-swallowing try-catch because the application should not break when metrics reporting is disrupted.\n\n\n\n\n\n\nFeel free to log the error so it can still be shipped and analyzed by ResourceD.\n\n\n\n\n\n\nThere's no need to prefix metric key with hostname because ResourceD automatically tags every metric key with hostname as metadata.\n\n\n\n\n\n\nScaling beyond One Daemon\n\n\n(Skip this section if you don't have a huge traffic)\n\n\nIf you are sending so much metrics data to the agent such that one instance is no longer enough,\n\n\nfeel free to run multiple agent instances running on different ports,\n\n\nand load balance them behind Nginx/HAProxy.\n\n\n(Note: At this point you can only use the TCP endpoint.)", 
+            "title": "Usage - Agent: Application: General"
+        }, 
+        {
+            "location": "/usage-agent-application-general/#reporting-application-metrics", 
+            "text": "For application to report metrics, you need to install ResourceD agent on every application host.  Then, the application can report metrics using Graphite/StatsD plain text protocol to the agent. The wire protocol uses TCP or UDP.", 
             "title": "Reporting Application Metrics"
         }, 
         {
-            "location": "/usage-application-general/#tips", 
+            "location": "/usage-agent-application-general/#tips", 
             "text": "It's best to wrap the metrics sending code with error-swallowing try-catch because the application should not break when metrics reporting is disrupted.    Feel free to log the error so it can still be shipped and analyzed by ResourceD.    There's no need to prefix metric key with hostname because ResourceD automatically tags every metric key with hostname as metadata.", 
-            "title": "Tips:"
+            "title": "Tips"
         }, 
         {
-            "location": "/usage-application-go/", 
+            "location": "/usage-agent-application-general/#scaling-beyond-one-daemon", 
+            "text": "(Skip this section if you don't have a huge traffic)  If you are sending so much metrics data to the agent such that one instance is no longer enough,  feel free to run multiple agent instances running on different ports,  and load balance them behind Nginx/HAProxy.  (Note: At this point you can only use the TCP endpoint.)", 
+            "title": "Scaling beyond One Daemon"
+        }, 
+        {
+            "location": "/usage-agent-application-go/", 
             "text": "Reporting Go App Metrics\n\n\nWith the help of \ngithub.com/rcrowley/go-metrics\n, it is trivial to report application metrics to ResourceD.\n\n\nMake sure you install ResourceD agent on the application host, so it can send metrics data to the agent using TCP plain text graphite protocol.\n\n\nPrerequisite\n\n\n\n\ngo get github.com/rcrowley/go-metrics\n\n\n\n\nCollecting GC and Runtime Memory metrics\n\n\ngo-metrics\n provides user convenience functions to collect GC and Runtime Memory metrics.\n\n\nThe key is to report using Graphite format, take a look at the example below:\n\n\npackage main\n\nimport (\n    \ntime\n\n\n    \ngithub.com/Sirupsen/logrus\n\n    \ngithub.com/rcrowley/go-metrics\n\n    metrics_graphite \ngithub.com/cyberdelia/go-metrics-graphite\n\n)\n\nfunc main() {\n    // 1. Create a registry\n    // If you have other metrics to report, use the same registry.\n    r := metrics.NewRegistry()\n\n    metrics.RegisterDebugGCStats(r)\n    metrics.RegisterRuntimeMemStats(r)\n\n    // Collect every minute\n    go metrics.CaptureDebugGCStats(r, time.Second*60)\n    go metrics.CaptureRuntimeMemStats(r, time.Second*60)\n\n    // Publish metrics to graphite endpoint.\n    // Note that ResourceD agent is capable of receiving graphite metrics through TCP.\n    addr, err := net.ResolveTCPAddr(\ntcp\n, \n127.0.0.1:55556\n)\n    if err != nil {\n        logrus.Fatal(err)\n    }\n    go metrics_graphite.Graphite(r, time.Second*60, \nYourAppPrefix\n, addr)\n}\n\n\n\n\nYou can take a look at how Master daemon report its metrics for more examples:\n\n\n\n\n\n\nCreating a new registry with basic reporting.\n\n\n\n\n\n\nPublishing metrics to Graphite endpoint.", 
-            "title": "Usage: Application: Go"
+            "title": "Usage - Agent: Application: Go"
         }, 
         {
-            "location": "/usage-application-go/#reporting-go-app-metrics", 
+            "location": "/usage-agent-application-go/#reporting-go-app-metrics", 
             "text": "With the help of  github.com/rcrowley/go-metrics , it is trivial to report application metrics to ResourceD.  Make sure you install ResourceD agent on the application host, so it can send metrics data to the agent using TCP plain text graphite protocol.", 
             "title": "Reporting Go App Metrics"
         }, 
         {
-            "location": "/usage-application-go/#prerequisite", 
+            "location": "/usage-agent-application-go/#prerequisite", 
             "text": "go get github.com/rcrowley/go-metrics", 
             "title": "Prerequisite"
         }, 
         {
-            "location": "/usage-application-go/#collecting-gc-and-runtime-memory-metrics", 
+            "location": "/usage-agent-application-go/#collecting-gc-and-runtime-memory-metrics", 
             "text": "go-metrics  provides user convenience functions to collect GC and Runtime Memory metrics.  The key is to report using Graphite format, take a look at the example below:  package main\n\nimport (\n     time \n\n     github.com/Sirupsen/logrus \n     github.com/rcrowley/go-metrics \n    metrics_graphite  github.com/cyberdelia/go-metrics-graphite \n)\n\nfunc main() {\n    // 1. Create a registry\n    // If you have other metrics to report, use the same registry.\n    r := metrics.NewRegistry()\n\n    metrics.RegisterDebugGCStats(r)\n    metrics.RegisterRuntimeMemStats(r)\n\n    // Collect every minute\n    go metrics.CaptureDebugGCStats(r, time.Second*60)\n    go metrics.CaptureRuntimeMemStats(r, time.Second*60)\n\n    // Publish metrics to graphite endpoint.\n    // Note that ResourceD agent is capable of receiving graphite metrics through TCP.\n    addr, err := net.ResolveTCPAddr( tcp ,  127.0.0.1:55556 )\n    if err != nil {\n        logrus.Fatal(err)\n    }\n    go metrics_graphite.Graphite(r, time.Second*60,  YourAppPrefix , addr)\n}  You can take a look at how Master daemon report its metrics for more examples:    Creating a new registry with basic reporting.    Publishing metrics to Graphite endpoint.", 
             "title": "Collecting GC and Runtime Memory metrics"
+        }, 
+        {
+            "location": "/usage-agent-logs-file/", 
+            "text": "Collecting Log Lines from Files\n\n\nResourceD agent can be configured to collect log lines from files.\n\n\nMake sure you install ResourceD agent on every host and enable loggers of your choice via \nloggers/*.toml\n config files.\n\n\nFeel free to take a look at \nthis link for help\n.", 
+            "title": "Usage - Agent: Logs: File"
+        }, 
+        {
+            "location": "/usage-agent-logs-file/#collecting-log-lines-from-files", 
+            "text": "ResourceD agent can be configured to collect log lines from files.  Make sure you install ResourceD agent on every host and enable loggers of your choice via  loggers/*.toml  config files.  Feel free to take a look at  this link for help .", 
+            "title": "Collecting Log Lines from Files"
+        }, 
+        {
+            "location": "/usage-agent-logs-live/", 
+            "text": "Reporting Live Log Lines\n\n\nResourceD agent can be configured to listen on TCP and UDP port for receiving log lines.\n\n\nThink of it as a forwarder to ResourceD Master.\n\n\n(Note: At the moment, the agent can only forward to ResourceD Master)\n\n\nTo enable, make sure the following config block is configured correctly inside \ngeneral.toml\n:\n\n\n[LogReceiver]\n# Send your logs over TCP or UDP here.\n# TLS files are only used for TCP connection.\nAddr = \n:55557\n\nCertFile = \n\nKeyFile = \n\nWriteToMasterInterval = \n60s\n\n\n# To prevent memory leak, clean all logs when storage capacity reached N.\nAutoPruneLength = 10000\n\n\n\n\nTips\n\n\n\n\nIt's best to wrap the log sending code with error-swallowing try-catch because the application should not break when log sending is disrupted.\n\n\n\n\nScaling beyond One Daemon\n\n\n(Skip this section if you don't have a huge traffic)\n\n\nIf you are sending so much log data to the agent such that one instance is no longer enough,\n\n\nfeel free to run multiple agent instances running on different ports,\n\n\nand load balance them behind Nginx/HAProxy.\n\n\n(Note: At this point you can only use the TCP endpoint.)", 
+            "title": "Usage - Agent: Logs: Live"
+        }, 
+        {
+            "location": "/usage-agent-logs-live/#reporting-live-log-lines", 
+            "text": "ResourceD agent can be configured to listen on TCP and UDP port for receiving log lines.  Think of it as a forwarder to ResourceD Master.  (Note: At the moment, the agent can only forward to ResourceD Master)  To enable, make sure the following config block is configured correctly inside  general.toml :  [LogReceiver]\n# Send your logs over TCP or UDP here.\n# TLS files are only used for TCP connection.\nAddr =  :55557 \nCertFile =  \nKeyFile =  \nWriteToMasterInterval =  60s \n\n# To prevent memory leak, clean all logs when storage capacity reached N.\nAutoPruneLength = 10000", 
+            "title": "Reporting Live Log Lines"
+        }, 
+        {
+            "location": "/usage-agent-logs-live/#tips", 
+            "text": "It's best to wrap the log sending code with error-swallowing try-catch because the application should not break when log sending is disrupted.", 
+            "title": "Tips"
+        }, 
+        {
+            "location": "/usage-agent-logs-live/#scaling-beyond-one-daemon", 
+            "text": "(Skip this section if you don't have a huge traffic)  If you are sending so much log data to the agent such that one instance is no longer enough,  feel free to run multiple agent instances running on different ports,  and load balance them behind Nginx/HAProxy.  (Note: At this point you can only use the TCP endpoint.)", 
+            "title": "Scaling beyond One Daemon"
         }, 
         {
             "location": "/api-authentication/", 

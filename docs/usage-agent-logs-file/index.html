@@ -8,7 +8,7 @@
   
   
   
-  <title>API Doc: GET /api/logs - ResourceD Documentation</title>
+  <title>Usage - Agent: Logs: File - ResourceD Documentation</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -24,9 +24,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "API Doc: GET /api/logs";
-    var mkdocs_page_input_path = "api-logs-get.md";
-    var mkdocs_page_url = "/api-logs-get/";
+    var mkdocs_page_name = "Usage - Agent: Logs: File";
+    var mkdocs_page_input_path = "usage-agent-logs-file.md";
+    var mkdocs_page_url = "/usage-agent-logs-file/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -119,8 +119,15 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../usage-agent-logs-file/">Usage - Agent: Logs: File</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Usage - Agent: Logs: File</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#collecting-log-lines-from-files">Collecting Log Lines from Files</a></li>
+                
+            
+            </ul>
         
     </li>
 <li>
@@ -196,21 +203,8 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">API Doc: GET /api/logs</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#query-parameters">Query Parameters</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#query-language">Query Language</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#return-payload">Return Payload</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../api-logs-get/">API Doc: GET /api/logs</a>
         
     </li>
 <li>
@@ -265,7 +259,7 @@
     
       
     
-    <li>API Doc: GET /api/logs</li>
+    <li>Usage - Agent: Logs: File</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -279,131 +273,10 @@
           <div role="main">
             <div class="section">
               
-                <p><code>GET http://localhost:55655/api/logs</code></p>
-<p>Get all logs data.</p>
-<h2 id="query-parameters">Query Parameters</h2>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>from</td>
-<td>''</td>
-<td>UNIX epoch</td>
-<td>Allows user to provide a time range.</td>
-</tr>
-<tr>
-<td>to</td>
-<td>''</td>
-<td>UNIX epoch</td>
-<td>Allows user to provide a time range.</td>
-</tr>
-<tr>
-<td>q</td>
-<td>''</td>
-<td>String</td>
-<td>Allows user to filter logs data using SQL-like statement.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="query-language">Query Language</h2>
-<p>There are 3 fields to query host data on: hostname, tags, and logline search.</p>
-<p><strong>Limitation:</strong> You can only use <em>AND</em> conjunctive operators, for now.</p>
-<p><strong>Query by hostname</strong></p>
-<ul>
-<li>
-<p>Exact match: <code>hostname = "localhost"</code></p>
-</li>
-<li>
-<p>Starts-with match: <code>hostname ~^ "awesome-app-"</code></p>
-</li>
-<li>
-<p>Regex match, case insensitive: <code>hostname ~* "awesome-app-"</code></p>
-</li>
-<li>
-<p>Regex match, case sensitive: <code>hostname ~ "awesome-app-"</code></p>
-</li>
-<li>
-<p>Regex match negation, case sensitive: <code>hostname !~ "awesome-app-"</code></p>
-</li>
-<li>
-<p>Regex match negation, case insensitive: <code>hostname !~* "awesome-app-"</code></p>
-</li>
-</ul>
-<p><strong>Query by tags</strong></p>
-<ul>
-<li>
-<p>Exact match: <code>tags.mysql = 5.6.24</code></p>
-</li>
-<li>
-<p>Multiple exact match: <code>tags.mysql = 5.6.24 and tags.redis = 3.0.1</code></p>
-</li>
-</ul>
-<p><strong>Query by logline</strong></p>
-<p>ResourceD offers full-text search for loglines. Basic example: <code>logline search "error &amp; mysql"</code>.</p>
-<p>The search query must consist of single tokens separated by the Boolean operators &amp; (AND), | (OR) and ! (NOT). These operators can be grouped using parentheses.</p>
-<p>Visit http://www.postgresql.org/docs/current/static/textsearch-controls.html for more details.</p>
-<pre><code class="ruby"># Ruby example
-require 'net/http'
-require 'net/https'
-
-uri = URI('http://localhost:55655/api/logs')
-
-Net::HTTP.start(uri.host, uri.port, :use_ssl =&gt; uri.scheme == 'https') do |http|
-  request = Net::HTTP::Get.new uri.request_uri
-  request.basic_auth 'accesstoken', ''
-
-  response = http.request request
-end
-</code></pre>
-
-<pre><code class="python"># Python example
-# Requests is a 3rd party library
-from requests.auth import HTTPBasicAuth
-response = requests.get('http://localhost:55655/api/logs', auth=HTTPBasicAuth('accesstoken', ''))
-</code></pre>
-
-<pre><code class="shell"># cURL example
-# Notice the double colon at the end of Access Token.
-curl -u accesstoken: http://localhost:55655/api/logs
-</code></pre>
-
-<h2 id="return-payload">Return Payload</h2>
-<pre><code class="json">[
-  {
-    &quot;ClusterID&quot;: ​1,
-    &quot;Hostname&quot;: &quot;localhost&quot;,
-    &quot;Created&quot;: &quot;2016-05-15T23:47:01.441652Z&quot;,
-    &quot;Tags&quot;: {
-      &quot;os&quot;: &quot;OS X Yosemite&quot;,
-      &quot;postgres&quot;: &quot;9.4.2&quot;,
-      &quot;redis&quot;: &quot;3.0.1&quot;,
-      &quot;role&quot;: &quot;home-dev&quot;
-    },
-    &quot;Filename&quot;: &quot;&quot;,
-    &quot;Logline&quot;: &quot;foo log&quot;
-  },
-  {
-    &quot;ClusterID&quot;: ​1,
-    &quot;Hostname&quot;: &quot;localhost&quot;,
-    &quot;Created&quot;: &quot;2016-05-15T23:47:01.441652Z&quot;,
-    &quot;Tags&quot;: {
-      &quot;os&quot;: &quot;OS X Yosemite&quot;,
-      &quot;postgres&quot;: &quot;9.4.2&quot;,
-      &quot;redis&quot;: &quot;3.0.1&quot;,
-      &quot;role&quot;: &quot;home-dev&quot;
-    },
-    &quot;Filename&quot;: &quot;&quot;,
-    &quot;Logline&quot;: &quot;bar log&quot;
-  }
-]
-</code></pre>
+                <h1 id="collecting-log-lines-from-files">Collecting Log Lines from Files</h1>
+<p>ResourceD agent can be configured to collect log lines from files.</p>
+<p>Make sure you install ResourceD agent on every host and enable loggers of your choice via <code>loggers/*.toml</code> config files.</p>
+<p>Feel free to take a look at <a href="//github.com/resourced/resourced/tree/master/tests/resourced-configs/loggers">this link for help</a>.</p>
               
             </div>
           </div>
@@ -411,10 +284,10 @@ curl -u accesstoken: http://localhost:55655/api/logs
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../api-metadata-post/" class="btn btn-neutral float-right" title="API Doc: POST /api/metadata/{key}">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../usage-agent-logs-live/" class="btn btn-neutral float-right" title="Usage - Agent: Logs: Live">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../api-logs-post/" class="btn btn-neutral" title="API Doc: POST /api/logs"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../usage-agent-application-go/" class="btn btn-neutral" title="Usage - Agent: Application: Go"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -442,10 +315,10 @@ curl -u accesstoken: http://localhost:55655/api/logs
           <a href="https://github.com/resourced/resourced-master" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../api-logs-post/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../usage-agent-application-go/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../api-metadata-post/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../usage-agent-logs-live/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

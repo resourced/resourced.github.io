@@ -14,8 +14,12 @@ pages:
     - "User Install: Day 1": installation-user-day-1.md
     - "User Install: Day 2": installation-user-day-2.md
     - "Contributor Install": installation-dev.md
-    - "Usage: Application: General": usage-application-general.md
-    - "Usage: Application: Go": usage-application-go.md
+    - "Usage - Agent: Metrics: Server": usage-agent-metrics-server.md
+    - "Usage - Agent: Metrics: Live": usage-agent-metrics-live.md
+    - "Usage - Agent: Application: General": usage-agent-application-general.md
+    - "Usage - Agent: Application: Go": usage-agent-application-go.md
+    - "Usage - Agent: Logs: File": usage-agent-logs-file.md
+    - "Usage - Agent: Logs: Live": usage-agent-logs-live.md
     - "API Doc: Auth": api-authentication.md
     - "API Doc: GET /api/hosts": api-hosts-get.md
     - "API Doc: GET /api/metrics/{id:[0-9]+}": api-metrics-get.md

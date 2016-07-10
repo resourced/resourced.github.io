@@ -8,7 +8,7 @@
   
   
   
-  <title>API Doc: GET /api/logs - ResourceD Documentation</title>
+  <title>Usage - Agent: Application: Go - ResourceD Documentation</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -24,9 +24,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "API Doc: GET /api/logs";
-    var mkdocs_page_input_path = "api-logs-get.md";
-    var mkdocs_page_url = "/api-logs-get/";
+    var mkdocs_page_name = "Usage - Agent: Application: Go";
+    var mkdocs_page_input_path = "usage-agent-application-go.md";
+    var mkdocs_page_url = "/usage-agent-application-go/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -112,8 +112,21 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../usage-agent-application-go/">Usage - Agent: Application: Go</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Usage - Agent: Application: Go</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#reporting-go-app-metrics">Reporting Go App Metrics</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#prerequisite">Prerequisite</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#collecting-gc-and-runtime-memory-metrics">Collecting GC and Runtime Memory metrics</a></li>
+                
+            
+            </ul>
         
     </li>
 <li>
@@ -196,21 +209,8 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">API Doc: GET /api/logs</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#query-parameters">Query Parameters</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#query-language">Query Language</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#return-payload">Return Payload</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../api-logs-get/">API Doc: GET /api/logs</a>
         
     </li>
 <li>
@@ -265,7 +265,7 @@
     
       
     
-    <li>API Doc: GET /api/logs</li>
+    <li>Usage - Agent: Application: Go</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -279,131 +279,57 @@
           <div role="main">
             <div class="section">
               
-                <p><code>GET http://localhost:55655/api/logs</code></p>
-<p>Get all logs data.</p>
-<h2 id="query-parameters">Query Parameters</h2>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>from</td>
-<td>''</td>
-<td>UNIX epoch</td>
-<td>Allows user to provide a time range.</td>
-</tr>
-<tr>
-<td>to</td>
-<td>''</td>
-<td>UNIX epoch</td>
-<td>Allows user to provide a time range.</td>
-</tr>
-<tr>
-<td>q</td>
-<td>''</td>
-<td>String</td>
-<td>Allows user to filter logs data using SQL-like statement.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="query-language">Query Language</h2>
-<p>There are 3 fields to query host data on: hostname, tags, and logline search.</p>
-<p><strong>Limitation:</strong> You can only use <em>AND</em> conjunctive operators, for now.</p>
-<p><strong>Query by hostname</strong></p>
+                <h1 id="reporting-go-app-metrics">Reporting Go App Metrics</h1>
+<p>With the help of <code>github.com/rcrowley/go-metrics</code>, it is trivial to report application metrics to ResourceD.</p>
+<p>Make sure you install ResourceD agent on the application host, so it can send metrics data to the agent using TCP plain text graphite protocol.</p>
+<h1 id="prerequisite">Prerequisite</h1>
+<ul>
+<li><code>go get github.com/rcrowley/go-metrics</code></li>
+</ul>
+<h1 id="collecting-gc-and-runtime-memory-metrics">Collecting GC and Runtime Memory metrics</h1>
+<p><code>go-metrics</code> provides user convenience functions to collect GC and Runtime Memory metrics.</p>
+<p>The key is to report using Graphite format, take a look at the example below:</p>
+<pre><code>package main
+
+import (
+    &quot;time&quot;
+
+    &quot;github.com/Sirupsen/logrus&quot;
+    &quot;github.com/rcrowley/go-metrics&quot;
+    metrics_graphite &quot;github.com/cyberdelia/go-metrics-graphite&quot;
+)
+
+func main() {
+    // 1. Create a registry
+    // If you have other metrics to report, use the same registry.
+    r := metrics.NewRegistry()
+
+    metrics.RegisterDebugGCStats(r)
+    metrics.RegisterRuntimeMemStats(r)
+
+    // Collect every minute
+    go metrics.CaptureDebugGCStats(r, time.Second*60)
+    go metrics.CaptureRuntimeMemStats(r, time.Second*60)
+
+    // Publish metrics to graphite endpoint.
+    // Note that ResourceD agent is capable of receiving graphite metrics through TCP.
+    addr, err := net.ResolveTCPAddr(&quot;tcp&quot;, &quot;127.0.0.1:55556&quot;)
+    if err != nil {
+        logrus.Fatal(err)
+    }
+    go metrics_graphite.Graphite(r, time.Second*60, &quot;YourAppPrefix&quot;, addr)
+}
+</code></pre>
+
+<p>You can take a look at how Master daemon report its metrics for more examples:</p>
 <ul>
 <li>
-<p>Exact match: <code>hostname = "localhost"</code></p>
+<p><a href="https://github.com/resourced/resourced-master/blob/master/application/application_metrics.go">Creating a new registry with basic reporting.</a></p>
 </li>
 <li>
-<p>Starts-with match: <code>hostname ~^ "awesome-app-"</code></p>
-</li>
-<li>
-<p>Regex match, case insensitive: <code>hostname ~* "awesome-app-"</code></p>
-</li>
-<li>
-<p>Regex match, case sensitive: <code>hostname ~ "awesome-app-"</code></p>
-</li>
-<li>
-<p>Regex match negation, case sensitive: <code>hostname !~ "awesome-app-"</code></p>
-</li>
-<li>
-<p>Regex match negation, case insensitive: <code>hostname !~* "awesome-app-"</code></p>
+<p><a href="https://github.com/resourced/resourced-master/blob/master/main.go#L144">Publishing metrics to Graphite endpoint.</a></p>
 </li>
 </ul>
-<p><strong>Query by tags</strong></p>
-<ul>
-<li>
-<p>Exact match: <code>tags.mysql = 5.6.24</code></p>
-</li>
-<li>
-<p>Multiple exact match: <code>tags.mysql = 5.6.24 and tags.redis = 3.0.1</code></p>
-</li>
-</ul>
-<p><strong>Query by logline</strong></p>
-<p>ResourceD offers full-text search for loglines. Basic example: <code>logline search "error &amp; mysql"</code>.</p>
-<p>The search query must consist of single tokens separated by the Boolean operators &amp; (AND), | (OR) and ! (NOT). These operators can be grouped using parentheses.</p>
-<p>Visit http://www.postgresql.org/docs/current/static/textsearch-controls.html for more details.</p>
-<pre><code class="ruby"># Ruby example
-require 'net/http'
-require 'net/https'
-
-uri = URI('http://localhost:55655/api/logs')
-
-Net::HTTP.start(uri.host, uri.port, :use_ssl =&gt; uri.scheme == 'https') do |http|
-  request = Net::HTTP::Get.new uri.request_uri
-  request.basic_auth 'accesstoken', ''
-
-  response = http.request request
-end
-</code></pre>
-
-<pre><code class="python"># Python example
-# Requests is a 3rd party library
-from requests.auth import HTTPBasicAuth
-response = requests.get('http://localhost:55655/api/logs', auth=HTTPBasicAuth('accesstoken', ''))
-</code></pre>
-
-<pre><code class="shell"># cURL example
-# Notice the double colon at the end of Access Token.
-curl -u accesstoken: http://localhost:55655/api/logs
-</code></pre>
-
-<h2 id="return-payload">Return Payload</h2>
-<pre><code class="json">[
-  {
-    &quot;ClusterID&quot;: ​1,
-    &quot;Hostname&quot;: &quot;localhost&quot;,
-    &quot;Created&quot;: &quot;2016-05-15T23:47:01.441652Z&quot;,
-    &quot;Tags&quot;: {
-      &quot;os&quot;: &quot;OS X Yosemite&quot;,
-      &quot;postgres&quot;: &quot;9.4.2&quot;,
-      &quot;redis&quot;: &quot;3.0.1&quot;,
-      &quot;role&quot;: &quot;home-dev&quot;
-    },
-    &quot;Filename&quot;: &quot;&quot;,
-    &quot;Logline&quot;: &quot;foo log&quot;
-  },
-  {
-    &quot;ClusterID&quot;: ​1,
-    &quot;Hostname&quot;: &quot;localhost&quot;,
-    &quot;Created&quot;: &quot;2016-05-15T23:47:01.441652Z&quot;,
-    &quot;Tags&quot;: {
-      &quot;os&quot;: &quot;OS X Yosemite&quot;,
-      &quot;postgres&quot;: &quot;9.4.2&quot;,
-      &quot;redis&quot;: &quot;3.0.1&quot;,
-      &quot;role&quot;: &quot;home-dev&quot;
-    },
-    &quot;Filename&quot;: &quot;&quot;,
-    &quot;Logline&quot;: &quot;bar log&quot;
-  }
-]
-</code></pre>
               
             </div>
           </div>
@@ -411,10 +337,10 @@ curl -u accesstoken: http://localhost:55655/api/logs
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../api-metadata-post/" class="btn btn-neutral float-right" title="API Doc: POST /api/metadata/{key}">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../usage-agent-logs-file/" class="btn btn-neutral float-right" title="Usage - Agent: Logs: File">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../api-logs-post/" class="btn btn-neutral" title="API Doc: POST /api/logs"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../usage-agent-application-general/" class="btn btn-neutral" title="Usage - Agent: Application: General"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -442,10 +368,10 @@ curl -u accesstoken: http://localhost:55655/api/logs
           <a href="https://github.com/resourced/resourced-master" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../api-logs-post/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../usage-agent-application-general/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../api-metadata-post/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../usage-agent-logs-file/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
