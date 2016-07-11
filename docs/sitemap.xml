@@ -107,6 +107,38 @@
 
     
     <url>
+     <loc>http://resourced.io/usage-master-hosts/</loc>
+     <lastmod>2016-07-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>http://resourced.io/usage-master-graphs/</loc>
+     <lastmod>2016-07-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>http://resourced.io/usage-master-logs/</loc>
+     <lastmod>2016-07-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>http://resourced.io/usage-master-checks/</loc>
+     <lastmod>2016-07-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
      <loc>http://resourced.io/api-authentication/</loc>
      <lastmod>2016-07-10</lastmod>
      <changefreq>daily</changefreq>

@@ -321,6 +321,101 @@
             "title": "Scaling beyond One Daemon"
         }, 
         {
+            "location": "/usage-master-hosts/", 
+            "text": "Hosts Tab\n\n\nThis page shows you the latest information on all of your hosts.\n\n\nYou can think of it as facts/inventory database.\n\n\nWhat can you do with it?\n\n\n\n\n\n\nPrimarily, you can search information about your hosts based on various criteria:\n\n\n\n\n\n\nHostname\n\n\n\n\n\n\nHost tags\n\n\n\n\n\n\nArithmetic comparison on host data\n\n\n\n\n\n\n\n\n\n\nYou can then save your queries as bookmarks to come back later.\n\n\n\n\n\n\nEven better, use the \n/api/hosts?q=your-query\n API endpoint to aid your deployment strategies.\n\n\n\n\n\n\nQuery Language\n\n\nAs mentioned above, there are 3 fields to query host data on: hostname, tags, and JSON path.\n\n\nLimitation:\n You can only use \nAND\n conjunctive operators, for now.\n\n\nQuery by hostname\n\n\n\n\n\n\nExact match: \nhostname = \"localhost\"\n\n\n\n\n\n\nStarts-with match: \nhostname ~^ \"awesome-app-\"\n\n\n\n\n\n\nRegex match, case insensitive: \nhostname ~* \"awesome-app-\"\n\n\n\n\n\n\nRegex match, case sensitive: \nhostname ~ \"awesome-app-\"\n\n\n\n\n\n\nRegex match negation, case sensitive: \nhostname !~ \"awesome-app-\"\n\n\n\n\n\n\nRegex match negation, case insensitive: \nhostname !~* \"awesome-app-\"\n\n\n\n\n\n\nQuery by tags\n\n\n\n\n\n\nExact match: \ntags.mysql = 5.6.24\n\n\n\n\n\n\nMultiple exact match: \ntags.mysql = 5.6.24 and tags.redis = 3.0.1\n\n\n\n\n\n\nQuery by JSON path\n\n\nInternally, all of host data are stored as JSON documents.\n\n\nTo make an arithmetic comparison of a single attribute, start with the prefix path and then use \n.\n delimited separator as you get deeper into the JSON structure.\n\n\nThe UI flattens the nested structure for you so that you can visually identify all of the attributes easily.\n\n\nExamples:\n\n\n\n\n\n\n/free.Swap.Used \n 10000000\n\n\n\n\n\n\n/uptime.LoadAvg1m \n 10", 
+            "title": "Usage - Master: Hosts"
+        }, 
+        {
+            "location": "/usage-master-hosts/#hosts-tab", 
+            "text": "This page shows you the latest information on all of your hosts.  You can think of it as facts/inventory database.", 
+            "title": "Hosts Tab"
+        }, 
+        {
+            "location": "/usage-master-hosts/#what-can-you-do-with-it", 
+            "text": "Primarily, you can search information about your hosts based on various criteria:    Hostname    Host tags    Arithmetic comparison on host data      You can then save your queries as bookmarks to come back later.    Even better, use the  /api/hosts?q=your-query  API endpoint to aid your deployment strategies.", 
+            "title": "What can you do with it?"
+        }, 
+        {
+            "location": "/usage-master-hosts/#query-language", 
+            "text": "As mentioned above, there are 3 fields to query host data on: hostname, tags, and JSON path.  Limitation:  You can only use  AND  conjunctive operators, for now.  Query by hostname    Exact match:  hostname = \"localhost\"    Starts-with match:  hostname ~^ \"awesome-app-\"    Regex match, case insensitive:  hostname ~* \"awesome-app-\"    Regex match, case sensitive:  hostname ~ \"awesome-app-\"    Regex match negation, case sensitive:  hostname !~ \"awesome-app-\"    Regex match negation, case insensitive:  hostname !~* \"awesome-app-\"    Query by tags    Exact match:  tags.mysql = 5.6.24    Multiple exact match:  tags.mysql = 5.6.24 and tags.redis = 3.0.1    Query by JSON path  Internally, all of host data are stored as JSON documents.  To make an arithmetic comparison of a single attribute, start with the prefix path and then use  .  delimited separator as you get deeper into the JSON structure.  The UI flattens the nested structure for you so that you can visually identify all of the attributes easily.  Examples:    /free.Swap.Used   10000000    /uptime.LoadAvg1m   10", 
+            "title": "Query Language"
+        }, 
+        {
+            "location": "/usage-master-graphs/", 
+            "text": "Graphs Tab\n\n\nThis page allows you to create dasboard full of line charts.\n\n\nUnlike a lot of existing systems out there, ResourceD does not automatically chart every single host metric.\n\n\nInstead, the UI allows you to pick which metric to charts.\n\n\nHow to chart a host metric?\n\n\nGo to \nHosts\n tab and look for \nChart Metric?\n button. Press it and the master daemon will start charting metric.\n\n\nHow to create a dashboard with multiple charts?\n\n\n\n\n\n\nGo to \nGraphs\n tab and click \nNew Graph\n button. This will create a new dashboard with zero charts.\n\n\n\n\n\n\nThen click the \nview\n button next to your newly created dashboard. It will take you to a new page.\n\n\n\n\n\n\nclick \nAdd Charts\n button to populate your dashboard with charts.", 
+            "title": "Usage - Master: Graphs"
+        }, 
+        {
+            "location": "/usage-master-graphs/#graphs-tab", 
+            "text": "This page allows you to create dasboard full of line charts.  Unlike a lot of existing systems out there, ResourceD does not automatically chart every single host metric.  Instead, the UI allows you to pick which metric to charts.", 
+            "title": "Graphs Tab"
+        }, 
+        {
+            "location": "/usage-master-graphs/#how-to-chart-a-host-metric", 
+            "text": "Go to  Hosts  tab and look for  Chart Metric?  button. Press it and the master daemon will start charting metric.", 
+            "title": "How to chart a host metric?"
+        }, 
+        {
+            "location": "/usage-master-graphs/#how-to-create-a-dashboard-with-multiple-charts", 
+            "text": "Go to  Graphs  tab and click  New Graph  button. This will create a new dashboard with zero charts.    Then click the  view  button next to your newly created dashboard. It will take you to a new page.    click  Add Charts  button to populate your dashboard with charts.", 
+            "title": "How to create a dashboard with multiple charts?"
+        }, 
+        {
+            "location": "/usage-master-logs/", 
+            "text": "Logs Tab\n\n\nThis page shows you the latest information on all of your logs.\n\n\nWhat can you do with it?\n\n\n\n\n\n\nPrimarily, you can search information about your logs based on various criteria:\n\n\n\n\n\n\nDate time range (from \n to).\n\n\n\n\n\n\nHostname\n\n\n\n\n\n\nHost tags\n\n\n\n\n\n\nFull text search on loglines.\n\n\n\n\n\n\n\n\n\n\nYou can then save your queries as bookmarks to come back later.\n\n\n\n\n\n\nThe \n/api/logs?q=your-query\nfrom=unix-timestamp\nto=unix-timestamp\n API endpoint is provided as well.\n\n\n\n\n\n\nQuery Language\n\n\nAs mentioned above, there are 3 fields to query host data on: hostname, tags, and full text search on loglines.\n\n\nLimitation:\n You can only use \nAND\n conjunctive operators, for now.\n\n\nQuery by hostname\n\n\n\n\n\n\nExact match: \nhostname = \"localhost\"\n\n\n\n\n\n\nStarts-with match: \nhostname ~^ \"awesome-app-\"\n\n\n\n\n\n\nRegex match, case insensitive: \nhostname ~* \"awesome-app-\"\n\n\n\n\n\n\nRegex match, case sensitive: \nhostname ~ \"awesome-app-\"\n\n\n\n\n\n\nRegex match negation, case sensitive: \nhostname !~ \"awesome-app-\"\n\n\n\n\n\n\nRegex match negation, case insensitive: \nhostname !~* \"awesome-app-\"\n\n\n\n\n\n\nQuery by tags\n\n\n\n\n\n\nExact match: \ntags.mysql = 5.6.24\n\n\n\n\n\n\nMultiple exact match: \ntags.mysql = 5.6.24 and tags.redis = 3.0.1\n\n\n\n\n\n\nQuery by logline full text search\n\n\n\n\n\n\nWord per word tokens:\n \nlogline search \"error \n mysql\"\n. The search query must consist of single tokens separated by the Boolean operators \n (AND), | (OR) and ! (NOT). These operators can be grouped using parentheses. Visit http://www.postgresql.org/docs/current/static/textsearch-controls.html for more details.\n\n\n\n\n\n\nFree-form text search:\n \nlogline search \"my free form text search\"\n.\n\n\n\n\n\n\nCombo(Advanced) search:\n \nlogline search 'com.apple.periodic-monthly | mysqld | WindowServer || my free form text search'\n. The \n||\n and \n have higher precedence and they allow users to combine both techniques together.", 
+            "title": "Usage - Master: Logs"
+        }, 
+        {
+            "location": "/usage-master-logs/#logs-tab", 
+            "text": "This page shows you the latest information on all of your logs.", 
+            "title": "Logs Tab"
+        }, 
+        {
+            "location": "/usage-master-logs/#what-can-you-do-with-it", 
+            "text": "Primarily, you can search information about your logs based on various criteria:    Date time range (from   to).    Hostname    Host tags    Full text search on loglines.      You can then save your queries as bookmarks to come back later.    The  /api/logs?q=your-query from=unix-timestamp to=unix-timestamp  API endpoint is provided as well.", 
+            "title": "What can you do with it?"
+        }, 
+        {
+            "location": "/usage-master-logs/#query-language", 
+            "text": "As mentioned above, there are 3 fields to query host data on: hostname, tags, and full text search on loglines.  Limitation:  You can only use  AND  conjunctive operators, for now.  Query by hostname    Exact match:  hostname = \"localhost\"    Starts-with match:  hostname ~^ \"awesome-app-\"    Regex match, case insensitive:  hostname ~* \"awesome-app-\"    Regex match, case sensitive:  hostname ~ \"awesome-app-\"    Regex match negation, case sensitive:  hostname !~ \"awesome-app-\"    Regex match negation, case insensitive:  hostname !~* \"awesome-app-\"    Query by tags    Exact match:  tags.mysql = 5.6.24    Multiple exact match:  tags.mysql = 5.6.24 and tags.redis = 3.0.1    Query by logline full text search    Word per word tokens:   logline search \"error   mysql\" . The search query must consist of single tokens separated by the Boolean operators   (AND), | (OR) and ! (NOT). These operators can be grouped using parentheses. Visit http://www.postgresql.org/docs/current/static/textsearch-controls.html for more details.    Free-form text search:   logline search \"my free form text search\" .    Combo(Advanced) search:   logline search 'com.apple.periodic-monthly | mysqld | WindowServer || my free form text search' . The  ||  and   have higher precedence and they allow users to combine both techniques together.", 
+            "title": "Query Language"
+        }, 
+        {
+            "location": "/usage-master-checks/", 
+            "text": "Checks Tab\n\n\nThis page allows you to create and manage alerts.\n\n\nEach check go through a list of hosts and make decision based on check expressions.\n\n\nHow to create a new check?\n\n\nClick the \nNew Check\n button. It will ask you to fill in a form.\n\n\n\n\n\n\nName:\n The name of your check.\n\n\n\n\n\n\nInterval:\n How frequently the master daemon will re-check.\n\n\n\n\n\n\nQuery for Hosts:\n Remember the \nHosts\n tab? It allows you to query list of hosts dynamically. You can use the same query statement here to fetch the list of hosts to check.\n\n\n\n\n\n\nIf you want to have a static list of hosts, fill in the text area instead.\n\n\n\n\n\n\nCheck Expressions:\n This is the real meat of the check system. See the subsection below.\n\n\n\n\n\n\nWhat is Check Expression?\n\n\nCheck expression allows user to be very specific when defining alert criteria.\n\n\nEach expression perform check on a \ngroup of hosts\n and raise alert when at minimum \nN\n hosts are affected.\n\n\nThe purpose of this feature is to minimize noise. For example: often times, it is ok for a system to have one dead host out of twenty.\n\n\nThere are 7 different types of check: \n(Note: You can only check charted metrics)\n\n\n\n\n\n\nRaw host data:\n This type should be familiar to Nagios users, it checks the current, absolute value of a particular metric.\n\n\n\n\n\n\nRelative host data:\n Often times, absolute value checks are not enough. If you need to check changes-over-time, this check is for you.\n\n\n\n\n\n\nLog data:\n Use this check if you need to check the count of loglines. Remember the \nLogs\n tab? You can use the same query statement to count loglines.\n\n\n\n\n\n\nPing, SSH, HTTP/S:\n These are active checks \n(check the hosts directly)\n to make sure hosts are truly well-behaving.\n\n\n\n\n\n\nMultiple Check Expressions Under One Check?\n\n\nYou can have multiple expressions by pressing \n+\n button. The purpose of this feature is to minimize noise \n(We all know how frustrating it is to receive false alerts)\n.\n\n\nThe more specific your check is, the less noisy it is. You can use \nAND\n or \nOR\n for combining expressions.\n\n\nWhat is a trigger?\n\n\nOnce a check is created, it doesn't actually do anything for you yet. To have a meaningful, actionable alerts, you need to create triggers.\n\n\nThere are 4 different triggers:\n\n\n\n\n\n\nDo Nothing\n\n\n\n\n\n\nSend Email\n\n\n\n\n\n\nSend SMS\n\n\n\n\n\n\nSend PagerDuty\n\n\n\n\n\n\nCan I create Pager Escalation Rules?\n\n\nA la PagerDuty?\n\n\nYes. The nifty thing about triggers is that you can create multiple of them for one check.\n\n\nTo create an escalation policy, just stack multiple triggers. For example:\n\n\n\n\n\n\nBetween 1-3 violations, do nothing.\n\n\n\n\n\n\nBetween 4-6 violations, email tier1@example.com\n\n\n\n\n\n\nBetween 7-10 violations, email tier2@example.com\n\n\n\n\n\n\nBetween 11-20 violations, email svp@example.com", 
+            "title": "Usage - Master: Checks"
+        }, 
+        {
+            "location": "/usage-master-checks/#checks-tab", 
+            "text": "This page allows you to create and manage alerts.  Each check go through a list of hosts and make decision based on check expressions.", 
+            "title": "Checks Tab"
+        }, 
+        {
+            "location": "/usage-master-checks/#how-to-create-a-new-check", 
+            "text": "Click the  New Check  button. It will ask you to fill in a form.    Name:  The name of your check.    Interval:  How frequently the master daemon will re-check.    Query for Hosts:  Remember the  Hosts  tab? It allows you to query list of hosts dynamically. You can use the same query statement here to fetch the list of hosts to check.    If you want to have a static list of hosts, fill in the text area instead.    Check Expressions:  This is the real meat of the check system. See the subsection below.", 
+            "title": "How to create a new check?"
+        }, 
+        {
+            "location": "/usage-master-checks/#what-is-check-expression", 
+            "text": "Check expression allows user to be very specific when defining alert criteria.  Each expression perform check on a  group of hosts  and raise alert when at minimum  N  hosts are affected.  The purpose of this feature is to minimize noise. For example: often times, it is ok for a system to have one dead host out of twenty.  There are 7 different types of check:  (Note: You can only check charted metrics)    Raw host data:  This type should be familiar to Nagios users, it checks the current, absolute value of a particular metric.    Relative host data:  Often times, absolute value checks are not enough. If you need to check changes-over-time, this check is for you.    Log data:  Use this check if you need to check the count of loglines. Remember the  Logs  tab? You can use the same query statement to count loglines.    Ping, SSH, HTTP/S:  These are active checks  (check the hosts directly)  to make sure hosts are truly well-behaving.", 
+            "title": "What is Check Expression?"
+        }, 
+        {
+            "location": "/usage-master-checks/#multiple-check-expressions-under-one-check", 
+            "text": "You can have multiple expressions by pressing  +  button. The purpose of this feature is to minimize noise  (We all know how frustrating it is to receive false alerts) .  The more specific your check is, the less noisy it is. You can use  AND  or  OR  for combining expressions.", 
+            "title": "Multiple Check Expressions Under One Check?"
+        }, 
+        {
+            "location": "/usage-master-checks/#what-is-a-trigger", 
+            "text": "Once a check is created, it doesn't actually do anything for you yet. To have a meaningful, actionable alerts, you need to create triggers.  There are 4 different triggers:    Do Nothing    Send Email    Send SMS    Send PagerDuty", 
+            "title": "What is a trigger?"
+        }, 
+        {
+            "location": "/usage-master-checks/#can-i-create-pager-escalation-rules", 
+            "text": "A la PagerDuty?  Yes. The nifty thing about triggers is that you can create multiple of them for one check.  To create an escalation policy, just stack multiple triggers. For example:    Between 1-3 violations, do nothing.    Between 4-6 violations, email tier1@example.com    Between 7-10 violations, email tier2@example.com    Between 11-20 violations, email svp@example.com", 
+            "title": "Can I create Pager Escalation Rules?"
+        }, 
+        {
             "location": "/api-authentication/", 
             "text": "Every HTTP request requires AccessToken passed as basic auth user. Users can create a new AccessToken from inside the web application: \nyou@example.com \n Clusters\n menu.\n\n\n# Ruby example\nrequire 'net/http'\nrequire 'net/https'\n\nuri = URI('http://localhost:55655/api/hosts')\n\nNet::HTTP.start(uri.host, uri.port, :use_ssl =\n uri.scheme == 'https') do |http|\n  request = Net::HTTP::Get.new uri.request_uri\n  request.basic_auth 'accesstoken', ''\n\n  response = http.request request\nend\n\n\n\n\n# Python example\n# Requests is a 3rd party library\nfrom requests.auth import HTTPBasicAuth\nresponse = requests.get('http://localhost:55655/api/hosts', auth=HTTPBasicAuth('accesstoken', ''))\n\n\n\n\n# cURL example\n# Notice the double colon at the end of Access Token.\ncurl -u accesstoken: http://localhost:55655/api/hosts", 
             "title": "API Doc: Auth"

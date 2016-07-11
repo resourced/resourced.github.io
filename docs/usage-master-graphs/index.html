@@ -8,7 +8,7 @@
   
   
   
-  <title>API Doc: GET /api/metrics/{id:[0-9]+} - ResourceD Documentation</title>
+  <title>Usage - Master: Graphs - ResourceD Documentation</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -24,9 +24,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "API Doc: GET /api/metrics/{id:[0-9]+}";
-    var mkdocs_page_input_path = "api-metrics-get.md";
-    var mkdocs_page_url = "/api-metrics-get/";
+    var mkdocs_page_name = "Usage - Master: Graphs";
+    var mkdocs_page_input_path = "usage-master-graphs.md";
+    var mkdocs_page_url = "/usage-master-graphs/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -154,8 +154,21 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../usage-master-graphs/">Usage - Master: Graphs</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Usage - Master: Graphs</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#graphs-tab">Graphs Tab</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#how-to-chart-a-host-metric">How to chart a host metric?</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#how-to-create-a-dashboard-with-multiple-charts">How to create a dashboard with multiple charts?</a></li>
+                
+            
+            </ul>
         
     </li>
 <li>
@@ -189,18 +202,8 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">API Doc: GET /api/metrics/{id:[0-9]+}</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#query-parameters">Query Parameters</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#return-payload">Return Payload</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../api-metrics-get/">API Doc: GET /api/metrics/{id:[0-9]+}</a>
         
     </li>
 <li>
@@ -304,7 +307,7 @@
     
       
     
-    <li>API Doc: GET /api/metrics/{id:[0-9]+}</li>
+    <li>Usage - Master: Graphs</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -318,107 +321,24 @@
           <div role="main">
             <div class="section">
               
-                <p><code>GET http://localhost:55655/api/metrics/{id:[0-9]+}</code></p>
-<p>Get all metrics data by id.</p>
-<h2 id="query-parameters">Query Parameters</h2>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>from</td>
-<td>''</td>
-<td>UNIX epoch</td>
-<td>Allows user to provide a time range.</td>
-</tr>
-<tr>
-<td>to</td>
-<td>''</td>
-<td>UNIX epoch</td>
-<td>Allows user to provide a time range.</td>
-</tr>
-</tbody>
-</table>
-<pre><code class="ruby"># Ruby example
-require 'net/http'
-require 'net/https'
-
-uri = URI('http://localhost:55655/api/metrics/1?from=1463551343&amp;to=1463551643')
-
-Net::HTTP.start(uri.host, uri.port, :use_ssl =&gt; uri.scheme == 'https') do |http|
-  request = Net::HTTP::Get.new uri.request_uri
-  request.basic_auth 'accesstoken', ''
-
-  response = http.request request
-end
-</code></pre>
-
-<pre><code class="python"># Python example
-# Requests is a 3rd party library
-from requests.auth import HTTPBasicAuth
-response = requests.get('http://localhost:55655/api/metrics/1?from=1463551343&amp;to=1463551643', auth=HTTPBasicAuth('accesstoken', ''))
-</code></pre>
-
-<pre><code class="shell"># cURL example
-# Notice the double colon at the end of Access Token.
-curl -u accesstoken: 'http://localhost:55655/api/metrics/1?from=1463551343&amp;to=1463551643'
-</code></pre>
-
-<h2 id="return-payload">Return Payload</h2>
-<pre><code class="json">[
-   {
-      &quot;name&quot;:&quot;localhost.local&quot;,
-      &quot;data&quot;:[
-         [
-            1463551368452,
-            2.4794921875
-         ],
-         [
-            1463551398426,
-            2.08056640625
-         ],
-         [
-            1463551428441,
-            1.76806640625
-         ],
-         [
-            1463551458452,
-            1.78466796875
-         ],
-         [
-            1463551488466,
-            1.7685546875
-         ],
-         [
-            1463551518507,
-            1.56787109375
-         ],
-         [
-            1463551548526,
-            1.6630859375
-         ],
-         [
-            1463551578536,
-            1.56005859375
-         ],
-         [
-            1463551608543,
-            1.40283203125
-         ],
-         [
-            1463551638565,
-            1.3271484375
-         ]
-      ]
-   }
-]
-</code></pre>
+                <h1 id="graphs-tab">Graphs Tab</h1>
+<p>This page allows you to create dasboard full of line charts.</p>
+<p>Unlike a lot of existing systems out there, ResourceD does not automatically chart every single host metric.</p>
+<p>Instead, the UI allows you to pick which metric to charts.</p>
+<h1 id="how-to-chart-a-host-metric">How to chart a host metric?</h1>
+<p>Go to <code>Hosts</code> tab and look for <code>Chart Metric?</code> button. Press it and the master daemon will start charting metric.</p>
+<h1 id="how-to-create-a-dashboard-with-multiple-charts">How to create a dashboard with multiple charts?</h1>
+<ol>
+<li>
+<p>Go to <code>Graphs</code> tab and click <code>New Graph</code> button. This will create a new dashboard with zero charts.</p>
+</li>
+<li>
+<p>Then click the <code>view</code> button next to your newly created dashboard. It will take you to a new page.</p>
+</li>
+<li>
+<p>click <code>Add Charts</code> button to populate your dashboard with charts.</p>
+</li>
+</ol>
               
             </div>
           </div>
@@ -426,10 +346,10 @@ curl -u accesstoken: 'http://localhost:55655/api/metrics/1?from=1463551343&amp;t
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../api-metrics-15m-get/" class="btn btn-neutral float-right" title="API Doc: GET /api/metrics/{id:[0-9]+}/15m">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../usage-master-logs/" class="btn btn-neutral float-right" title="Usage - Master: Logs">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../api-hosts-get/" class="btn btn-neutral" title="API Doc: GET /api/hosts"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../usage-master-hosts/" class="btn btn-neutral" title="Usage - Master: Hosts"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -457,10 +377,10 @@ curl -u accesstoken: 'http://localhost:55655/api/metrics/1?from=1463551343&amp;t
           <a href="https://github.com/resourced/resourced-master" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../api-hosts-get/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../usage-master-hosts/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../api-metrics-15m-get/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../usage-master-logs/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

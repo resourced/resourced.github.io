@@ -8,7 +8,7 @@
   
   
   
-  <title>API Doc: GET /api/metrics/{id:[0-9]+} - ResourceD Documentation</title>
+  <title>Usage - Master: Checks - ResourceD Documentation</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -24,9 +24,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "API Doc: GET /api/metrics/{id:[0-9]+}";
-    var mkdocs_page_input_path = "api-metrics-get.md";
-    var mkdocs_page_url = "/api-metrics-get/";
+    var mkdocs_page_name = "Usage - Master: Checks";
+    var mkdocs_page_input_path = "usage-master-checks.md";
+    var mkdocs_page_url = "/usage-master-checks/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -168,8 +168,30 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../usage-master-checks/">Usage - Master: Checks</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Usage - Master: Checks</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#checks-tab">Checks Tab</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#how-to-create-a-new-check">How to create a new check?</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#what-is-check-expression">What is Check Expression?</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#multiple-check-expressions-under-one-check">Multiple Check Expressions Under One Check?</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#what-is-a-trigger">What is a trigger?</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#can-i-create-pager-escalation-rules">Can I create Pager Escalation Rules?</a></li>
+                
+            
+            </ul>
         
     </li>
 <li>
@@ -189,18 +211,8 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">API Doc: GET /api/metrics/{id:[0-9]+}</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#query-parameters">Query Parameters</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#return-payload">Return Payload</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../api-metrics-get/">API Doc: GET /api/metrics/{id:[0-9]+}</a>
         
     </li>
 <li>
@@ -304,7 +316,7 @@
     
       
     
-    <li>API Doc: GET /api/metrics/{id:[0-9]+}</li>
+    <li>Usage - Master: Checks</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -318,107 +330,85 @@
           <div role="main">
             <div class="section">
               
-                <p><code>GET http://localhost:55655/api/metrics/{id:[0-9]+}</code></p>
-<p>Get all metrics data by id.</p>
-<h2 id="query-parameters">Query Parameters</h2>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>from</td>
-<td>''</td>
-<td>UNIX epoch</td>
-<td>Allows user to provide a time range.</td>
-</tr>
-<tr>
-<td>to</td>
-<td>''</td>
-<td>UNIX epoch</td>
-<td>Allows user to provide a time range.</td>
-</tr>
-</tbody>
-</table>
-<pre><code class="ruby"># Ruby example
-require 'net/http'
-require 'net/https'
-
-uri = URI('http://localhost:55655/api/metrics/1?from=1463551343&amp;to=1463551643')
-
-Net::HTTP.start(uri.host, uri.port, :use_ssl =&gt; uri.scheme == 'https') do |http|
-  request = Net::HTTP::Get.new uri.request_uri
-  request.basic_auth 'accesstoken', ''
-
-  response = http.request request
-end
-</code></pre>
-
-<pre><code class="python"># Python example
-# Requests is a 3rd party library
-from requests.auth import HTTPBasicAuth
-response = requests.get('http://localhost:55655/api/metrics/1?from=1463551343&amp;to=1463551643', auth=HTTPBasicAuth('accesstoken', ''))
-</code></pre>
-
-<pre><code class="shell"># cURL example
-# Notice the double colon at the end of Access Token.
-curl -u accesstoken: 'http://localhost:55655/api/metrics/1?from=1463551343&amp;to=1463551643'
-</code></pre>
-
-<h2 id="return-payload">Return Payload</h2>
-<pre><code class="json">[
-   {
-      &quot;name&quot;:&quot;localhost.local&quot;,
-      &quot;data&quot;:[
-         [
-            1463551368452,
-            2.4794921875
-         ],
-         [
-            1463551398426,
-            2.08056640625
-         ],
-         [
-            1463551428441,
-            1.76806640625
-         ],
-         [
-            1463551458452,
-            1.78466796875
-         ],
-         [
-            1463551488466,
-            1.7685546875
-         ],
-         [
-            1463551518507,
-            1.56787109375
-         ],
-         [
-            1463551548526,
-            1.6630859375
-         ],
-         [
-            1463551578536,
-            1.56005859375
-         ],
-         [
-            1463551608543,
-            1.40283203125
-         ],
-         [
-            1463551638565,
-            1.3271484375
-         ]
-      ]
-   }
-]
-</code></pre>
+                <h1 id="checks-tab">Checks Tab</h1>
+<p>This page allows you to create and manage alerts.</p>
+<p>Each check go through a list of hosts and make decision based on check expressions.</p>
+<h1 id="how-to-create-a-new-check">How to create a new check?</h1>
+<p>Click the <code>New Check</code> button. It will ask you to fill in a form.</p>
+<ul>
+<li>
+<p><strong>Name:</strong> The name of your check.</p>
+</li>
+<li>
+<p><strong>Interval:</strong> How frequently the master daemon will re-check.</p>
+</li>
+<li>
+<p><strong>Query for Hosts:</strong> Remember the <code>Hosts</code> tab? It allows you to query list of hosts dynamically. You can use the same query statement here to fetch the list of hosts to check.</p>
+</li>
+<li>
+<p>If you want to have a static list of hosts, fill in the text area instead.</p>
+</li>
+<li>
+<p><strong>Check Expressions:</strong> This is the real meat of the check system. See the subsection below.</p>
+</li>
+</ul>
+<h1 id="what-is-check-expression">What is Check Expression?</h1>
+<p>Check expression allows user to be very specific when defining alert criteria.</p>
+<p>Each expression perform check on a <strong>group of hosts</strong> and raise alert when at minimum <code>N</code> hosts are affected.</p>
+<p>The purpose of this feature is to minimize noise. For example: often times, it is ok for a system to have one dead host out of twenty.</p>
+<p>There are 7 different types of check: <em>(Note: You can only check charted metrics)</em></p>
+<ul>
+<li>
+<p><strong>Raw host data:</strong> This type should be familiar to Nagios users, it checks the current, absolute value of a particular metric.</p>
+</li>
+<li>
+<p><strong>Relative host data:</strong> Often times, absolute value checks are not enough. If you need to check changes-over-time, this check is for you.</p>
+</li>
+<li>
+<p><strong>Log data:</strong> Use this check if you need to check the count of loglines. Remember the <code>Logs</code> tab? You can use the same query statement to count loglines.</p>
+</li>
+<li>
+<p><strong>Ping, SSH, HTTP/S:</strong> These are active checks <em>(check the hosts directly)</em> to make sure hosts are truly well-behaving.</p>
+</li>
+</ul>
+<h1 id="multiple-check-expressions-under-one-check">Multiple Check Expressions Under One Check?</h1>
+<p>You can have multiple expressions by pressing <code>+</code> button. The purpose of this feature is to minimize noise <em>(We all know how frustrating it is to receive false alerts)</em>.</p>
+<p>The more specific your check is, the less noisy it is. You can use <code>AND</code> or <code>OR</code> for combining expressions.</p>
+<h1 id="what-is-a-trigger">What is a trigger?</h1>
+<p>Once a check is created, it doesn't actually do anything for you yet. To have a meaningful, actionable alerts, you need to create triggers.</p>
+<p>There are 4 different triggers:</p>
+<ul>
+<li>
+<p>Do Nothing</p>
+</li>
+<li>
+<p>Send Email</p>
+</li>
+<li>
+<p>Send SMS</p>
+</li>
+<li>
+<p>Send PagerDuty</p>
+</li>
+</ul>
+<h1 id="can-i-create-pager-escalation-rules">Can I create Pager Escalation Rules?</h1>
+<p>A la PagerDuty?</p>
+<p>Yes. The nifty thing about triggers is that you can create multiple of them for one check.</p>
+<p>To create an escalation policy, just stack multiple triggers. For example:</p>
+<ul>
+<li>
+<p>Between 1-3 violations, do nothing.</p>
+</li>
+<li>
+<p>Between 4-6 violations, email tier1@example.com</p>
+</li>
+<li>
+<p>Between 7-10 violations, email tier2@example.com</p>
+</li>
+<li>
+<p>Between 11-20 violations, email svp@example.com</p>
+</li>
+</ul>
               
             </div>
           </div>
@@ -426,10 +416,10 @@ curl -u accesstoken: 'http://localhost:55655/api/metrics/1?from=1463551343&amp;t
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../api-metrics-15m-get/" class="btn btn-neutral float-right" title="API Doc: GET /api/metrics/{id:[0-9]+}/15m">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../api-authentication/" class="btn btn-neutral float-right" title="API Doc: Auth">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../api-hosts-get/" class="btn btn-neutral" title="API Doc: GET /api/hosts"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../usage-master-logs/" class="btn btn-neutral" title="Usage - Master: Logs"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -457,10 +447,10 @@ curl -u accesstoken: 'http://localhost:55655/api/metrics/1?from=1463551343&amp;t
           <a href="https://github.com/resourced/resourced-master" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../api-hosts-get/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../usage-master-logs/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../api-metrics-15m-get/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../api-authentication/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

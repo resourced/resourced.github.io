@@ -22,6 +22,10 @@ pages:
     - "Usage - Agent: Application: Go": usage-agent-application-go.md
     - "Usage - Agent: Logs: File": usage-agent-logs-file.md
     - "Usage - Agent: Logs: Live": usage-agent-logs-live.md
+    - "Usage - Master: Hosts": usage-master-hosts.md
+    - "Usage - Master: Graphs": usage-master-graphs.md
+    - "Usage - Master: Logs": usage-master-logs.md
+    - "Usage - Master: Checks": usage-master-checks.md
     - "API Doc: Auth": api-authentication.md
     - "API Doc: GET /api/hosts": api-hosts-get.md
     - "API Doc: GET /api/metrics/{id:[0-9]+}": api-metrics-get.md

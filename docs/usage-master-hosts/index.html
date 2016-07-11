@@ -8,7 +8,7 @@
   
   
   
-  <title>API Doc: GET /api/metrics/{id:[0-9]+} - ResourceD Documentation</title>
+  <title>Usage - Master: Hosts - ResourceD Documentation</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -24,9 +24,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "API Doc: GET /api/metrics/{id:[0-9]+}";
-    var mkdocs_page_input_path = "api-metrics-get.md";
-    var mkdocs_page_url = "/api-metrics-get/";
+    var mkdocs_page_name = "Usage - Master: Hosts";
+    var mkdocs_page_input_path = "usage-master-hosts.md";
+    var mkdocs_page_url = "/usage-master-hosts/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -147,8 +147,21 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../usage-master-hosts/">Usage - Master: Hosts</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Usage - Master: Hosts</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#hosts-tab">Hosts Tab</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#what-can-you-do-with-it">What can you do with it?</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#query-language">Query Language</a></li>
+                
+            
+            </ul>
         
     </li>
 <li>
@@ -189,18 +202,8 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">API Doc: GET /api/metrics/{id:[0-9]+}</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#query-parameters">Query Parameters</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#return-payload">Return Payload</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../api-metrics-get/">API Doc: GET /api/metrics/{id:[0-9]+}</a>
         
     </li>
 <li>
@@ -304,7 +307,7 @@
     
       
     
-    <li>API Doc: GET /api/metrics/{id:[0-9]+}</li>
+    <li>Usage - Master: Hosts</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -318,107 +321,78 @@
           <div role="main">
             <div class="section">
               
-                <p><code>GET http://localhost:55655/api/metrics/{id:[0-9]+}</code></p>
-<p>Get all metrics data by id.</p>
-<h2 id="query-parameters">Query Parameters</h2>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>from</td>
-<td>''</td>
-<td>UNIX epoch</td>
-<td>Allows user to provide a time range.</td>
-</tr>
-<tr>
-<td>to</td>
-<td>''</td>
-<td>UNIX epoch</td>
-<td>Allows user to provide a time range.</td>
-</tr>
-</tbody>
-</table>
-<pre><code class="ruby"># Ruby example
-require 'net/http'
-require 'net/https'
-
-uri = URI('http://localhost:55655/api/metrics/1?from=1463551343&amp;to=1463551643')
-
-Net::HTTP.start(uri.host, uri.port, :use_ssl =&gt; uri.scheme == 'https') do |http|
-  request = Net::HTTP::Get.new uri.request_uri
-  request.basic_auth 'accesstoken', ''
-
-  response = http.request request
-end
-</code></pre>
-
-<pre><code class="python"># Python example
-# Requests is a 3rd party library
-from requests.auth import HTTPBasicAuth
-response = requests.get('http://localhost:55655/api/metrics/1?from=1463551343&amp;to=1463551643', auth=HTTPBasicAuth('accesstoken', ''))
-</code></pre>
-
-<pre><code class="shell"># cURL example
-# Notice the double colon at the end of Access Token.
-curl -u accesstoken: 'http://localhost:55655/api/metrics/1?from=1463551343&amp;to=1463551643'
-</code></pre>
-
-<h2 id="return-payload">Return Payload</h2>
-<pre><code class="json">[
-   {
-      &quot;name&quot;:&quot;localhost.local&quot;,
-      &quot;data&quot;:[
-         [
-            1463551368452,
-            2.4794921875
-         ],
-         [
-            1463551398426,
-            2.08056640625
-         ],
-         [
-            1463551428441,
-            1.76806640625
-         ],
-         [
-            1463551458452,
-            1.78466796875
-         ],
-         [
-            1463551488466,
-            1.7685546875
-         ],
-         [
-            1463551518507,
-            1.56787109375
-         ],
-         [
-            1463551548526,
-            1.6630859375
-         ],
-         [
-            1463551578536,
-            1.56005859375
-         ],
-         [
-            1463551608543,
-            1.40283203125
-         ],
-         [
-            1463551638565,
-            1.3271484375
-         ]
-      ]
-   }
-]
-</code></pre>
+                <h1 id="hosts-tab">Hosts Tab</h1>
+<p>This page shows you the latest information on all of your hosts.</p>
+<p>You can think of it as facts/inventory database.</p>
+<h1 id="what-can-you-do-with-it">What can you do with it?</h1>
+<ul>
+<li>
+<p>Primarily, you can search information about your hosts based on various criteria:</p>
+<ul>
+<li>
+<p>Hostname</p>
+</li>
+<li>
+<p>Host tags</p>
+</li>
+<li>
+<p>Arithmetic comparison on host data</p>
+</li>
+</ul>
+</li>
+<li>
+<p>You can then save your queries as bookmarks to come back later.</p>
+</li>
+<li>
+<p>Even better, use the <code>/api/hosts?q=your-query</code> API endpoint to aid your deployment strategies.</p>
+</li>
+</ul>
+<h1 id="query-language">Query Language</h1>
+<p>As mentioned above, there are 3 fields to query host data on: hostname, tags, and JSON path.</p>
+<p><strong>Limitation:</strong> You can only use <em>AND</em> conjunctive operators, for now.</p>
+<p><strong>Query by hostname</strong></p>
+<ul>
+<li>
+<p>Exact match: <code>hostname = "localhost"</code></p>
+</li>
+<li>
+<p>Starts-with match: <code>hostname ~^ "awesome-app-"</code></p>
+</li>
+<li>
+<p>Regex match, case insensitive: <code>hostname ~* "awesome-app-"</code></p>
+</li>
+<li>
+<p>Regex match, case sensitive: <code>hostname ~ "awesome-app-"</code></p>
+</li>
+<li>
+<p>Regex match negation, case sensitive: <code>hostname !~ "awesome-app-"</code></p>
+</li>
+<li>
+<p>Regex match negation, case insensitive: <code>hostname !~* "awesome-app-"</code></p>
+</li>
+</ul>
+<p><strong>Query by tags</strong></p>
+<ul>
+<li>
+<p>Exact match: <code>tags.mysql = 5.6.24</code></p>
+</li>
+<li>
+<p>Multiple exact match: <code>tags.mysql = 5.6.24 and tags.redis = 3.0.1</code></p>
+</li>
+</ul>
+<p><strong>Query by JSON path</strong></p>
+<p>Internally, all of host data are stored as JSON documents.</p>
+<p>To make an arithmetic comparison of a single attribute, start with the prefix path and then use <code>.</code> delimited separator as you get deeper into the JSON structure.</p>
+<p>The UI flattens the nested structure for you so that you can visually identify all of the attributes easily.</p>
+<p>Examples:</p>
+<ul>
+<li>
+<p><code>/free.Swap.Used &gt; 10000000</code></p>
+</li>
+<li>
+<p><code>/uptime.LoadAvg1m &gt; 10</code></p>
+</li>
+</ul>
               
             </div>
           </div>
@@ -426,10 +400,10 @@ curl -u accesstoken: 'http://localhost:55655/api/metrics/1?from=1463551343&amp;t
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../api-metrics-15m-get/" class="btn btn-neutral float-right" title="API Doc: GET /api/metrics/{id:[0-9]+}/15m">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../usage-master-graphs/" class="btn btn-neutral float-right" title="Usage - Master: Graphs">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../api-hosts-get/" class="btn btn-neutral" title="API Doc: GET /api/hosts"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../usage-agent-logs-live/" class="btn btn-neutral" title="Usage - Agent: Logs: Live"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -457,10 +431,10 @@ curl -u accesstoken: 'http://localhost:55655/api/metrics/1?from=1463551343&amp;t
           <a href="https://github.com/resourced/resourced-master" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../api-hosts-get/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../usage-agent-logs-live/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../api-metrics-15m-get/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../usage-master-graphs/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
