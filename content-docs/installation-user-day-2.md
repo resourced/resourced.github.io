@@ -29,8 +29,10 @@ To create new migration files, run `scripts/migrations/{create|drop}-ts-{daily|e
 **3.** Paste the value in the `AccessToken` section inside `resourced/agent/configs/general.toml`.
 
 
-## By the end of day 2:
+## By the end of day 2
 
-* Master daemon should be up and running and able to connect to all PostgreSQL databases.
+You should expect to have:
+
+* Master daemon to be up and running and able to connect to all of the PostgreSQL databases.
 
 * Agent is reporting data to master and you can see them in the UI.

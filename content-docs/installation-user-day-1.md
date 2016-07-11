@@ -84,11 +84,13 @@ It's configured in `events.toml > DSN`.
 This database is partitioned monthly.
 
 
-## By the end of day 1:
+## By the end of day 1
 
-1. Create all the databases.
+You should expect to have completed:
 
-2. Create all the credentials for master daemon to use to connect.
+1. Creation of all the databases.
 
-3. Configure `pg_hba.conf` correctly so master daemon hosts can access the databases.
+2. Creation of all the PostgreSQL credentials for master daemon to use.
+
+3. The configuration of `pg_hba.conf` so master daemon hosts can access the databases.
 

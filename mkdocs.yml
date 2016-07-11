@@ -11,9 +11,11 @@ extra_css:
 pages:
     - Home: index.md
     - Gallery: gallery.md
-    - "User Install: Day 1": installation-user-day-1.md
-    - "User Install: Day 2": installation-user-day-2.md
-    - "Contributor Install": installation-dev.md
+    - "User Installation: Day 1": installation-user-day-1.md
+    - "User Installation: Day 2": installation-user-day-2.md
+    - "User Installation: Day 3": installation-user-day-3.md
+    - "Contributor Installation": installation-dev.md
+    - "Documantation Installation": installation-docs.md
     - "Usage - Agent: Metrics: Server": usage-agent-metrics-server.md
     - "Usage - Agent: Metrics: Live": usage-agent-metrics-live.md
     - "Usage - Agent: Application: General": usage-agent-application-general.md

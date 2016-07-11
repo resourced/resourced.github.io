@@ -8,7 +8,7 @@
   
   
   
-  <title>User Install: Day 1 - ResourceD Documentation</title>
+  <title>User Installation: Day 1 - ResourceD Documentation</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -24,7 +24,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "User Install: Day 1";
+    var mkdocs_page_name = "User Installation: Day 1";
     var mkdocs_page_input_path = "installation-user-day-1.md";
     var mkdocs_page_url = "/installation-user-day-1/";
   </script>
@@ -71,7 +71,7 @@
           
             <li>
     <li class="toctree-l1 current">
-        <a class="current" href="./">User Install: Day 1</a>
+        <a class="current" href="./">User Installation: Day 1</a>
         
             <ul>
             
@@ -91,7 +91,7 @@
                     <li><a class="toctree-l4" href="#events">Events</a></li>
                 
             
-                <li class="toctree-l3"><a href="#by-the-end-of-day-1">By the end of day 1:</a></li>
+                <li class="toctree-l3"><a href="#by-the-end-of-day-1">By the end of day 1</a></li>
                 
             
             </ul>
@@ -101,14 +101,28 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../installation-user-day-2/">User Install: Day 2</a>
+        <a class="" href="../installation-user-day-2/">User Installation: Day 2</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../installation-dev/">Contributor Install</a>
+        <a class="" href="../installation-user-day-3/">User Installation: Day 3</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../installation-dev/">Contributor Installation</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../installation-docs/">Documantation Installation</a>
         
     </li>
 <li>
@@ -275,7 +289,7 @@
     
       
     
-    <li>User Install: Day 1</li>
+    <li>User Installation: Day 1</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -346,16 +360,17 @@ createdb --owner=resourced resourced-master-ts-metrics
 <p>Events database is a user driven timeseries database. User can send arbitrary events to master daemons which then stores them here.</p>
 <p>It's configured in <code>events.toml &gt; DSN</code>.</p>
 <p>This database is partitioned monthly.</p>
-<h2 id="by-the-end-of-day-1">By the end of day 1:</h2>
+<h2 id="by-the-end-of-day-1">By the end of day 1</h2>
+<p>You should expect to have completed:</p>
 <ol>
 <li>
-<p>Create all the databases.</p>
+<p>Creation of all the databases.</p>
 </li>
 <li>
-<p>Create all the credentials for master daemon to use to connect.</p>
+<p>Creation of all the PostgreSQL credentials for master daemon to use.</p>
 </li>
 <li>
-<p>Configure <code>pg_hba.conf</code> correctly so master daemon hosts can access the databases.</p>
+<p>The configuration of <code>pg_hba.conf</code> so master daemon hosts can access the databases.</p>
 </li>
 </ol>
               
@@ -365,7 +380,7 @@ createdb --owner=resourced resourced-master-ts-metrics
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../installation-user-day-2/" class="btn btn-neutral float-right" title="User Install: Day 2">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../installation-user-day-2/" class="btn btn-neutral float-right" title="User Installation: Day 2">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../gallery/" class="btn btn-neutral" title="Gallery"><span class="icon icon-circle-arrow-left"></span> Previous</a>
