@@ -8,7 +8,7 @@
   
   
   
-  <title>API Doc: DELETE /api/events/{id:[0-9]+} - ResourceD Documentation</title>
+  <title>API Doc - Master: GET /api/hosts - ResourceD Documentation</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -24,9 +24,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "API Doc: DELETE /api/events/{id:[0-9]+}";
-    var mkdocs_page_input_path = "api-events-delete.md";
-    var mkdocs_page_url = "/api-events-delete/";
+    var mkdocs_page_name = "API Doc - Master: GET /api/hosts";
+    var mkdocs_page_input_path = "api-master-hosts-get.md";
+    var mkdocs_page_url = "/api-master-hosts-get/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -176,60 +176,21 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../api-authentication/">API Doc: Auth</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../api-hosts-get/">API Doc: GET /api/hosts</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../api-metrics-get/">API Doc: GET /api/metrics/{id:[0-9]+}</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../api-metrics-15m-get/">API Doc: GET /api/metrics/{id:[0-9]+}/15m</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../api-metrics-host-get/">API Doc: GET /api/metrics/{id:[0-9]+}/hosts/{host}</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../api-metrics-host-15m-get/">API Doc: GET /api/metrics/{id:[0-9]+}/hosts/{host}/15m</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../api-events-post/">API Doc: POST /api/events</a>
+        <a class="" href="../api-master-authentication/">API Doc - Master: Auth</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 current">
-        <a class="current" href="./">API Doc: DELETE /api/events/{id:[0-9]+}</a>
+        <a class="current" href="./">API Doc - Master: GET /api/hosts</a>
         
             <ul>
             
-                <li class="toctree-l3"><a href="#send-payload">Send Payload</a></li>
+                <li class="toctree-l3"><a href="#query-parameters">Query Parameters</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#query-language">Query Language</a></li>
                 
             
                 <li class="toctree-l3"><a href="#return-payload">Return Payload</a></li>
@@ -242,42 +203,84 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../api-logs-post/">API Doc: POST /api/logs</a>
+        <a class="" href="../api-master-metrics-get/">API Doc - Master: GET /api/metrics/{id:[0-9]+}</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../api-logs-get/">API Doc: GET /api/logs</a>
+        <a class="" href="../api-master-metrics-15m-get/">API Doc - Master: GET /api/metrics/{id:[0-9]+}/15m</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../api-metadata-post/">API Doc: POST /api/metadata/{key}</a>
+        <a class="" href="../api-master-metrics-host-get/">API Doc - Master: GET /api/metrics/{id:[0-9]+}/hosts/{host}</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../api-metadata-delete/">API Doc: DELETE /api/metadata/{key}</a>
+        <a class="" href="../api-master-metrics-host-15m-get/">API Doc - Master: GET /api/metrics/{id:[0-9]+}/hosts/{host}/15m</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../api-metadata-get/">API Doc: GET /api/metadata/{key}</a>
+        <a class="" href="../api-master-events-post/">API Doc - Master: POST /api/events</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../api-metadata-all/">API Doc: GET /api/metadata</a>
+        <a class="" href="../api-master-events-delete/">API Doc - Master: DELETE /api/events/{id:[0-9]+}</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../api-master-logs-post/">API Doc - Master: POST /api/logs</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../api-master-logs-get/">API Doc - Master: GET /api/logs</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../api-master-metadata-post/">API Doc - Master: POST /api/metadata/{key}</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../api-master-metadata-delete/">API Doc - Master: DELETE /api/metadata/{key}</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../api-master-metadata-get/">API Doc - Master: GET /api/metadata/{key}</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../api-master-metadata-all/">API Doc - Master: GET /api/metadata</a>
         
     </li>
 <li>
@@ -304,7 +307,7 @@
     
       
     
-    <li>API Doc: DELETE /api/events/{id:[0-9]+}</li>
+    <li>API Doc - Master: GET /api/hosts</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -318,46 +321,163 @@
           <div role="main">
             <div class="section">
               
-                <p><code>DELETE http://localhost:55655/api/events/{id:[0-9]+}</code></p>
-<p>Delete an event object by id.</p>
+                <p><code>GET http://localhost:55655/api/hosts</code></p>
+<p>Get all hosts data.</p>
+<h2 id="query-parameters">Query Parameters</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>q</td>
+<td>''</td>
+<td>String</td>
+<td>Allows user to filter hosts data using SQL-like statement.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="query-language">Query Language</h2>
+<p>There are 3 fields to query host data on: hostname, tags, and JSON path.</p>
+<p><strong>Limitation:</strong> You can only use <em>AND</em> conjunctive operators, for now.</p>
+<p><strong>Query by hostname</strong></p>
+<ul>
+<li>
+<p>Exact match: <code>hostname = "localhost"</code></p>
+</li>
+<li>
+<p>Starts-with match: <code>hostname ~^ "awesome-app-"</code></p>
+</li>
+<li>
+<p>Regex match, case insensitive: <code>hostname ~* "awesome-app-"</code></p>
+</li>
+<li>
+<p>Regex match, case sensitive: <code>hostname ~ "awesome-app-"</code></p>
+</li>
+<li>
+<p>Regex match negation, case sensitive: <code>hostname !~ "awesome-app-"</code></p>
+</li>
+<li>
+<p>Regex match negation, case insensitive: <code>hostname !~* "awesome-app-"</code></p>
+</li>
+</ul>
+<p><strong>Query by tags</strong></p>
+<ul>
+<li>
+<p>Exact match: <code>tags.mysql = 5.6.24</code></p>
+</li>
+<li>
+<p>Multiple exact match: <code>tags.mysql = 5.6.24 and tags.redis = 3.0.1</code></p>
+</li>
+</ul>
+<p><strong>Query by JSON path</strong></p>
+<p>To craft JSON path query, start with ResourceD path and then use "." delimited separator as you get deeper into the JSON structure.</p>
+<p>For example, let's say your resourced agent shipped <code>/free</code> data: <code>{"/free": {"Swap": {"Free": 0, "Used": 0, "Total": 0}, "Memory": {"Free": 1346609152}}}</code></p>
+<p>You can then query <code>Swap -&gt; Used</code> this way: <code>/free.Swap.Used &gt; 10000000</code></p>
 <pre><code class="ruby"># Ruby example
 require 'net/http'
 require 'net/https'
 
-uri = URI('http://localhost:55655/api/events/1')
+uri = URI('http://localhost:55655/api/hosts')
 
 Net::HTTP.start(uri.host, uri.port, :use_ssl =&gt; uri.scheme == 'https') do |http|
-    request = Net::HTTP::Delete.new(uri.request_uri, initheader = {'Content-Type' =&gt;'application/json'})
-    request.basic_auth 'accesstoken', ''
+  request = Net::HTTP::Get.new uri.request_uri
+  request.basic_auth 'accesstoken', ''
 
-    response = http.request request
+  response = http.request request
 end
 </code></pre>
 
 <pre><code class="python"># Python example
 # Requests is a 3rd party library
 from requests.auth import HTTPBasicAuth
-response = requests.delete('http://localhost:55655/api/events/1', auth=HTTPBasicAuth('accesstoken', ''))
+response = requests.get('http://localhost:55655/api/hosts', auth=HTTPBasicAuth('accesstoken', ''))
 </code></pre>
 
 <pre><code class="shell"># cURL example
 # Notice the double colon at the end of Access Token.
-curl -u accesstoken: -X DELETE 'http://localhost:55655/api/events/1'
-</code></pre>
-
-<h2 id="send-payload">Send Payload</h2>
-<pre><code class="json">{
-    &quot;from&quot;: 1463551343,
-    &quot;to&quot;: 1463551643,
-    &quot;description&quot;: &quot;Deployed app server&quot;
-}
+curl -u accesstoken: http://localhost:55655/api/hosts
 </code></pre>
 
 <h2 id="return-payload">Return Payload</h2>
-<pre><code class="json">{
-    &quot;ID&quot;: 1,
-    &quot;Message&quot;: &quot;Deleted event&quot;
-}
+<pre><code class="json">[
+  {
+    &quot;ClusterID&quot;: ​1,
+    &quot;Hostname&quot;: &quot;my-mac-mini.local&quot;,
+    &quot;Updated&quot;: &quot;2016-05-15T23:47:01.441652Z&quot;,
+    &quot;Tags&quot;: {
+      &quot;os&quot;: &quot;OS X Yosemite&quot;,
+      &quot;postgres&quot;: &quot;9.4.2&quot;,
+      &quot;redis&quot;: &quot;3.0.1&quot;,
+      &quot;role&quot;: &quot;home-dev&quot;
+    },
+    &quot;Data&quot;: {
+      &quot;/free&quot;: {
+        &quot;Swap&quot;: {
+            &quot;Free&quot;: ​1770520576,
+            &quot;Used&quot;: ​376963072,
+            &quot;Total&quot;: ​2147483648,
+            &quot;FreeGB&quot;: ​1,
+            &quot;FreeMB&quot;: ​1770,
+            &quot;UsedGB&quot;: ​0,
+            &quot;UsedMB&quot;: ​376,
+            &quot;TotalGB&quot;: ​2,
+            &quot;TotalMB&quot;: ​2147,
+            &quot;FreePercent&quot;: ​82
+        },
+        &quot;Memory&quot;: {
+          &quot;Free&quot;: ​685666304,
+          &quot;Used&quot;: ​7904268288,
+          &quot;Total&quot;: ​8589934592,
+          &quot;FreeGB&quot;: ​0,
+          &quot;FreeMB&quot;: ​685,
+          &quot;UsedGB&quot;: ​7,
+          &quot;UsedMB&quot;: ​7904,
+          &quot;TotalGB&quot;: ​8,
+          &quot;TotalMB&quot;: ​8589,
+          &quot;ActualFree&quot;: ​3156926464,
+          &quot;ActualUsed&quot;: ​5433008128,
+          &quot;FreePercent&quot;: ​7,
+          &quot;UsedPercent&quot;: ​92,
+          &quot;ActualFreeGB&quot;: ​3,
+          &quot;ActualFreeMB&quot;: ​3156,
+          &quot;ActualUsedGB&quot;: ​5,
+          &quot;ActualUsedMB&quot;: ​5433,
+          &quot;ActualFreePercent&quot;: ​36,
+          &quot;ActualUsedPercent&quot;: ​63
+        }
+      },
+      &quot;/uptime&quot;: {
+        &quot;Uptime&quot;: &quot;24 days, 16:55&quot;,
+        &quot;TimeZone&quot;: &quot;PDT&quot;,
+        &quot;LoadAvg1m&quot;: ​1.6044921875,
+        &quot;LoadAvg5m&quot;: ​2.099609375,
+        &quot;LoadAvg15m&quot;: ​2.072265625,
+        &quot;CurrentTime&quot;: &quot;16:46:58&quot;,
+        &quot;CurrentTimeUnixNano&quot;: ​1463356018787249200
+      }
+    }
+  },
+  {
+    &quot;ClusterID&quot;: ​1,
+    &quot;Hostname&quot;: &quot;my-mac-pro.local&quot;,
+    &quot;Updated&quot;: &quot;2016-05-15T23:47:01.441652Z&quot;,
+    &quot;Tags&quot;: {
+      &quot;os&quot;: &quot;OS X Yosemite&quot;,
+      &quot;postgres&quot;: &quot;9.5.1&quot;,
+      &quot;redis&quot;: &quot;3.0.1&quot;,
+      &quot;role&quot;: &quot;home-dev&quot;
+    },
+    &quot;Data&quot;: {
+      &quot;truncated&quot;: &quot;...&quot;
+    }
+  }
+]
 </code></pre>
               
             </div>
@@ -366,10 +486,10 @@ curl -u accesstoken: -X DELETE 'http://localhost:55655/api/events/1'
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../api-logs-post/" class="btn btn-neutral float-right" title="API Doc: POST /api/logs">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../api-master-metrics-get/" class="btn btn-neutral float-right" title="API Doc - Master: GET /api/metrics/{id:[0-9]+}">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../api-events-post/" class="btn btn-neutral" title="API Doc: POST /api/events"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../api-master-authentication/" class="btn btn-neutral" title="API Doc - Master: Auth"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -397,10 +517,10 @@ curl -u accesstoken: -X DELETE 'http://localhost:55655/api/events/1'
           <a href="https://github.com/resourced/resourced-master" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../api-events-post/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../api-master-authentication/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../api-logs-post/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../api-master-metrics-get/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

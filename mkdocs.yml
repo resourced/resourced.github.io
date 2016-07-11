@@ -26,17 +26,17 @@ pages:
     - "Usage - Master: Graphs": usage-master-graphs.md
     - "Usage - Master: Logs": usage-master-logs.md
     - "Usage - Master: Checks": usage-master-checks.md
-    - "API Doc: Auth": api-authentication.md
-    - "API Doc: GET /api/hosts": api-hosts-get.md
-    - "API Doc: GET /api/metrics/{id:[0-9]+}": api-metrics-get.md
-    - "API Doc: GET /api/metrics/{id:[0-9]+}/15m": api-metrics-15m-get.md
-    - "API Doc: GET /api/metrics/{id:[0-9]+}/hosts/{host}": api-metrics-host-get.md
-    - "API Doc: GET /api/metrics/{id:[0-9]+}/hosts/{host}/15m": api-metrics-host-15m-get.md
-    - "API Doc: POST /api/events": api-events-post.md
-    - "API Doc: DELETE /api/events/{id:[0-9]+}": api-events-delete.md
-    - "API Doc: POST /api/logs": api-logs-post.md
-    - "API Doc: GET /api/logs": api-logs-get.md
-    - "API Doc: POST /api/metadata/{key}": api-metadata-post.md
-    - "API Doc: DELETE /api/metadata/{key}": api-metadata-delete.md
-    - "API Doc: GET /api/metadata/{key}": api-metadata-get.md
-    - "API Doc: GET /api/metadata": api-metadata-all.md
+    - "API Doc - Master: Auth": api-master-authentication.md
+    - "API Doc - Master: GET /api/hosts": api-master-hosts-get.md
+    - "API Doc - Master: GET /api/metrics/{id:[0-9]+}": api-master-metrics-get.md
+    - "API Doc - Master: GET /api/metrics/{id:[0-9]+}/15m": api-master-metrics-15m-get.md
+    - "API Doc - Master: GET /api/metrics/{id:[0-9]+}/hosts/{host}": api-master-metrics-host-get.md
+    - "API Doc - Master: GET /api/metrics/{id:[0-9]+}/hosts/{host}/15m": api-master-metrics-host-15m-get.md
+    - "API Doc - Master: POST /api/events": api-master-events-post.md
+    - "API Doc - Master: DELETE /api/events/{id:[0-9]+}": api-master-events-delete.md
+    - "API Doc - Master: POST /api/logs": api-master-logs-post.md
+    - "API Doc - Master: GET /api/logs": api-master-logs-get.md
+    - "API Doc - Master: POST /api/metadata/{key}": api-master-metadata-post.md
+    - "API Doc - Master: DELETE /api/metadata/{key}": api-master-metadata-delete.md
+    - "API Doc - Master: GET /api/metadata/{key}": api-master-metadata-get.md
+    - "API Doc - Master: GET /api/metadata": api-master-metadata-all.md
