@@ -28,7 +28,7 @@ To create new migration files, run `scripts/migrations/{create|drop}-ts-{daily|e
 
 2. Notice that there's an AccessToken created for you already. Copy it.
 
-3. Paste the value in the `AccessToken` section inside `resourced/agent/configs/general.toml`.
+3. Paste the value in the `AccessToken` section inside agent's `general.toml`.
 
 4. Run the agent daemon:  `cd path/to/resourced; RESOURCED_CONFIG_DIR=. resourced`
 

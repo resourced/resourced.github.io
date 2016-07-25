@@ -327,13 +327,15 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="master-prerequisites">Master Prerequisites</h2>
+                <p>Read this doc only if you are compiling from source.</p>
+<h2 id="master-prerequisites">Master Prerequisites</h2>
 <p><strong>1.</strong> Install PostgreSQL 9.5.x or newer</p>
 <p><strong>2.</strong> Install Git</p>
 <p><strong>3.</strong> Install Go 1.6.x or newer</p>
 <h2 id="master-installation-running">Master Installation &amp; Running</h2>
 <p><strong>1.</strong> Create PostgreSQL databases</p>
 <pre><code>createdb resourced-master
+createdb resourced-master-hosts
 createdb resourced-master-ts-checks
 createdb resourced-master-ts-events
 createdb resourced-master-ts-executor-logs

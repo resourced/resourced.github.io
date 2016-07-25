@@ -1,3 +1,6 @@
+Read this doc only if you are compiling from source.
+
+
 ## Master Prerequisites
 
 **1.** Install PostgreSQL 9.5.x or newer
@@ -13,6 +16,7 @@
 
 ```
 createdb resourced-master
+createdb resourced-master-hosts
 createdb resourced-master-ts-checks
 createdb resourced-master-ts-events
 createdb resourced-master-ts-executor-logs
