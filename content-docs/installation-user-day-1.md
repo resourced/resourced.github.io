@@ -29,6 +29,7 @@ You will see this reflected on the configuration files, each config file `DSN` c
 sudo su - postgres
 createuser -P -e resourced
 createdb --owner=resourced resourced-master
+createdb --owner=resourced resourced-master-hosts
 createdb --owner=resourced resourced-master-ts-checks
 createdb --owner=resourced resourced-master-ts-events
 createdb --owner=resourced resourced-master-ts-executor-logs

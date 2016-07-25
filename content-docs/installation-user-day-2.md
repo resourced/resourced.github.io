@@ -1,10 +1,12 @@
 ## Master Installation & Running
 
-* [Download the tar.gz](https://github.com/resourced/resourced-master/releases) and unpack it.
+* [Download the tar.gz](https://github.com/resourced/resourced-master/releases) and unpack it. 
 
-* Run the database migration: `cd path/to/resourced-master; resourced-master -c config-files migrate up`
+* Run the database migration: `cd path/to/resourced-master; resourced-master -c conf migrate up`
 
-* Run the server and daemonize it using init/systemd/supervisord. You can follow the examples of init scripts [here](https://github.com/resourced/resourced-master/tree/master/scripts/init)
+* Run the server: `cd path/to/resourced-master; resourced-master -c conf`
+
+* It is highly recommended to daemonize the master using init/systemd/supervisord. You can follow the examples of init scripts [here](https://github.com/resourced/resourced-master/tree/master/scripts/init)
 
 There is one option to set for running the master daemon. You can set it via `-c` flag or `RESOURCED_MASTER_CONFIG_DIR` environment variable. `cd path/to/resourced-master; resourced-master -c config-files`
 
@@ -22,11 +24,13 @@ To create new migration files, run `scripts/migrations/{create|drop}-ts-{daily|e
 
 ## Agent Reporting to Master
 
-**1.** Create a new AccessToken using the GUI: Click `your@email.com` drop down and select `Clusters` menu option.
+1. Create a new AccessToken using the GUI: Click `your@email.com` drop down and select `Clusters` menu option.
 
-**2.** Notice that there's an AccessToken created for you already. Copy it.
+2. Notice that there's an AccessToken created for you already. Copy it.
 
-**3.** Paste the value in the `AccessToken` section inside `resourced/agent/configs/general.toml`.
+3. Paste the value in the `AccessToken` section inside `resourced/agent/configs/general.toml`.
+
+4. Run the agent daemon:  `cd path/to/resourced; RESOURCED_CONFIG_DIR=. resourced`
 
 
 ## By the end of day 2
