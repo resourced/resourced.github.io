@@ -327,13 +327,16 @@
                 <h2 id="master-installation-running">Master Installation &amp; Running</h2>
 <ul>
 <li>
-<p><a href="https://github.com/resourced/resourced-master/releases">Download the tar.gz</a> and unpack it.</p>
+<p><a href="https://github.com/resourced/resourced-master/releases">Download the tar.gz</a> and unpack it. </p>
 </li>
 <li>
-<p>Run the database migration: <code>cd path/to/resourced-master; resourced-master -c config-files migrate up</code></p>
+<p>Run the database migration: <code>cd path/to/resourced-master; resourced-master -c conf migrate up</code></p>
 </li>
 <li>
-<p>Run the server and daemonize it using init/systemd/supervisord. You can follow the examples of init scripts <a href="https://github.com/resourced/resourced-master/tree/master/scripts/init">here</a></p>
+<p>Run the server: <code>cd path/to/resourced-master; resourced-master -c conf</code></p>
+</li>
+<li>
+<p>It is highly recommended to daemonize the master using init/systemd/supervisord. You can follow the examples of init scripts <a href="https://github.com/resourced/resourced-master/tree/master/scripts/init">here</a></p>
 </li>
 </ul>
 <p>There is one option to set for running the master daemon. You can set it via <code>-c</code> flag or <code>RESOURCED_MASTER_CONFIG_DIR</code> environment variable. <code>cd path/to/resourced-master; resourced-master -c config-files</code></p>
@@ -343,9 +346,20 @@
 <p>When you looked inside those directories, you'll notice that only 2016 are provided.</p>
 <p>To create new migration files, run <code>scripts/migrations/{create|drop}-ts-{daily|events}.py</code>. Each script contains comments on how to use it.</p>
 <h2 id="agent-reporting-to-master">Agent Reporting to Master</h2>
-<p><strong>1.</strong> Create a new AccessToken using the GUI: Click <code>your@email.com</code> drop down and select <code>Clusters</code> menu option.</p>
-<p><strong>2.</strong> Notice that there's an AccessToken created for you already. Copy it.</p>
-<p><strong>3.</strong> Paste the value in the <code>AccessToken</code> section inside <code>resourced/agent/configs/general.toml</code>.</p>
+<ol>
+<li>
+<p>Create a new AccessToken using the GUI: Click <code>your@email.com</code> drop down and select <code>Clusters</code> menu option.</p>
+</li>
+<li>
+<p>Notice that there's an AccessToken created for you already. Copy it.</p>
+</li>
+<li>
+<p>Paste the value in the <code>AccessToken</code> section inside <code>resourced/agent/configs/general.toml</code>.</p>
+</li>
+<li>
+<p>Run the agent daemon:  <code>cd path/to/resourced; RESOURCED_CONFIG_DIR=. resourced</code></p>
+</li>
+</ol>
 <h2 id="by-the-end-of-day-2">By the end of day 2</h2>
 <p>You should expect to have:</p>
 <ul>
