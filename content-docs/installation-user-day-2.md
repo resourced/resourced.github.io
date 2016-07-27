@@ -13,7 +13,7 @@ There is one option to set for running the master daemon. You can set it via `-c
 
 ## Creating New Migration Files
 
-You have learned that ResourceD timeseries databases are partitioned either monthly or daily.
+ResourceD timeseries databases are partitioned either monthly or daily.
 
 The migration files are located here: `migrations/{core|ts-checks|ts-events|ts-executor-logs|ts-logs|ts-metrics}`.
 

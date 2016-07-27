@@ -1,6 +1,6 @@
 # Graphs Tab
 
-This page allows you to create dasboard full of line charts.
+This page allows you to create dashboard full of line charts.
 
 Unlike a lot of existing systems out there, ResourceD does not automatically chart every single host metric.
 

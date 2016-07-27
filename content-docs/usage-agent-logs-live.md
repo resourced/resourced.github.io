@@ -1,10 +1,10 @@
-# Reporting Live Log Lines
+# Receiving Live Log Lines
 
 ResourceD agent can be configured to listen on TCP and UDP port for receiving log lines.
 
-Think of it as a forwarder to ResourceD Master.
+It behave similarly to syslog listener. It can then forwards log lines to various targets.
 
-*(Note: At the moment, the agent can only forward to ResourceD Master)*
+*(Note: Log forwarding will be discuss in the next page)*
 
 To enable, make sure the following config block is configured correctly inside `general.toml`:
 
@@ -19,6 +19,19 @@ WriteToMasterInterval = "60s"
 
 # To prevent memory leak, clean all logs when storage capacity reached N.
 AutoPruneLength = 10000
+```
+
+
+# Protocol
+
+The protocol to ship logline is very simple:
+
+```
+# Base64, useful when shipping multi line log.
+type:base64|created:unix-timestamp|content:abc=
+
+# Plain
+type:plain|created:unix-timestamp|content:abc
 ```
 
 

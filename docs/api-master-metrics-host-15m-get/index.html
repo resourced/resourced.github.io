@@ -148,6 +148,13 @@
           
             <li>
     <li class="toctree-l1 ">
+        <a class="" href="../usage-agent-logs-forwarding/">Usage - Agent: Logs: Forwarding</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
         <a class="" href="../usage-master-hosts/">Usage - Master: Hosts</a>
         
     </li>
@@ -343,6 +350,12 @@
 <td>UNIX epoch</td>
 <td>Allows user to provide a time range.</td>
 </tr>
+<tr>
+<td>aggr</td>
+<td>''</td>
+<td>string</td>
+<td>Allows user to choose between avg, max, min, or sum. If nothing is defined, then all four will be returned.</td>
+</tr>
 </tbody>
 </table>
 <pre><code class="ruby"># Ruby example
@@ -371,7 +384,6 @@ curl -u accesstoken: 'http://localhost:55655/api/metrics/1/hosts/localhost/15m?f
 </code></pre>
 
 <h2 id="return-payload">Return Payload</h2>
-<p><strong>Limitation:</strong> Currently, it only returns the average values.</p>
 <pre><code class="json">[
    {
       &quot;name&quot;:&quot;localhost&quot;,

@@ -13,7 +13,7 @@ uri = URI('http://localhost:55655/api/logs')
 Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
     request = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =>'application/json'})
     request.basic_auth 'accesstoken', ''
-    request.body = '{"Host": {"Name": "localhost","Tags": {"role": "app-server"}}, "Data": {"Loglines": ["multiple loglines in an array"], "Filename": "full path to filename where the logs came from"}}'
+    request.body = '{"Host": {"Name": "localhost","Tags": {"role": "app-server"}}, "Data": {"Loglines": [{"Created": unix-timestamp, "Content": "multiple loglines in an array"}], "Filename": "full path to filename where the logs came from"}}'
 
     response = http.request request
 end
@@ -34,7 +34,9 @@ response = requests.post(
             }
         },
         "Data": {
-            "Loglines": ["multiple loglines in an array"],
+            "Loglines": [
+                {"Created": unix-timestamp, "Content": "multiple loglines in an array"}
+            ],
             "Filename": "full path to filename where the logs came from"
         }
     }
@@ -47,7 +49,7 @@ response = requests.post(
 curl -u accesstoken: -X POST \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d '{"Host": {"Name": "localhost","Tags": {"role": "app-server"}}, "Data": {"Loglines": ["multiple loglines in an array"], "Filename": "full path to filename where the logs came from"}}' \
+    -d '{"Host": {"Name": "localhost","Tags": {"role": "app-server"}}, "Data": {"Loglines": [{"Created": unix-timestamp, "Content": "multiple loglines in an array"}], "Filename": "full path to filename where the logs came from"}}' \
     'http://localhost:55655/api/logs'
 ```
 
@@ -62,7 +64,7 @@ curl -u accesstoken: -X POST \
         }
     },
     "Data": {
-        "Loglines": ["multiple loglines in an array"],
+        "Loglines": [{"Created": unix-timestamp, "Content": "multiple loglines in an array"}],
         "Filename": "full path to filename where the logs came from"
     }
 }

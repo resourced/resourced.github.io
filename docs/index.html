@@ -165,6 +165,13 @@
           
             <li>
     <li class="toctree-l1 ">
+        <a class="" href="usage-agent-logs-forwarding/">Usage - Agent: Logs: Forwarding</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
         <a class="" href="usage-master-hosts/">Usage - Master: Hosts</a>
         
     </li>
@@ -360,10 +367,10 @@
 <p>It provides 60+ native data collector in Go: dmidecode, docker, haproxy, mcrouter, memcache, mysql, nagios plugins, procfs, ps output, redis, varnish.</p>
 </li>
 <li>
-<p>It tails log files and forward them to master. These loglines can then be used to create alerts.</p>
+<p>It tails log files and forward them to various locations. When forwarded to master, these loglines can then be used to create alerts.</p>
 </li>
 <li>
-<p>It receives legacy Graphite metrics and forward them to master. These metrics are useful for alerts.</p>
+<p>It can receives Graphite or StatsD metrics and forward them to master. These metrics are useful for alerts.</p>
 </li>
 <li>
 <p>It can be extended using scripting languages. <a href="//github.com/resourced/resourced/blob/master/tests/script-reader/darwin-memory.py">Example Script</a> <a href="//github.com/resourced/resourced/tree/master/tests/resourced-configs/readers">Example Config Files</a></p>
@@ -375,7 +382,7 @@
 <p>It can execute scripts based on boolean expressions on its data. <a href="//github.com/resourced/resourced/blob/master/tests/resourced-configs/executors/shell.toml">Example</a></p>
 </li>
 <li>
-<p>It is useful without the master, it can report to other services.</p>
+<p>It is useful without the master, it can forward data to other services.</p>
 </li>
 </ul>
 <h2 id="master-features">Master Features</h2>
@@ -465,5 +472,5 @@
 
 <!--
 MkDocs version : 0.15.3
-Build Date UTC : 2016-07-25 16:10:46.903433
+Build Date UTC : 2016-07-27 04:29:05.135067
 -->

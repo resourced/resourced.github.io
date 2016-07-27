@@ -51,7 +51,7 @@ As mentioned above, there are 3 fields to query host data on: hostname, tags, an
 
 **Query by logline full text search**
 
-* **Word per word tokens:** `logline search "error & mysql"`. The search query must consist of single tokens separated by the Boolean operators & (AND), | (OR) and ! (NOT). These operators can be grouped using parentheses. Visit http://www.postgresql.org/docs/current/static/textsearch-controls.html for more details.
+* **Word per word tokens:** `logline search "error & mysql"`. The search query must consist of single tokens separated by the Boolean operators & (AND), | (OR) and ! (NOT). These operators can be grouped using parentheses. See [this link](http://www.postgresql.org/docs/current/static/textsearch-controls.html) for more details.
 
 * **Free-form text search:** `logline search "my free form text search"`.
 

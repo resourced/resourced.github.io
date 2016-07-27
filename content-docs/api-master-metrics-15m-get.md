@@ -9,6 +9,7 @@ Parameter | Default | Type | Description
 --------- | ------- | ---- | -----------
 from | '' | UNIX epoch | Allows user to provide a time range.
 to | '' | UNIX epoch | Allows user to provide a time range.
+aggr | 'avg' | string | Allows user to choose between avg, max, min, or sum.
 
 ```ruby
 # Ruby example
@@ -39,8 +40,6 @@ curl -u accesstoken: 'http://localhost:55655/api/metrics/1/15m?from=1463551343&t
 ```
 
 ## Return Payload
-
-**Limitation:** Currently, it only returns the average values.
 
 ```json
 [

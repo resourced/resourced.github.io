@@ -2,7 +2,7 @@
 
 With the help of `github.com/rcrowley/go-metrics`, it is trivial to report application metrics to ResourceD.
 
-Make sure you install ResourceD agent on the application host, so it can send metrics data to the agent using TCP plain text graphite protocol.
+Make sure you install ResourceD agent on the application host, so it can send metrics data to the agent using TCP/UDP plain text graphite protocol.
 
 
 # Prerequisite

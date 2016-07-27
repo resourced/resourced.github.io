@@ -145,7 +145,10 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#reporting-live-log-lines">Reporting Live Log Lines</a></li>
+                <li class="toctree-l3"><a href="#receiving-live-log-lines">Receiving Live Log Lines</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#protocol">Protocol</a></li>
                 
             
                 <li class="toctree-l3"><a href="#tips">Tips</a></li>
@@ -155,6 +158,13 @@
                 
             
             </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../usage-agent-logs-forwarding/">Usage - Agent: Logs: Forwarding</a>
         
     </li>
 <li>
@@ -321,10 +331,10 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="reporting-live-log-lines">Reporting Live Log Lines</h1>
+                <h1 id="receiving-live-log-lines">Receiving Live Log Lines</h1>
 <p>ResourceD agent can be configured to listen on TCP and UDP port for receiving log lines.</p>
-<p>Think of it as a forwarder to ResourceD Master.</p>
-<p><em>(Note: At the moment, the agent can only forward to ResourceD Master)</em></p>
+<p>It behave similarly to syslog listener. It can then forwards log lines to various targets.</p>
+<p><em>(Note: Log forwarding will be discuss in the next page)</em></p>
 <p>To enable, make sure the following config block is configured correctly inside <code>general.toml</code>:</p>
 <pre><code>[LogReceiver]
 # Send your logs over TCP or UDP here.
@@ -336,6 +346,15 @@ WriteToMasterInterval = &quot;60s&quot;
 
 # To prevent memory leak, clean all logs when storage capacity reached N.
 AutoPruneLength = 10000
+</code></pre>
+
+<h1 id="protocol">Protocol</h1>
+<p>The protocol to ship logline is very simple:</p>
+<pre><code># Base64, useful when shipping multi line log.
+type:base64|created:unix-timestamp|content:abc=
+
+# Plain
+type:plain|created:unix-timestamp|content:abc
 </code></pre>
 
 <h1 id="tips">Tips</h1>
@@ -355,7 +374,7 @@ AutoPruneLength = 10000
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../usage-master-hosts/" class="btn btn-neutral float-right" title="Usage - Master: Hosts">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../usage-agent-logs-forwarding/" class="btn btn-neutral float-right" title="Usage - Agent: Logs: Forwarding">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../usage-agent-logs-file/" class="btn btn-neutral" title="Usage - Agent: Logs: File"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -389,7 +408,7 @@ AutoPruneLength = 10000
         <span><a href="../usage-agent-logs-file/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../usage-master-hosts/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../usage-agent-logs-forwarding/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

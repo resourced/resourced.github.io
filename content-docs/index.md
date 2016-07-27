@@ -26,9 +26,9 @@ ResourceD is a complete monitoring and alerting solution for DevOps everywhere. 
 
 * It provides 60+ native data collector in Go: dmidecode, docker, haproxy, mcrouter, memcache, mysql, nagios plugins, procfs, ps output, redis, varnish.
 
-* It tails log files and forward them to master. These loglines can then be used to create alerts.
+* It tails log files and forward them to various locations. When forwarded to master, these loglines can then be used to create alerts.
 
-* It receives legacy Graphite metrics and forward them to master. These metrics are useful for alerts.
+* It can receives Graphite or StatsD metrics and forward them to master. These metrics are useful for alerts.
 
 * It can be extended using scripting languages. [Example Script](//github.com/resourced/resourced/blob/master/tests/script-reader/darwin-memory.py) [Example Config Files](//github.com/resourced/resourced/tree/master/tests/resourced-configs/readers)
 
@@ -36,7 +36,7 @@ ResourceD is a complete monitoring and alerting solution for DevOps everywhere. 
 
 * It can execute scripts based on boolean expressions on its data. [Example](//github.com/resourced/resourced/blob/master/tests/resourced-configs/executors/shell.toml)
 
-* It is useful without the master, it can report to other services.
+* It is useful without the master, it can forward data to other services.
 
 
 ## Master Features

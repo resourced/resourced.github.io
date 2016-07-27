@@ -50,7 +50,7 @@ The more specific your check is, the less noisy it is. You can use `AND` or `OR`
 
 Once a check is created, it doesn't actually do anything for you yet. To have a meaningful, actionable alerts, you need to create triggers.
 
-There are 4 different triggers:
+There are 4 different kind of triggers:
 
 * Do Nothing
 

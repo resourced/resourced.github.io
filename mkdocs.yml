@@ -22,6 +22,7 @@ pages:
     - "Usage - Agent: Application: Go": usage-agent-application-go.md
     - "Usage - Agent: Logs: File": usage-agent-logs-file.md
     - "Usage - Agent: Logs: Live": usage-agent-logs-live.md
+    - "Usage - Agent: Logs: Forwarding": usage-agent-logs-forwarding.md
     - "Usage - Master: Hosts": usage-master-hosts.md
     - "Usage - Master: Graphs": usage-master-graphs.md
     - "Usage - Master: Logs": usage-master-logs.md

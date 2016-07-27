@@ -148,6 +148,13 @@
           
             <li>
     <li class="toctree-l1 ">
+        <a class="" href="../usage-agent-logs-forwarding/">Usage - Agent: Logs: Forwarding</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
         <a class="" href="../usage-master-hosts/">Usage - Master: Hosts</a>
         
     </li>
@@ -329,7 +336,7 @@ uri = URI('http://localhost:55655/api/logs')
 Net::HTTP.start(uri.host, uri.port, :use_ssl =&gt; uri.scheme == 'https') do |http|
     request = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =&gt;'application/json'})
     request.basic_auth 'accesstoken', ''
-    request.body = '{&quot;Host&quot;: {&quot;Name&quot;: &quot;localhost&quot;,&quot;Tags&quot;: {&quot;role&quot;: &quot;app-server&quot;}}, &quot;Data&quot;: {&quot;Loglines&quot;: [&quot;multiple loglines in an array&quot;], &quot;Filename&quot;: &quot;full path to filename where the logs came from&quot;}}'
+    request.body = '{&quot;Host&quot;: {&quot;Name&quot;: &quot;localhost&quot;,&quot;Tags&quot;: {&quot;role&quot;: &quot;app-server&quot;}}, &quot;Data&quot;: {&quot;Loglines&quot;: [{&quot;Created&quot;: unix-timestamp, &quot;Content&quot;: &quot;multiple loglines in an array&quot;}], &quot;Filename&quot;: &quot;full path to filename where the logs came from&quot;}}'
 
     response = http.request request
 end
@@ -349,7 +356,9 @@ response = requests.post(
             }
         },
         &quot;Data&quot;: {
-            &quot;Loglines&quot;: [&quot;multiple loglines in an array&quot;],
+            &quot;Loglines&quot;: [
+                {&quot;Created&quot;: unix-timestamp, &quot;Content&quot;: &quot;multiple loglines in an array&quot;}
+            ],
             &quot;Filename&quot;: &quot;full path to filename where the logs came from&quot;
         }
     }
@@ -361,7 +370,7 @@ response = requests.post(
 curl -u accesstoken: -X POST \
     -H &quot;Accept: application/json&quot; \
     -H &quot;Content-Type: application/json&quot; \
-    -d '{&quot;Host&quot;: {&quot;Name&quot;: &quot;localhost&quot;,&quot;Tags&quot;: {&quot;role&quot;: &quot;app-server&quot;}}, &quot;Data&quot;: {&quot;Loglines&quot;: [&quot;multiple loglines in an array&quot;], &quot;Filename&quot;: &quot;full path to filename where the logs came from&quot;}}' \
+    -d '{&quot;Host&quot;: {&quot;Name&quot;: &quot;localhost&quot;,&quot;Tags&quot;: {&quot;role&quot;: &quot;app-server&quot;}}, &quot;Data&quot;: {&quot;Loglines&quot;: [{&quot;Created&quot;: unix-timestamp, &quot;Content&quot;: &quot;multiple loglines in an array&quot;}], &quot;Filename&quot;: &quot;full path to filename where the logs came from&quot;}}' \
     'http://localhost:55655/api/logs'
 </code></pre>
 
@@ -374,7 +383,7 @@ curl -u accesstoken: -X POST \
         }
     },
     &quot;Data&quot;: {
-        &quot;Loglines&quot;: [&quot;multiple loglines in an array&quot;],
+        &quot;Loglines&quot;: [{&quot;Created&quot;: unix-timestamp, &quot;Content&quot;: &quot;multiple loglines in an array&quot;}],
         &quot;Filename&quot;: &quot;full path to filename where the logs came from&quot;
     }
 }

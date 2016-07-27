@@ -164,6 +164,13 @@
           
             <li>
     <li class="toctree-l1 ">
+        <a class="" href="../usage-agent-logs-forwarding/">Usage - Agent: Logs: Forwarding</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
         <a class="" href="../usage-master-hosts/">Usage - Master: Hosts</a>
         
     </li>
@@ -341,7 +348,7 @@
 </ul>
 <p>There is one option to set for running the master daemon. You can set it via <code>-c</code> flag or <code>RESOURCED_MASTER_CONFIG_DIR</code> environment variable. <code>cd path/to/resourced-master; resourced-master -c config-files</code></p>
 <h2 id="creating-new-migration-files">Creating New Migration Files</h2>
-<p>You have learned that ResourceD timeseries databases are partitioned either monthly or daily.</p>
+<p>ResourceD timeseries databases are partitioned either monthly or daily.</p>
 <p>The migration files are located here: <code>migrations/{core|ts-checks|ts-events|ts-executor-logs|ts-logs|ts-metrics}</code>.</p>
 <p>When you looked inside those directories, you'll notice that only 2016 are provided.</p>
 <p>To create new migration files, run <code>scripts/migrations/{create|drop}-ts-{daily|events}.py</code>. Each script contains comments on how to use it.</p>

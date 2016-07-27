@@ -1,4 +1,4 @@
-Read this doc only if you are compiling from source.
+*(View this page if you are compiling from source)*
 
 
 ## Master Prerequisites
