@@ -195,6 +195,30 @@
 
     
     <url>
+     <loc>http://resourced.io/api-master-metrics-sse/</loc>
+     <lastmod>2016-08-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>http://resourced.io/api-master-metrics-sse-by-id/</loc>
+     <lastmod>2016-08-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>http://resourced.io/api-master-metrics-sse-by-id-host/</loc>
+     <lastmod>2016-08-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
      <loc>http://resourced.io/api-master-events-post/</loc>
      <lastmod>2016-08-21</lastmod>
      <changefreq>daily</changefreq>

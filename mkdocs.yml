@@ -33,6 +33,9 @@ pages:
     - "API Doc - Master: GET /api/metrics/{id:[0-9]+}/15m": api-master-metrics-15m-get.md
     - "API Doc - Master: GET /api/metrics/{id:[0-9]+}/hosts/{host}": api-master-metrics-host-get.md
     - "API Doc - Master: GET /api/metrics/{id:[0-9]+}/hosts/{host}/15m": api-master-metrics-host-15m-get.md
+    - "API Doc - Master: EventSource /api/metrics/streams": api-master-metrics-sse.md
+    - "API Doc - Master: EventSource /api/metrics/{id:[0-9]+}/streams": api-master-metrics-sse-by-id.md
+    - "API Doc - Master: EventSource /api/metrics/{id:[0-9]+}/hosts/{host}/streams": api-master-metrics-sse-by-id-host.md
     - "API Doc - Master: POST /api/events": api-master-events-post.md
     - "API Doc - Master: DELETE /api/events/{id:[0-9]+}": api-master-events-delete.md
     - "API Doc - Master: POST /api/logs": api-master-logs-post.md

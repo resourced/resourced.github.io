@@ -521,6 +521,51 @@
             "title": "Return Payload"
         }, 
         {
+            "location": "/api-master-metrics-sse/", 
+            "text": "EventSource http://localhost:55655/api/metrics/streams\n\n\nSSE update on all metrics based on authentication token.\n\n\nQuery Parameters\n\n\n\n\n\n\n\n\nParameter\n\n\nDefault\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\naccessToken\n\n\n''\n\n\nstring\n\n\nAuthentication token.\n\n\n\n\n\n\n\n\nsetTimeout(function() {\n    globalEventSource = new EventSource('/api/metrics/streams?accessToken=aabbcc');\n}, 5);\n\n\n\n\nReturn Payload\n\n\nevent: metric|1\\n\ndata: {\nClusterID\n: 1, \nMetricID\n: 1, \nMetricKey\n: \n/aa.bb\n, \nHostname\n: \nlocalhost\n, \nValue\n: 1.0}\\n\\n\nevent: metric|1|host|localhost\\n\ndata: {\nClusterID\n: 1, \nMetricID\n: 1, \nMetricKey\n: \n/aa.bb\n, \nHostname\n: \nlocalhost\n, \nValue\n: 1.0}\\n\\n", 
+            "title": "API Doc - Master: EventSource /api/metrics/streams"
+        }, 
+        {
+            "location": "/api-master-metrics-sse/#query-parameters", 
+            "text": "Parameter  Default  Type  Description      accessToken  ''  string  Authentication token.     setTimeout(function() {\n    globalEventSource = new EventSource('/api/metrics/streams?accessToken=aabbcc');\n}, 5);", 
+            "title": "Query Parameters"
+        }, 
+        {
+            "location": "/api-master-metrics-sse/#return-payload", 
+            "text": "event: metric|1\\n\ndata: { ClusterID : 1,  MetricID : 1,  MetricKey :  /aa.bb ,  Hostname :  localhost ,  Value : 1.0}\\n\\n\nevent: metric|1|host|localhost\\n\ndata: { ClusterID : 1,  MetricID : 1,  MetricKey :  /aa.bb ,  Hostname :  localhost ,  Value : 1.0}\\n\\n", 
+            "title": "Return Payload"
+        }, 
+        {
+            "location": "/api-master-metrics-sse-by-id/", 
+            "text": "EventSource http://localhost:55655/api/metrics/{id:[0-9]+}/streams\n\n\nSSE update on metrics based on authentication token and metric ID.\n\n\nQuery Parameters\n\n\n\n\n\n\n\n\nParameter\n\n\nDefault\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\naccessToken\n\n\n''\n\n\nstring\n\n\nAuthentication token.\n\n\n\n\n\n\n\n\nsetTimeout(function() {\n    globalEventSource = new EventSource('/api/metrics/1/streams?accessToken=aabbcc');\n}, 5);\n\n\n\n\nReturn Payload\n\n\nevent: metric|1\\n\ndata: {\nClusterID\n: 1, \nMetricID\n: 1, \nMetricKey\n: \n/aa.bb\n, \nHostname\n: \nlocalhost\n, \nValue\n: 1.0}\\n\\n", 
+            "title": "API Doc - Master: EventSource /api/metrics/{id:[0-9]+}/streams"
+        }, 
+        {
+            "location": "/api-master-metrics-sse-by-id/#query-parameters", 
+            "text": "Parameter  Default  Type  Description      accessToken  ''  string  Authentication token.     setTimeout(function() {\n    globalEventSource = new EventSource('/api/metrics/1/streams?accessToken=aabbcc');\n}, 5);", 
+            "title": "Query Parameters"
+        }, 
+        {
+            "location": "/api-master-metrics-sse-by-id/#return-payload", 
+            "text": "event: metric|1\\n\ndata: { ClusterID : 1,  MetricID : 1,  MetricKey :  /aa.bb ,  Hostname :  localhost ,  Value : 1.0}\\n\\n", 
+            "title": "Return Payload"
+        }, 
+        {
+            "location": "/api-master-metrics-sse-by-id-host/", 
+            "text": "EventSource http://localhost:55655/api/metrics/{id:[0-9]+}/hosts/{host}/streams\n\n\nSSE update on metrics based on authentication token, metric ID, and host.\n\n\nQuery Parameters\n\n\n\n\n\n\n\n\nParameter\n\n\nDefault\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\naccessToken\n\n\n''\n\n\nstring\n\n\nAuthentication token.\n\n\n\n\n\n\n\n\nsetTimeout(function() {\n    globalEventSource = new EventSource('/api/metrics/1/hosts/localhost/streams?accessToken=aabbcc');\n}, 5);\n\n\n\n\nReturn Payload\n\n\nevent: metric|1|host|localhost\\n\ndata: {\nClusterID\n: 1, \nMetricID\n: 1, \nMetricKey\n: \n/aa.bb\n, \nHostname\n: \nlocalhost\n, \nValue\n: 1.0}\\n\\n", 
+            "title": "API Doc - Master: EventSource /api/metrics/{id:[0-9]+}/hosts/{host}/streams"
+        }, 
+        {
+            "location": "/api-master-metrics-sse-by-id-host/#query-parameters", 
+            "text": "Parameter  Default  Type  Description      accessToken  ''  string  Authentication token.     setTimeout(function() {\n    globalEventSource = new EventSource('/api/metrics/1/hosts/localhost/streams?accessToken=aabbcc');\n}, 5);", 
+            "title": "Query Parameters"
+        }, 
+        {
+            "location": "/api-master-metrics-sse-by-id-host/#return-payload", 
+            "text": "event: metric|1|host|localhost\\n\ndata: { ClusterID : 1,  MetricID : 1,  MetricKey :  /aa.bb ,  Hostname :  localhost ,  Value : 1.0}\\n\\n", 
+            "title": "Return Payload"
+        }, 
+        {
             "location": "/api-master-events-post/", 
             "text": "POST http://localhost:55655/api/events\n\n\nSubmit an event object.\n\n\n# Ruby example\nrequire 'net/http'\nrequire 'net/https'\n\nuri = URI('http://localhost:55655/api/events')\n\nNet::HTTP.start(uri.host, uri.port, :use_ssl =\n uri.scheme == 'https') do |http|\n    request = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =\n'application/json'})\n    request.basic_auth 'accesstoken', ''\n    request.body = '{\nfrom\n: 1463551343, \nto\n: 1463551643, \ndescription\n: \nDeployed app server\n}'\n\n    response = http.request request\nend\n\n\n\n\n# Python example\n# Requests is a 3rd party library\nfrom requests.auth import HTTPBasicAuth\nresponse = requests.post(\n    'http://localhost:55655/api/events',\n    auth=HTTPBasicAuth('accesstoken', ''),\n    body={\nfrom\n: 1463551343, \nto\n: 1463551643, \ndescription\n: \nDeployed app server\n}\n)\n\n\n\n\n# cURL example\n# Notice the double colon at the end of Access Token.\ncurl -u accesstoken: -X POST \\\n    -H \nAccept: application/json\n \\\n    -H \nContent-Type: application/json\n \\\n    -d '{\nfrom\n: 1463551343, \nto\n: 1463551643, \ndescription\n: \nDeployed app server\n}' \\\n    'http://localhost:55655/api/events'\n\n\n\n\nSend Payload\n\n\n{\n    \nfrom\n: 1463551343,\n    \nto\n: 1463551643,\n    \ndescription\n: \nDeployed app server\n\n}\n\n\n\n\nReturn Payload\n\n\n{\n    \nID\n: 1,\n    \nClusterID\n: 1,\n    \nCreatedFrom\n: 1463551343,\n    \nCreatedTo\n: 1463551643,\n    \nDescription\n: \nDeployed app server\n\n}", 
             "title": "API Doc - Master: POST /api/events"
