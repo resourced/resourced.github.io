@@ -5,9 +5,11 @@ With the help of `github.com/rcrowley/go-metrics`, it is trivial to report appli
 Make sure you install ResourceD agent on the application host, so it can send metrics data to the agent using TCP/UDP plain text graphite protocol.
 
 
-# Prerequisite
+# Prerequisites
 
 * `go get github.com/rcrowley/go-metrics`
+
+* `go get github.com/cyberdelia/go-metrics-graphite`
 
 
 # Collecting GC and Runtime Memory metrics
@@ -52,5 +54,3 @@ func main() {
 You can take a look at how Master daemon report its metrics for more examples:
 
 * [Creating a new registry with basic reporting.](https://github.com/resourced/resourced-master/blob/master/application/application_metrics.go)
-
-* [Publishing metrics to Graphite endpoint.](https://github.com/resourced/resourced-master/blob/master/main.go#L144)

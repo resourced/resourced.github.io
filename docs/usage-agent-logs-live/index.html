@@ -332,24 +332,22 @@
             <div class="section">
               
                 <h1 id="receiving-live-log-lines">Receiving Live Log Lines</h1>
-<p>ResourceD agent can be configured to listen on TCP and UDP port for receiving log lines.</p>
+<p>ResourceD agent can be configured to listen on TCP port for receiving log lines.</p>
 <p>It behave similarly to syslog listener. It can then forwards log lines to various targets.</p>
 <p><em>(Note: Log forwarding will be discuss in the next page)</em></p>
 <p>To enable, make sure the following config block is configured correctly inside <code>general.toml</code>:</p>
 <pre><code>[LogReceiver]
-# Send your logs over TCP or UDP here.
-# TLS files are only used for TCP connection.
+# Send your logs over TCP here. UDP is not supported because a log line tends to be large.
 Addr = &quot;:55557&quot;
 CertFile = &quot;&quot;
 KeyFile = &quot;&quot;
-WriteToMasterInterval = &quot;60s&quot;
 
-# To prevent memory leak, clean all logs when storage capacity reached N.
-AutoPruneLength = 10000
+# ChannelCapacity defines the incoming channel capacity until if flushes.
+ChannelCapacity = 1
 </code></pre>
 
 <h1 id="protocol">Protocol</h1>
-<p>The protocol to ship logline is very simple:</p>
+<p>The protocol to ship log line is very simple:</p>
 <pre><code># Base64, useful when shipping multi line log.
 type:base64|created:unix-timestamp|content:abc=
 
@@ -366,7 +364,6 @@ type:plain|created:unix-timestamp|content:abc
 <p>If you are sending so much log data to the agent such that one instance is no longer enough,</p>
 <p>feel free to run multiple agent instances running on different ports,</p>
 <p>and load balance them behind Nginx/HAProxy.</p>
-<p><em>(Note: At this point you can only use the TCP endpoint.)</em></p>
               
             </div>
           </div>

@@ -7,7 +7,7 @@ ResourceD is a complete monitoring and alerting solution for DevOps everywhere. 
 
 * Easy to install. Just download the binaries, change the default config, and run. No `yum install` necessary.
 
-* Good looking, easy to use, UI.
+* Good looking, easy to use, and responsive UI.
 
 * It comprises of only three components: Agent, Master, and PostgreSQL. That's it. Other solutions are often complex with a lot of components to manage.
 
@@ -43,9 +43,11 @@ ResourceD is a complete monitoring and alerting solution for DevOps everywhere. 
 
 * It receives a lot of useful data from the agents: facts, metrics, and loglines.
 
-* It creates active checks based on any of these data.
+* It creates passive checks based on metrics and loglines data.
 
 * It can also create active checks on ping, SSH, and HTTP.
+
+* It live-updates charts (on non aggregated metrics).
 
 * When running multiple masters, the check jobs are distributed equally among them. There's no single point of failure.
 

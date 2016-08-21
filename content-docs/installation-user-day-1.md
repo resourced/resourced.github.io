@@ -12,8 +12,6 @@ The minimum required version is 9.5 since we are using BRIN index for timeseries
 
 * GIN index for JSONB column.
 
-* LISTEN/NOTIFY for pubsub between daemons.
-
 
 ## Many Databases
 
@@ -42,13 +40,14 @@ createdb --owner=resourced resourced-master-ts-metrics
 
 The core database is defined in `general.toml > DSN`.
 
-It's usage pattern is read-heavy with the exception of `hosts` table.
+It's usage pattern is read-heavy and the dataset is very small.
 
 For best performance, expand your `shared_buffers` so all your dataset is in RAM.
 
-The master daemons communicate with each other via `LISTEN/NOTIFY` through core's database.
 
-Thus, this is the recommended formula for `max_connections = <num-of-daemons> + <connections-for-db-work>`
+### Hosts
+
+The hosts database stores all hosts data. It's configured in `hosts.toml > DSN`.
 
 
 ### Metrics

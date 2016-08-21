@@ -330,14 +330,14 @@
               
                 <h1 id="reporting-application-metrics">Reporting Application Metrics</h1>
 <p>For application to report metrics, you need to install ResourceD agent on every application host.</p>
-<p>Then, the application can report metrics using Graphite/StatsD plain text protocol to the agent. The wire protocol uses TCP or UDP.</p>
+<p>Then, the application can report metrics using Graphite/StatsD plain text protocol to the agent (listening on localhost). The wire protocol uses TCP or UDP.</p>
 <h1 id="tips">Tips</h1>
 <ul>
 <li>
 <p>It's best to wrap the metrics sending code with error-swallowing try-catch because the application should not break when metrics reporting is disrupted.</p>
 </li>
 <li>
-<p>Feel free to log the error so it can still be shipped and analyzed by ResourceD.</p>
+<p>Feel free to log the error, and they too, can be shipped and analyzed by ResourceD.</p>
 </li>
 <li>
 <p>There's no need to prefix metric key with hostname because ResourceD automatically tags every metric key with hostname as metadata.</p>

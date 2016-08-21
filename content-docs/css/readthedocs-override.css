@@ -1,15 +1,15 @@
 h1, h2, h3, h4, h5, h6, legend {
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 p {
-    margin: 0 0 12px;
+    margin: 0 0 10px;
 }
 li > p {
     line-height: 26px;
 }
 code, .rst-content tt {
     font-size: 70%;
-    padding: 2px 5px 1px;
+    padding: 2px 5px 2px;
     vertical-align: middle;
 }
 .wy-nav-top, .wy-side-nav-search {
@@ -32,6 +32,10 @@ code, .rst-content tt {
 .rst-versions .rst-current-version {
     background-color: #2b3e50;
     color: #ebebeb;
+}
+
+.rst-content .section ol p, .rst-content .section ul p {
+    margin-bottom: 0;
 }
 
 @media (min-width: 1000px) {

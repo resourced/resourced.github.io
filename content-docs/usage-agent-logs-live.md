@@ -1,6 +1,6 @@
 # Receiving Live Log Lines
 
-ResourceD agent can be configured to listen on TCP and UDP port for receiving log lines.
+ResourceD agent can be configured to listen on TCP port for receiving log lines.
 
 It behave similarly to syslog listener. It can then forwards log lines to various targets.
 
@@ -10,21 +10,19 @@ To enable, make sure the following config block is configured correctly inside `
 
 ```
 [LogReceiver]
-# Send your logs over TCP or UDP here.
-# TLS files are only used for TCP connection.
+# Send your logs over TCP here. UDP is not supported because a log line tends to be large.
 Addr = ":55557"
 CertFile = ""
 KeyFile = ""
-WriteToMasterInterval = "60s"
 
-# To prevent memory leak, clean all logs when storage capacity reached N.
-AutoPruneLength = 10000
+# ChannelCapacity defines the incoming channel capacity until if flushes.
+ChannelCapacity = 1
 ```
 
 
 # Protocol
 
-The protocol to ship logline is very simple:
+The protocol to ship log line is very simple:
 
 ```
 # Base64, useful when shipping multi line log.
@@ -49,5 +47,3 @@ If you are sending so much log data to the agent such that one instance is no lo
 feel free to run multiple agent instances running on different ports,
 
 and load balance them behind Nginx/HAProxy.
-
-*(Note: At this point you can only use the TCP endpoint.)*

@@ -323,23 +323,45 @@
             <div class="section">
               
                 <h1 id="forwarding-to-multiple-targets">Forwarding to Multiple Targets</h1>
-<p>ResourceD agent can be configured to forward log lines to multiple targets:</p>
+<p>Each logger can be configured to forward to multiple targets. To define multiple targets, we are using TOML's array of tables syntax. Example:</p>
+<pre><code>[[Targets]]
+Endpoint = &quot;&quot;
+AllowList = [&quot;com.mysql.mysqld&quot;]
+DenyList = []
+</code></pre>
+
+<p>List of target endpoints to choose from:</p>
 <ul>
 <li>
-<p>ResourceD Master</p>
+<p>ResourceD Master API endpoint. Example: <code>http://RESOURCED_MASTER_URL/api/logs</code></p>
 </li>
 <li>
-<p>Another Resourced Agent</p>
+<p>ResourceD Agent TCP endpoint. Example: <code>resourced+tcp://remote-ip:port</code></p>
 </li>
 <li>
-<p>Syslog</p>
+<p>Syslog endpoint: <code>syslog+tcp://remote-ip:601</code>, <code>syslog+udp://remote-ip:514</code></p>
 </li>
 <li>
-<p>Local File</p>
+<p>Generic TCP: <code>tcp://remote-ip:port</code></p>
 </li>
 </ul>
-<p>Each logger config file defines one source and multiple targets. Extensive examples are provided <a href="https://github.com/resourced/resourced/tree/master/tests/resourced-configs/loggers">here</a>.</p>
-<p>This feature inspiration comes from Apache Flume and Fluentd.</p>
+<p>AllowList and DenyList are exclusive to each other. You can only have one or the other.</p>
+<ul>
+<li>
+<p>When AllowList is enabled, no log lines will be forwarded except the one that matches AllowList regex.</p>
+</li>
+<li>
+<p>When DenyList is enabled, all log lines will be forwarded except the one that matches DenyList regex.</p>
+</li>
+<li>
+<p>When both are defined, only AllowList will be used.</p>
+</li>
+<li>
+<p>When neither AllowList nor DenyList are defined, all log lines will be forwarded.</p>
+</li>
+</ul>
+<p>Extensive examples are provided <a href="https://github.com/resourced/resourced/tree/master/tests/resourced-configs/loggers">here</a>.</p>
+<p>This feature is inspired by Apache Flume and Fluentd.</p>
               
             </div>
           </div>

@@ -134,7 +134,7 @@
                 <li class="toctree-l3"><a href="#reporting-go-app-metrics">Reporting Go App Metrics</a></li>
                 
             
-                <li class="toctree-l3"><a href="#prerequisite">Prerequisite</a></li>
+                <li class="toctree-l3"><a href="#prerequisites">Prerequisites</a></li>
                 
             
                 <li class="toctree-l3"><a href="#collecting-gc-and-runtime-memory-metrics">Collecting GC and Runtime Memory metrics</a></li>
@@ -331,9 +331,14 @@
                 <h1 id="reporting-go-app-metrics">Reporting Go App Metrics</h1>
 <p>With the help of <code>github.com/rcrowley/go-metrics</code>, it is trivial to report application metrics to ResourceD.</p>
 <p>Make sure you install ResourceD agent on the application host, so it can send metrics data to the agent using TCP/UDP plain text graphite protocol.</p>
-<h1 id="prerequisite">Prerequisite</h1>
+<h1 id="prerequisites">Prerequisites</h1>
 <ul>
-<li><code>go get github.com/rcrowley/go-metrics</code></li>
+<li>
+<p><code>go get github.com/rcrowley/go-metrics</code></p>
+</li>
+<li>
+<p><code>go get github.com/cyberdelia/go-metrics-graphite</code></p>
+</li>
 </ul>
 <h1 id="collecting-gc-and-runtime-memory-metrics">Collecting GC and Runtime Memory metrics</h1>
 <p><code>go-metrics</code> provides user convenience functions to collect GC and Runtime Memory metrics.</p>
@@ -372,12 +377,7 @@ func main() {
 
 <p>You can take a look at how Master daemon report its metrics for more examples:</p>
 <ul>
-<li>
-<p><a href="https://github.com/resourced/resourced-master/blob/master/application/application_metrics.go">Creating a new registry with basic reporting.</a></p>
-</li>
-<li>
-<p><a href="https://github.com/resourced/resourced-master/blob/master/main.go#L144">Publishing metrics to Graphite endpoint.</a></p>
-</li>
+<li><a href="https://github.com/resourced/resourced-master/blob/master/application/application_metrics.go">Creating a new registry with basic reporting.</a></li>
 </ul>
               
             </div>

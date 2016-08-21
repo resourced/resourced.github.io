@@ -4,6 +4,8 @@
 
 * Enter your co-worker email and give him/her the right permission.
 
+* Ask your co-worker to click the verification email.
+
 
 ## By the end of day 3
 

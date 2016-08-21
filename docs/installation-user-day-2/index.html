@@ -332,30 +332,31 @@
             <div class="section">
               
                 <h2 id="master-installation-running">Master Installation &amp; Running</h2>
+<p>Master daemon need to know its config directory. You can set it via <code>-c</code> flag or <code>RESOURCED_MASTER_CONFIG_DIR</code> environment variable.</p>
 <ul>
 <li>
-<p><a href="https://github.com/resourced/resourced-master/releases">Download the tar.gz</a> and unpack it. </p>
+<p><a href="https://github.com/resourced/resourced-master/releases">Download the tar.gz</a> and unpack it.</p>
 </li>
 <li>
-<p>Run the database migration: <code>cd path/to/resourced-master; resourced-master -c conf migrate up</code></p>
+<p>Run the database migration: <code>cd path/to/resourced-master; resourced-master -c {conf-dir} migrate up</code></p>
 </li>
 <li>
-<p>Run the server: <code>cd path/to/resourced-master; resourced-master -c conf</code></p>
+<p>Run the server: <code>cd path/to/resourced-master; resourced-master -c {conf-dir}</code></p>
 </li>
 <li>
-<p>It is highly recommended to daemonize the master using init/systemd/supervisord. You can follow the examples of init scripts <a href="https://github.com/resourced/resourced-master/tree/master/scripts/init">here</a></p>
+<p>It is highly recommended to daemonize the master using init/systemd/supervisord. You can follow the examples of init scripts <a href="https://github.com/resourced/resourced-master/tree/master/scripts/init">here</a>.</p>
 </li>
 </ul>
-<p>There is one option to set for running the master daemon. You can set it via <code>-c</code> flag or <code>RESOURCED_MASTER_CONFIG_DIR</code> environment variable. <code>cd path/to/resourced-master; resourced-master -c config-files</code></p>
 <h2 id="creating-new-migration-files">Creating New Migration Files</h2>
 <p>ResourceD timeseries databases are partitioned either monthly or daily.</p>
 <p>The migration files are located here: <code>migrations/{core|ts-checks|ts-events|ts-executor-logs|ts-logs|ts-metrics}</code>.</p>
 <p>When you looked inside those directories, you'll notice that only 2016 are provided.</p>
-<p>To create new migration files, run <code>scripts/migrations/{create|drop}-ts-{daily|events}.py</code>. Each script contains comments on how to use it.</p>
+<p>To create new migration files: <code>scripts/migrations/{create|drop}-ts-{daily|events}.py &gt; ts-{ts-checks|ts-events|ts-executor-logs|ts-logs|ts-metrics}/00XX-new-migration.{up|down}.sql</code>.</p>
+<p>Each script contains comments on how to use it. Take a look at them for more details.</p>
 <h2 id="agent-reporting-to-master">Agent Reporting to Master</h2>
 <ol>
 <li>
-<p>Create a new AccessToken using the GUI: Click <code>your@email.com</code> drop down and select <code>Clusters</code> menu option.</p>
+<p>Login to master and create a new AccessToken: Click <code>your@email.com</code> drop down and select <code>Clusters</code> menu option.</p>
 </li>
 <li>
 <p>Notice that there's an AccessToken created for you already. Copy it.</p>

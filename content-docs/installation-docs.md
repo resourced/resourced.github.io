@@ -13,7 +13,7 @@
 
 * Run `mkdocs serve` to start a local server for viewing your changes.
 
-* Run `mkdocs build --clean` to make sure every page is generated correctly.
+* Run `mkdocs build --clean` before commiting to git.
 
 * If you are adding a new page, don't forget to update `mkdocs.yml: pages:` array.
 

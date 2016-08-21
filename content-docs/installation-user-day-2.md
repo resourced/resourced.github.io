@@ -1,14 +1,14 @@
 ## Master Installation & Running
 
-* [Download the tar.gz](https://github.com/resourced/resourced-master/releases) and unpack it. 
+Master daemon need to know its config directory. You can set it via `-c` flag or `RESOURCED_MASTER_CONFIG_DIR` environment variable.
 
-* Run the database migration: `cd path/to/resourced-master; resourced-master -c conf migrate up`
+* [Download the tar.gz](https://github.com/resourced/resourced-master/releases) and unpack it.
 
-* Run the server: `cd path/to/resourced-master; resourced-master -c conf`
+* Run the database migration: `cd path/to/resourced-master; resourced-master -c {conf-dir} migrate up`
 
-* It is highly recommended to daemonize the master using init/systemd/supervisord. You can follow the examples of init scripts [here](https://github.com/resourced/resourced-master/tree/master/scripts/init)
+* Run the server: `cd path/to/resourced-master; resourced-master -c {conf-dir}`
 
-There is one option to set for running the master daemon. You can set it via `-c` flag or `RESOURCED_MASTER_CONFIG_DIR` environment variable. `cd path/to/resourced-master; resourced-master -c config-files`
+* It is highly recommended to daemonize the master using init/systemd/supervisord. You can follow the examples of init scripts [here](https://github.com/resourced/resourced-master/tree/master/scripts/init).
 
 
 ## Creating New Migration Files
@@ -19,12 +19,14 @@ The migration files are located here: `migrations/{core|ts-checks|ts-events|ts-e
 
 When you looked inside those directories, you'll notice that only 2016 are provided.
 
-To create new migration files, run `scripts/migrations/{create|drop}-ts-{daily|events}.py`. Each script contains comments on how to use it.
+To create new migration files: `scripts/migrations/{create|drop}-ts-{daily|events}.py > ts-{ts-checks|ts-events|ts-executor-logs|ts-logs|ts-metrics}/00XX-new-migration.{up|down}.sql`.
+
+Each script contains comments on how to use it. Take a look at them for more details.
 
 
 ## Agent Reporting to Master
 
-1. Create a new AccessToken using the GUI: Click `your@email.com` drop down and select `Clusters` menu option.
+1. Login to master and create a new AccessToken: Click `your@email.com` drop down and select `Clusters` menu option.
 
 2. Notice that there's an AccessToken created for you already. Copy it.
 

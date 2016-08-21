@@ -56,7 +56,9 @@ You can set it via `-c` flag or `RESOURCED_MASTER_CONFIG_DIR` environment variab
 
 The `.tar.gz` file provides you with a default config directory. In there, you will see the following files:
 
-* `general.toml` All default settings are defined in `general.toml`.
+* `general.toml` All default settings.
+
+* `hosts.toml` All settings related to storing hosts data.
 
 * `metrics.toml` All settings related to storing metrics data.
 
