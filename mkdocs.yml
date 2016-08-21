@@ -6,6 +6,7 @@ theme: readthedocs
 docs_dir: content-docs
 site_dir: docs
 extra_css:
+    - css/highlightjs-override.css
     - css/readthedocs-override.css
 
 pages:
