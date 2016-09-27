@@ -8,6 +8,7 @@ Get all hosts data.
 Parameter | Default | Type | Description
 --------- | ------- | -----| -----------
 q | '' | String | Allows user to filter hosts data using SQL-like statement.
+interval | '1h' | String | Allows user to filter hosts data by last updated interval.
 
 
 ## Query Language

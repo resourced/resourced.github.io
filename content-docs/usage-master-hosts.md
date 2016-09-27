@@ -1,8 +1,6 @@
 # Hosts Tab
 
-This page shows you the latest information on all of your hosts.
-
-You can think of it as facts/inventory database.
+This page shows you the latest information on all of your hosts. You can think of it as facts/inventory database.
 
 
 # What can you do with it?
@@ -62,3 +60,4 @@ Examples:
 * `/free.Swap.Used > 10000000`
 
 * `/uptime.LoadAvg1m > 10`
+
