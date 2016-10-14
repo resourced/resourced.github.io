@@ -7,7 +7,7 @@
 
 **2.** Install Git
 
-**3.** Install Go 1.6.x or newer
+**3.** Install Go 1.7.x or newer
 
 
 ## Master Installation & Running

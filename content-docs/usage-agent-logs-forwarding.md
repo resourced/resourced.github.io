@@ -4,7 +4,7 @@ Each logger can be configured to forward to multiple targets. To define multiple
 
 ```
 [[Targets]]
-Endpoint = ""
+Endpoint = "http://RESOURCED_MASTER_URL/api/logs"
 AllowList = ["com.mysql.mysqld"]
 DenyList = []
 ```

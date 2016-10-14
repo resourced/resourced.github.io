@@ -120,9 +120,6 @@
                 <li class="toctree-l3"><a href="#reporting-server-metrics-to-master">Reporting Server Metrics to Master</a></li>
                 
             
-                <li class="toctree-l3"><a href="#scaling-beyond-one-daemon">Scaling beyond One Daemon</a></li>
-                
-            
             </ul>
         
     </li>
@@ -221,21 +218,7 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../api-master-metrics-15m-get/">API Doc - Master: GET /api/metrics/{id:[0-9]+}/15m</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
         <a class="" href="../api-master-metrics-host-get/">API Doc - Master: GET /api/metrics/{id:[0-9]+}/hosts/{host}</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../api-master-metrics-host-15m-get/">API Doc - Master: GET /api/metrics/{id:[0-9]+}/hosts/{host}/15m</a>
         
     </li>
 <li>
@@ -377,11 +360,6 @@
 <p>This is done by configuring <code>writers/resourced-master-host.toml</code> config file. <a href="//github.com/resourced/resourced/blob/master/tests/resourced-configs/writers/resourced-master-host.toml">Click on this link for an example</a>.</p>
 <p>Once the master receive all hosts data, you can use the master's API endpoint for your scripting need.</p>
 <p>You can also use the master's checks feature for all of your alerting needs.</p>
-<h1 id="scaling-beyond-one-daemon">Scaling beyond One Daemon</h1>
-<p><em>(Skip this section if you don't have a huge traffic)</em></p>
-<p>If you are sending so much HTTP traffic to the agent such that one instance is no longer enough,</p>
-<p>feel free to run multiple agent instances running on different ports,</p>
-<p>and load balance them behind Nginx/HAProxy.</p>
               
             </div>
           </div>

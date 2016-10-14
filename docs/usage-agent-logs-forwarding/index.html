@@ -212,21 +212,7 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../api-master-metrics-15m-get/">API Doc - Master: GET /api/metrics/{id:[0-9]+}/15m</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
         <a class="" href="../api-master-metrics-host-get/">API Doc - Master: GET /api/metrics/{id:[0-9]+}/hosts/{host}</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../api-master-metrics-host-15m-get/">API Doc - Master: GET /api/metrics/{id:[0-9]+}/hosts/{host}/15m</a>
         
     </li>
 <li>
@@ -347,7 +333,7 @@
                 <h1 id="forwarding-to-multiple-targets">Forwarding to Multiple Targets</h1>
 <p>Each logger can be configured to forward to multiple targets. To define multiple targets, we are using TOML's array of tables syntax. Example:</p>
 <pre><code>[[Targets]]
-Endpoint = &quot;&quot;
+Endpoint = &quot;http://RESOURCED_MASTER_URL/api/logs&quot;
 AllowList = [&quot;com.mysql.mysqld&quot;]
 DenyList = []
 </code></pre>

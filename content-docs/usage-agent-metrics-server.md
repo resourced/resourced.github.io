@@ -31,13 +31,3 @@ This is done by configuring `writers/resourced-master-host.toml` config file. [C
 Once the master receive all hosts data, you can use the master's API endpoint for your scripting need.
 
 You can also use the master's checks feature for all of your alerting needs.
-
-# Scaling beyond One Daemon
-
-*(Skip this section if you don't have a huge traffic)*
-
-If you are sending so much HTTP traffic to the agent such that one instance is no longer enough,
-
-feel free to run multiple agent instances running on different ports,
-
-and load balance them behind Nginx/HAProxy.
