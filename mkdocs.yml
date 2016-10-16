@@ -39,7 +39,3 @@ pages:
     - "API Doc - Master: DELETE /api/events/{id:[0-9]+}": api-master-events-delete.md
     - "API Doc - Master: POST /api/logs": api-master-logs-post.md
     - "API Doc - Master: GET /api/logs": api-master-logs-get.md
-    - "API Doc - Master: POST /api/metadata/{key}": api-master-metadata-post.md
-    - "API Doc - Master: DELETE /api/metadata/{key}": api-master-metadata-delete.md
-    - "API Doc - Master: GET /api/metadata/{key}": api-master-metadata-get.md
-    - "API Doc - Master: GET /api/metadata": api-master-metadata-all.md

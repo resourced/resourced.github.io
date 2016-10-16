@@ -594,51 +594,6 @@
             "location": "/api-master-logs-get/#return-payload", 
             "text": "[\n  {\n     ClusterID : \u200b1,\n     Hostname :  localhost ,\n     Created :  2016-05-15T23:47:01.441652Z ,\n     Tags : {\n       os :  OS X Yosemite ,\n       postgres :  9.4.2 ,\n       redis :  3.0.1 ,\n       role :  home-dev \n    },\n     Filename :  ,\n     Logline :  foo log \n  },\n  {\n     ClusterID : \u200b1,\n     Hostname :  localhost ,\n     Created :  2016-05-15T23:47:01.441652Z ,\n     Tags : {\n       os :  OS X Yosemite ,\n       postgres :  9.4.2 ,\n       redis :  3.0.1 ,\n       role :  home-dev \n    },\n     Filename :  ,\n     Logline :  bar log \n  }\n]", 
             "title": "Return Payload"
-        }, 
-        {
-            "location": "/api-master-metadata-post/", 
-            "text": "POST http://localhost:55655/api/metadata/{key}\n\n\nSubmit a metadata object.\n\n\n# Ruby example\nrequire 'net/http'\nrequire 'net/https'\n\nuri = URI('http://localhost:55655/api/metadata/foo/bar')\n\nNet::HTTP.start(uri.host, uri.port, :use_ssl =\n uri.scheme == 'https') do |http|\n    request = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =\n'application/json'})\n    request.basic_auth 'accesstoken', ''\n    request.body = '{\nsome\n: \ndata\n, \ndescription\n: \nuseful during server orchestration\n}'\n\n    response = http.request request\nend\n\n\n\n\n# Python example\n# Requests is a 3rd party library\nfrom requests.auth import HTTPBasicAuth\nresponse = requests.post(\n    'http://localhost:55655/api/metadata/foo/bar',\n    auth=HTTPBasicAuth('accesstoken', ''),\n    body={\nsome\n: \ndata\n, \ndescription\n: \nuseful during server orchestration\n}\n)\n\n\n\n\n# cURL example\n# Notice the double colon at the end of Access Token.\ncurl -u accesstoken: -X POST \\\n    -H \nAccept: application/json\n \\\n    -H \nContent-Type: application/json\n \\\n    -d '{\nsome\n: \ndata\n, \ndescription\n: \nuseful during server orchestration\n}' \\\n    'http://localhost:55655/api/metadata/foo/bar'\n\n\n\n\nSend Payload\n\n\n{\n    \nsome\n: \ndata\n,\n    \ndescription\n: \nuseful during server orchestration\n\n}\n\n\n\n\nReturn Payload\n\n\n{\n    \nClusterID\n: 1,\n    \nKey\n: \nfoo/bar\n,\n    \nData\n: {\n        \nsome\n: \ndata\n,\n        \ndescription\n: \nuseful during server orchestration\n\n    }\n}", 
-            "title": "API Doc - Master: POST /api/metadata/{key}"
-        }, 
-        {
-            "location": "/api-master-metadata-post/#send-payload", 
-            "text": "{\n     some :  data ,\n     description :  useful during server orchestration \n}", 
-            "title": "Send Payload"
-        }, 
-        {
-            "location": "/api-master-metadata-post/#return-payload", 
-            "text": "{\n     ClusterID : 1,\n     Key :  foo/bar ,\n     Data : {\n         some :  data ,\n         description :  useful during server orchestration \n    }\n}", 
-            "title": "Return Payload"
-        }, 
-        {
-            "location": "/api-master-metadata-delete/", 
-            "text": "DELETE http://localhost:55655/api/metadata/{key}\n\n\nDelete an metadata object by key.\n\n\n# Ruby example\nrequire 'net/http'\nrequire 'net/https'\n\nuri = URI('http://localhost:55655/api/metadata/foo/bar')\n\nNet::HTTP.start(uri.host, uri.port, :use_ssl =\n uri.scheme == 'https') do |http|\n    request = Net::HTTP::Delete.new(uri.request_uri, initheader = {'Content-Type' =\n'application/json'})\n    request.basic_auth 'accesstoken', ''\n\n    response = http.request request\nend\n\n\n\n\n# Python example\n# Requests is a 3rd party library\nfrom requests.auth import HTTPBasicAuth\nresponse = requests.delete('http://localhost:55655/api/metadata/1', auth=HTTPBasicAuth('accesstoken', ''))\n\n\n\n\n# cURL example\n# Notice the double colon at the end of Access Token.\ncurl -u accesstoken: -X DELETE 'http://localhost:55655/api/metadata/foo/bar'\n\n\n\n\nReturn Payload\n\n\n{\n    \nClusterID\n: 1,\n    \nKey\n: \nfoo/bar\n,\n    \nData\n: {\n        \nsome\n: \ndata\n,\n        \ndescription\n: \nuseful during server orchestration\n\n    }\n}", 
-            "title": "API Doc - Master: DELETE /api/metadata/{key}"
-        }, 
-        {
-            "location": "/api-master-metadata-delete/#return-payload", 
-            "text": "{\n     ClusterID : 1,\n     Key :  foo/bar ,\n     Data : {\n         some :  data ,\n         description :  useful during server orchestration \n    }\n}", 
-            "title": "Return Payload"
-        }, 
-        {
-            "location": "/api-master-metadata-get/", 
-            "text": "GET http://localhost:55655/api/metadata/{key}\n\n\nGet metadata by key.\n\n\n# Ruby example\nrequire 'net/http'\nrequire 'net/https'\n\nuri = URI('http://localhost:55655/api/metadata/foo/bar')\n\nNet::HTTP.start(uri.host, uri.port, :use_ssl =\n uri.scheme == 'https') do |http|\n  request = Net::HTTP::Get.new uri.request_uri\n  request.basic_auth 'accesstoken', ''\n\n  response = http.request request\nend\n\n\n\n\n# Python example\n# Requests is a 3rd party library\nfrom requests.auth import HTTPBasicAuth\nresponse = requests.get('http://localhost:55655/api/metadata/foo/bar', auth=HTTPBasicAuth('accesstoken', ''))\n\n\n\n\n# cURL example\n# Notice the double colon at the end of Access Token.\ncurl -u accesstoken: http://localhost:55655/api/metadata/foo/bar\n\n\n\n\nReturn Payload\n\n\n{\n    \nClusterID\n: 1,\n    \nKey\n: \nfoo/bar\n,\n    \nData\n: {\n        \nsome\n: \ndata\n,\n        \ndescription\n: \nuseful during server orchestration\n\n    }\n}", 
-            "title": "API Doc - Master: GET /api/metadata/{key}"
-        }, 
-        {
-            "location": "/api-master-metadata-get/#return-payload", 
-            "text": "{\n     ClusterID : 1,\n     Key :  foo/bar ,\n     Data : {\n         some :  data ,\n         description :  useful during server orchestration \n    }\n}", 
-            "title": "Return Payload"
-        }, 
-        {
-            "location": "/api-master-metadata-all/", 
-            "text": "GET http://localhost:55655/api/metadata\n\n\nGet all metadata.\n\n\n# Ruby example\nrequire 'net/http'\nrequire 'net/https'\n\nuri = URI('http://localhost:55655/api/metadata')\n\nNet::HTTP.start(uri.host, uri.port, :use_ssl =\n uri.scheme == 'https') do |http|\n  request = Net::HTTP::Get.new uri.request_uri\n  request.basic_auth 'accesstoken', ''\n\n  response = http.request request\nend\n\n\n\n\n# Python example\n# Requests is a 3rd party library\nfrom requests.auth import HTTPBasicAuth\nresponse = requests.get('http://localhost:55655/api/metadata', auth=HTTPBasicAuth('accesstoken', ''))\n\n\n\n\n# cURL example\n# Notice the double colon at the end of Access Token.\ncurl -u accesstoken: http://localhost:55655/api/metadata\n\n\n\n\nReturn Payload\n\n\n[\n    {\n        \nClusterID\n: 1,\n        \nKey\n: \nfoo/bar\n,\n        \nData\n: {\n            \nsome\n: \ndata\n,\n            \ndescription\n: \nuseful during server orchestration\n\n        }\n    },\n    {\n        \nClusterID\n: 1,\n        \nKey\n: \nfoo/bar/baz\n,\n        \nData\n: {\n            \nsome\n: \ndata\n,\n            \ndescription\n: \nuseful during server orchestration\n\n        }\n    }\n]", 
-            "title": "API Doc - Master: GET /api/metadata"
-        }, 
-        {
-            "location": "/api-master-metadata-all/#return-payload", 
-            "text": "[\n    {\n         ClusterID : 1,\n         Key :  foo/bar ,\n         Data : {\n             some :  data ,\n             description :  useful during server orchestration \n        }\n    },\n    {\n         ClusterID : 1,\n         Key :  foo/bar/baz ,\n         Data : {\n             some :  data ,\n             description :  useful during server orchestration \n        }\n    }\n]", 
-            "title": "Return Payload"
         }
     ]
 }
